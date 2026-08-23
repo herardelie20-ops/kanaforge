@@ -1,0 +1,1 @@
+.volume-styles{display:grid;grid-template-columns:1fr;gap:5px;margin:4px 0 10px}.volume-styles button{border:1px solid #464754;background:#16171e;color:#b7bac3;border-radius:6px;padding:7px 8px;text-align:left;font:9px Manrope;cursor:pointer}.volume-styles button.chosen{background:#312847;border-color:#9365f8;color:#fff}
