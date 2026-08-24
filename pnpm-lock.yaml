@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      gifenc:
+        specifier: ^1.0.3
+        version: 1.0.3
       imagetracerjs:
         specifier: ^1.2.6
         version: 1.2.6
@@ -353,6 +356,9 @@ packages:
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
 
+  gifenc@1.0.3:
+    resolution: {integrity: sha512-xdr6AdrfGBcfzncONUOlXMBuc5wJDtOueE3c5rdG0oNgtINLD+f2iFZltrBRZYzACRbKr+mSVU/x98zv2u3jmw==}
+
   imagetracerjs@1.2.6:
     resolution: {integrity: sha512-LKJlnKmXFzDdh6IZtXTyBxXcCLTAkwgKYS+NMiPXiXVnlTLjQC8fq7U89laUSgHtypJB3TdMMDK4ecG5NI/Cgw==}
 
@@ -627,6 +633,8 @@ snapshots:
 
   fsevents@2.3.3:
     optional: true
+
+  gifenc@1.0.3: {}
 
   imagetracerjs@1.2.6: {}
 
