@@ -15,6 +15,7 @@
     "vite": "^7.1.7"
   },
   "dependencies": {
+    "@capacitor/browser": "^7.0.0",
     "@capacitor/core": "^7.6.8",
     "gifenc": "^1.0.3",
     "imagetracerjs": "^1.2.6",

@@ -9,6 +9,8 @@ import ImageTracer from 'imagetracerjs';
 import { GIFEncoder, quantize, applyPalette } from 'gifenc';
 import { encodeAnimation } from 'wasm-webp';
 import { BatchedRenderer, ParticleSystem, ConstantValue, IntervalValue, ConstantColor, SphereEmitter, RenderMode } from 'three.quarks';
+import { Capacitor } from '@capacitor/core';
+import { Browser } from '@capacitor/browser';
 import './style.css';
 import './exports.css';
 import './preview.css';
@@ -21,6 +23,10 @@ import './volume.css';
 import './vectorize.css';
 import './compact-studio.css';
 import './interaction-upgrades.css';
+
+const APK_URL='https://github.com/herardelie20-ops/kanaforge/releases/download/android-latest/app-debug.apk',APP_BUILD=Number(import.meta.env.VITE_APP_BUILD||0),UPDATE_API='https://api.github.com/repos/herardelie20-ops/kanaforge/actions/workflows/android-apk.yml/runs?status=success&per_page=1';
+async function checkAndroidUpdate(){if(!Capacitor.isNativePlatform())return;try{const data=await fetch(UPDATE_API,{headers:{Accept:'application/vnd.github+json'}}).then(r=>r.ok?r.json():null),latest=data?.workflow_runs?.[0]?.run_number||0;if(latest>APP_BUILD){const dialog=$('#app-update');dialog.hidden=false;$('#app-update-later').onclick=()=>{dialog.hidden=true};$('#app-update-download').onclick=async()=>{dialog.hidden=true;await Browser.open({url:APK_URL})}}}catch{}}
+window.addEventListener('DOMContentLoaded',checkAndroidUpdate);
 
 const $=s=>document.querySelector(s),sourceCanvas=$('#source-canvas'),sourceCtx=sourceCanvas.getContext('2d',{willReadFrequently:true}),afterCanvas=$('#after-canvas'),afterCtx=afterCanvas.getContext('2d');
 let imageReady=false,modelReady=false,vectorized=true,geometry,mesh,material,texture,bgTexture,fileName='',isPlaying=false,last=performance.now(),recording=false,selectedFinish='chrome',trailEnabled=false,trailMeshes=[],trailHistory=[],trailLast=0,loopEnabled=true,mirrorGhost,lightEdit=false,transparentBg=false,motionPreset='spin',motionTime=0,lastFrameFit=0,startPose=null,bgFx='none',particleBatch=null,particleEffect=null,exportParts=[];

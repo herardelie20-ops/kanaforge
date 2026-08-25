@@ -32,6 +32,7 @@ jobs:
       - run: pnpm exec vite build
         env:
           VITE_BASE_PATH: /
+          VITE_APP_BUILD: ${{ github.run_number }}
       - run: pnpm exec cap sync android
       - name: Construire l’application installable
         working-directory: android
