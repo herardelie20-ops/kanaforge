@@ -1,0 +1,5 @@
+{
+  "appId": "app.kanaforge.studio",
+  "appName": "KanaForge",
+  "webDir": "dist/client"
+}

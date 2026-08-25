@@ -3,3 +3,4 @@ dist/
 kanaforge-desktop/node_modules/
 kanaforge-desktop/release*/
 public/downloads/
+.tools/
