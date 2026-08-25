@@ -17,6 +17,9 @@ importers:
       three:
         specifier: ^0.185.1
         version: 0.185.1
+      wasm-webp:
+        specifier: ^0.1.0
+        version: 0.1.0
     devDependencies:
       '@openai/sites-vite-plugin':
         specifier: ^0.2.0
@@ -434,6 +437,9 @@ packages:
       yaml:
         optional: true
 
+  wasm-webp@0.1.0:
+    resolution: {integrity: sha512-Z1Sop+mLKogzDK3vJzSPfSxRF1yj/zbmn+XJuU9+7fvarxcuGhGkeLBqJr5H8LdgWuAwEKuZelCzx7ujztfhVQ==}
+
 snapshots:
 
   '@esbuild/aix-ppc64@0.28.2':
@@ -701,3 +707,5 @@ snapshots:
       tinyglobby: 0.2.17
     optionalDependencies:
       fsevents: 2.3.3
+
+  wasm-webp@0.1.0: {}

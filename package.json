@@ -15,6 +15,7 @@
   "dependencies": {
     "gifenc": "^1.0.3",
     "imagetracerjs": "^1.2.6",
-    "three": "^0.185.1"
+    "three": "^0.185.1",
+    "wasm-webp": "^0.1.0"
   }
 }
