@@ -1,0 +1,40 @@
+name: Créer l’APK Android
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-apk
+  cancel-in-progress: false
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec vite build
+      - run: pnpm exec cap sync android
+      - name: Construire l’application installable
+        working-directory: android
+        run: ./gradlew assembleDebug
+      - name: Publier le fichier à télécharger
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view android-latest || gh release create android-latest --title "KanaForge pour Android" --notes "APK installable de KanaForge pour tablette Android."
+          gh release upload android-latest android/app/build/outputs/apk/debug/app-debug.apk#kanaforge.apk --clobber
