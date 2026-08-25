@@ -31,7 +31,9 @@ jobs:
       - run: pnpm exec cap sync android
       - name: Construire l’application installable
         working-directory: android
-        run: ./gradlew assembleDebug
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug
       - name: Publier le fichier à télécharger
         env:
           GH_TOKEN: ${{ github.token }}
