@@ -28,6 +28,8 @@ jobs:
           java-version: '21'
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec vite build
+        env:
+          VITE_BASE_PATH: /
       - run: pnpm exec cap sync android
       - name: Construire l’application installable
         working-directory: android
