@@ -1,2 +1,5 @@
 node_modules/
 dist/
+kanaforge-desktop/node_modules/
+kanaforge-desktop/release*/
+public/downloads/
