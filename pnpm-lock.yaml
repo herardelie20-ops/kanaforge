@@ -17,6 +17,9 @@ importers:
       three:
         specifier: ^0.185.1
         version: 0.185.1
+      three.quarks:
+        specifier: 0.17.1
+        version: 0.17.1(three@0.185.1)
       wasm-webp:
         specifier: ^0.1.0
         version: 0.1.0
@@ -381,6 +384,9 @@ packages:
     resolution: {integrity: sha512-u82N74LFzG8ca+dD8puPnplTXoGH4fTPpVGuIbt36G3qvNlkvfD0lEAZSxaly3KX8TS/L1A1gsCEmvKmBcVbkQ==}
     engines: {node: ^10 || ^12 || >=14}
 
+  quarks.core@0.17.1:
+    resolution: {integrity: sha512-WkY2Ipw/2uapCXRqA0UQm3U3SOh4TRIKYCVq2I8XolxF3wTLyC0c7XxIzZOYSpjkCDxqFTaM2+DZoRZom8NCdA==}
+
   rollup@4.62.5:
     resolution: {integrity: sha512-/tqMfgP7GPA3PHhCmuiS4vIjrSVhHLgY++i+dhbG462euyAj7FpM4D9uq1X3BgjlqRdpcOrYhcQtfiQLNc8tqw==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
@@ -389,6 +395,11 @@ packages:
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
+
+  three.quarks@0.17.1:
+    resolution: {integrity: sha512-HiyORXkPZTfy7OBA/IRJqTcNxpo53yctgV3N8dSUG/jdisiVciDFGyf6hVnOLQDrIEmzU0yOtNFvzo+JHCjc7A==}
+    peerDependencies:
+      three: '>=0.182.0'
 
   three@0.185.1:
     resolution: {integrity: sha512-5aojFCXKwnjBRZvUnt3WFfEcvUJgkN5LlijRFN95hMy8WVkG4I0QNcJE+OuWvuJ0bOdStrbfXn0pkd6/QyiAlg==}
@@ -656,6 +667,8 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
+  quarks.core@0.17.1: {}
+
   rollup@4.62.5:
     dependencies:
       '@types/estree': 1.0.9
@@ -689,6 +702,11 @@ snapshots:
       fsevents: 2.3.3
 
   source-map-js@1.2.1: {}
+
+  three.quarks@0.17.1(three@0.185.1):
+    dependencies:
+      quarks.core: 0.17.1
+      three: 0.185.1
 
   three@0.185.1: {}
 

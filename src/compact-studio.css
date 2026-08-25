@@ -1,12 +1,11 @@
 /* Interface resserrée : les réglages restent autour de l'aperçu. */
 @media (min-width:1100px){
-  main{padding:20px 24px 14px!important;height:100vh;overflow:hidden}
+  html,body{height:auto;overflow-y:auto}
+  main{padding:20px 24px 28px!important;height:auto;min-height:100vh;overflow:visible}
   header{margin-bottom:14px!important}
   h1{font-size:29px}
-  .studio-grid{height:calc(100vh - 160px);grid-template-columns:238px minmax(500px,1fr) 282px!important;gap:16px!important}
-  .tool-column,.inspector{max-height:100%;overflow-y:auto;padding-right:4px;scrollbar-width:thin;scrollbar-color:#5c4a81 #181922}
-  .tool-column::-webkit-scrollbar,.inspector::-webkit-scrollbar{width:5px}
-  .tool-column::-webkit-scrollbar-thumb,.inspector::-webkit-scrollbar-thumb{background:#5c4a81;border-radius:8px}
+  .studio-grid{height:auto;grid-template-columns:238px minmax(500px,1fr) 282px!important;gap:16px!important}
+  .tool-column,.inspector{max-height:none;overflow:visible;padding-right:4px}
   .source-card,.tool-card,.compare-card{padding:12px}
   .tool-column,.inspector{gap:10px}
   .tool-card h2{font-size:14px;margin-bottom:8px}
@@ -17,7 +16,7 @@
   .texture-library-title{margin:9px 0 5px}
   .texture-library button{min-height:46px}
   .compare-card{display:none}
-  footer{display:none}
+  footer{display:flex}
 }
 
 #light-gizmo{position:absolute;z-index:8;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;border:2px solid var(--light-color,#ffefd0);background:#111923d9;box-shadow:0 0 0 6px #0005,0 0 22px var(--light-color,#ffefd0);cursor:grab;touch-action:none;transition:left .16s ease,top .16s ease,color .16s ease}
