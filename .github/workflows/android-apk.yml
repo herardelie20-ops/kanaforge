@@ -1,6 +1,8 @@
 name: Créer l’APK Android
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -35,10 +37,10 @@ jobs:
         working-directory: android
         run: |
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew assembleDebug -PversionCode=${{ github.run_number }} -PversionName=1.0.${{ github.run_number }}
       - name: Publier le fichier à télécharger
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release view android-latest || gh release create android-latest --title "KanaForge pour Android" --notes "APK installable de KanaForge pour tablette Android."
+          gh release view android-latest && gh release edit android-latest --target "$GITHUB_SHA" || gh release create android-latest --target "$GITHUB_SHA" --title "KanaForge pour Android" --notes "APK installable de KanaForge pour tablette Android."
           gh release upload android-latest android/app/build/outputs/apk/debug/app-debug.apk#kanaforge.apk --clobber
