@@ -24,7 +24,7 @@ function initAvatar() {
   const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(33, 1, .1, 100), renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
   scene.background = new THREE.Color(0x203940);
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); renderer.outputColorSpace = THREE.SRGBColorSpace; host.append(renderer.domElement);
-  camera.position.set(0, 1.8, 9); const controls = new OrbitControls(camera, renderer.domElement); controls.enableDamping = true; controls.enablePan = false; controls.minDistance = 1.2; controls.maxDistance = 18; controls.minPolarAngle = 0; controls.maxPolarAngle = Math.PI; controls.target.set(0, 1.3, 0);
+  camera.position.set(0, 1.8, 9); const controls = new OrbitControls(camera, renderer.domElement); controls.enableDamping = true; controls.enablePan = false; controls.enableRotate = true; controls.rotateSpeed = .85; controls.zoomSpeed = .9; controls.minDistance = 1.2; controls.maxDistance = 18; controls.minPolarAngle = 0; controls.maxPolarAngle = Math.PI; controls.mouseButtons.LEFT = THREE.MOUSE.ROTATE; controls.touches.ONE = THREE.TOUCH.ROTATE; controls.touches.TWO = THREE.TOUCH.DOLLY_PAN; controls.target.set(0, 1.3, 0);
   scene.add(new THREE.HemisphereLight(0xffffff, 0x17242b, 2.6)); const key = new THREE.DirectionalLight(0xffffff, 3.2); key.position.set(4, 7, 6); scene.add(key);
   const floor = new THREE.Mesh(new THREE.CircleGeometry(3.8, 64), new THREE.MeshStandardMaterial({ color: 0x172027, roughness: .93 })); floor.rotation.x = -Math.PI / 2; floor.position.y = -2.65; scene.add(floor);
   let avatar, bones = [], sourceImage, tattooDecal, lastHit, dragging = false, interactionMode = 'orbit';
