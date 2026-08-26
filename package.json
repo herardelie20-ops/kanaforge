@@ -21,6 +21,7 @@
     "@capacitor/share": "7.0.0",
     "gifenc": "^1.0.3",
     "imagetracerjs": "^1.2.6",
+    "opentype.js": "^2.0.0",
     "three": "^0.185.1",
     "three-bvh-csg": "0.0.18",
     "three.quarks": "0.17.1",
