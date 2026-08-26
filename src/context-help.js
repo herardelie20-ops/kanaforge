@@ -15,7 +15,10 @@ const help = {
   'composition-download': 'Télécharge la composition comme stencil PNG.',
   'avatar-tattoo-file': 'Importe un motif à apposer sur le mannequin 3D.',
   'avatar-orbit-toggle': 'Bascule entre l’orientation libre du mannequin et le placement du motif.',
+  'avatar-skin-texture': 'Importe une texture personnelle pour habiller visuellement la peau du mannequin.',
   'save-placement-preview': 'Ajoute l’aperçu de placement à la bibliothèque personnelle.',
+  'record-placement-video': 'Enregistre jusqu’à 30 secondes de l’aperçu 3D, y compris vos mouvements de caméra.',
+  'stop-placement-video': 'Arrête l’enregistrement et ouvre l’export de la vidéo.',
   'open-motif-library': 'Ouvre les motifs précédemment importés dans KanaForge.',
   'kanaforge-files-button': 'Ouvre les fichiers créés dans les autres laboratoires KanaForge.'
 };
