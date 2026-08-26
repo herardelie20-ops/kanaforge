@@ -7,7 +7,7 @@ function installLetterImport() {
   const zone = canvas?.closest('.drawing-zone');
   if (!canvas || !zone || zone.querySelector('.letter-import')) return;
 
-  zone.insertAdjacentHTML('afterbegin', `<div class="letter-import"><div class="letter-acquire"><label class="letter-import-file">Importer un dessin de lettre<input id="letter-image-import" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml"/></label><button id="letter-camera" type="button">◉ Photo / scan</button></div><span>ou glissez-déposez une image dans la zone de dessin</span><label>Seuil noir <output id="letter-vector-threshold-out">185</output><input id="letter-vector-threshold" type="range" min="40" max="250" value="185"/></label><button id="letter-vectorize" type="button">Vectoriser et préparer la lettre</button></div>`);
+  zone.insertAdjacentHTML('afterbegin', `<div class="letter-import"><div class="letter-acquire"><label class="letter-import-file">Importer un dessin de lettre<input id="letter-image-import" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml"/></label><button id="letter-camera" type="button">◉ Prendre une photo</button></div><span>ou glissez-déposez une image dans la zone de dessin</span><label>Seuil noir <output id="letter-vector-threshold-out">185</output><input id="letter-vector-threshold" type="range" min="40" max="250" value="185"/></label><button id="letter-vectorize" type="button">Vectoriser et préparer la lettre</button></div>`);
 
   const input = document.querySelector('#letter-image-import');
   const threshold = document.querySelector('#letter-vector-threshold');
