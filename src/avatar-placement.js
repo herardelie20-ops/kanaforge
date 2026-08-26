@@ -77,6 +77,11 @@ function initAvatar() {
   const setInteractionMode = mode => { interactionMode = mode; const orbit = mode === 'orbit'; controls.enableRotate = orbit; $('#avatar-orbit-toggle').classList.toggle('active', orbit); $('#avatar-orbit-toggle').setAttribute('aria-pressed', String(orbit)); $('#avatar-orbit-toggle').textContent = orbit ? '↻ Orienter' : '✦ Placer le motif'; $('#avatar-interaction-help').textContent = orbit ? 'Mode orientation · glissez dans l’aperçu pour voir tous les angles' : 'Mode placement · touchez ou faites glisser le motif sur le relief'; hint.textContent = orbit ? 'Mode orientation actif · importez un motif puis passez en mode placement' : 'Mode placement actif · touchez le mannequin pour apposer le motif'; hint.classList.toggle('hidden', !orbit && !!sourceImage); };
   const loadTattoo = file => { if (!file?.type.startsWith('image/')) return; const reader = new FileReader(); reader.onload = () => { const image = new Image(); image.onload = () => { sourceImage = image; saveMotif(file.name || 'Motif importé', image); refreshTexture(); setInteractionMode('place'); $('#avatar-status').textContent = 'Motif importé · mode placement actif · touchez une zone du mannequin pour l’apposer'; hint.classList.remove('hidden'); }; image.src = reader.result; }; reader.readAsDataURL(file); };
   $('#avatar-tattoo-file').onchange = event => loadTattoo(event.target.files[0]);
+  const tattooDropzone = $('#avatar-tattoo-file').closest('.tattoo-file');
+  tattooDropzone.insertAdjacentHTML('beforeend', '<small class="tattoo-drop-copy">ou glissez-déposez le fichier ici / dans l’aperçu</small>');
+  tattooDropzone.addEventListener('dragover', event => { event.preventDefault(); tattooDropzone.classList.add('is-dragging'); });
+  tattooDropzone.addEventListener('dragleave', () => tattooDropzone.classList.remove('is-dragging'));
+  tattooDropzone.addEventListener('drop', event => { event.preventDefault(); tattooDropzone.classList.remove('is-dragging'); loadTattoo(event.dataTransfer.files[0]); });
   $('#avatar-orbit-toggle').onclick = () => setInteractionMode(interactionMode === 'orbit' ? 'place' : 'orbit');
   $('#open-motif-library').onclick = () => { renderMotifs(); $('#motif-library').hidden = false; };
   $('#close-motif-library').onclick = () => { $('#motif-library').hidden = true; };
