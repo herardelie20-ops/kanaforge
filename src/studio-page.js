@@ -7,6 +7,7 @@ import './placement-library.css';
 import './kanaforge-files.js';
 import './object3d-nav.js';
 import './studio-canvas-fullscreen.js';
+import './context-help.js';
 const exportLibraryPreview = async entry => { if (Capacitor.isNativePlatform()) { const file = await Filesystem.writeFile({ path: `KanaForge/placement-${entry.id}.jpg`, data: entry.image.split(',')[1], directory: Directory.Documents, recursive: true }); if ((await Share.canShare()).value) await Share.share({ title: 'Aperçu KanaForge', files: [file.uri], dialogTitle: 'Enregistrer ou partager l’aperçu' }); return; } const link = document.createElement('a'); link.href = entry.image; link.download = `kanaforge-placement-${entry.id}.jpg`; link.click(); };
 const root=document.querySelector('#tattoo-studio'),space=new URLSearchParams(location.search).get('studio')||'home';
 const studioModule={placement:()=>import('./avatar-placement.js'),lettering:()=>import('./lettering-studio.js'),flash:()=>import('./flash-editor.js'),clients:()=>import('./client-quotes.js'),planning:()=>import('./planning-calendar.js'),communication:()=>import('./communication-ai.js'),portfolio:()=>import('./portfolio-library.js')}[space];
