@@ -3,6 +3,7 @@ import './mail-consent.css';
 import './placement-library.css';
 import './avatar-placement.js';
 import './lettering-studio.js';
+import './flash-editor.js';
 const root=document.querySelector('#tattoo-studio'),space=new URLSearchParams(location.search).get('studio')||'home';
 const data={home:['Studio tatouage','Un espace professionnel pour créer, présenter et organiser.','Choisissez votre atelier dans la navigation.'],lettering:['Labo lettrage','Composer une signature, un mot ou une phrase prête à tatouer.','Planche de composition · styles · préparation du stencil'],flash:['Labo flash','Construire des planches cohérentes, puis les présenter au client.','Bibliothèque · sélection · collection'],placement:['Placement 3D','Préparer une simulation de placement avant la séance.',''],portfolio:['Book numérique','Présenter vos créations sur tablette, sans distraction.','Galerie client · mode plein écran'],clients:['Clients & devis','Suivre les projets, les estimations et les informations essentielles.','Fiche client · zone · délai · devis'],planning:['Planning studio','Visualiser les consultations, séances et retouches.','Agenda · rappels · disponibilité'],communication:['Communication','Préparer vos messages, réponses et publications.','Boîte pro · agent de rédaction · réseaux']};
 const nav=[['home','Accueil'],['lettering','Labo lettrage'],['flash','Labo flash'],['placement','Placement 3D'],['portfolio','Book & galerie'],['clients','Clients & devis'],['planning','Planning'],['communication','Communication']];
