@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import { resolve } from 'node:path';
 import { sites } from '@openai/sites-vite-plugin';
 
 export default defineConfig({
@@ -7,5 +8,11 @@ export default defineConfig({
   build: {
     outDir: 'dist/client',
     emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        kanaforge: resolve(import.meta.dirname, 'index.html'),
+        studio: resolve(import.meta.dirname, 'studio.html'),
+      },
+    },
   },
 });
