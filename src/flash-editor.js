@@ -4,6 +4,7 @@ import { Directory, Filesystem } from '@capacitor/filesystem';
 import { Share } from '@capacitor/share';
 import './flash-editor.css';
 import './flash-levels.css';
+import './flash-shading-tools.js';
 
 const exportStencil = async svg => { const blob = new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml' }); if (Capacitor.isNativePlatform()) { const data = await new Promise((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(String(reader.result).split(',')[1]); reader.onerror = reject; reader.readAsDataURL(blob); }); const file = await Filesystem.writeFile({ path: 'KanaForge/stencil-kanaforge.svg', data, directory: Directory.Documents, recursive: true }); if ((await Share.canShare()).value) await Share.share({ title: 'Stencil KanaForge', files: [file.uri], dialogTitle: 'Enregistrer ou partager le stencil' }); return; } const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'kanaforge-stencil.svg'; link.click(); setTimeout(() => URL.revokeObjectURL(link.href), 1200); };
 
