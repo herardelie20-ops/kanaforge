@@ -14,6 +14,12 @@ importers:
       '@capacitor/core':
         specifier: ^7.6.8
         version: 7.6.8
+      '@capacitor/filesystem':
+        specifier: 7.1.0
+        version: 7.1.0(@capacitor/core@7.6.8)
+      '@capacitor/share':
+        specifier: 7.0.0
+        version: 7.0.0(@capacitor/core@7.6.8)
       gifenc:
         specifier: ^1.0.3
         version: 1.0.3
@@ -65,6 +71,19 @@ packages:
 
   '@capacitor/core@7.6.8':
     resolution: {integrity: sha512-x1xfxvNcTSnj6OoYaAB0n0a0HRvi5f2YjcVnMLxpMhbHDgGDAzzN9z8cnPCYV+SKTvqGF1hezHm82Op32XaAGg==}
+
+  '@capacitor/filesystem@7.1.0':
+    resolution: {integrity: sha512-v8uv5f/kfu+Z7Y1Wd1/emzUCrcnRSuxJuYmQpguSRDnLvZMA1+RRzPtTugLFv+scm3FYxm3wJfkGMH5ZDTTjmQ==}
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
+
+  '@capacitor/share@7.0.0':
+    resolution: {integrity: sha512-UL/czyt0nr4/O88pFfBK0wP0VNxaQvAmOAtD95Q0srgtJJAdkS0bIvCuhIeVxEeyWG2TyylzzQ2rI/4nexwCyQ==}
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
+
+  '@capacitor/synapse@1.0.4':
+    resolution: {integrity: sha512-/C1FUo8/OkKuAT4nCIu/34ny9siNHr9qtFezu4kxm6GY1wNFxrCFWjfYx5C1tUhVGz3fxBABegupkpjXvjCHrw==}
 
   '@esbuild/aix-ppc64@0.28.2':
     resolution: {integrity: sha512-XExcO+dvLKvVtNTibSTBej1NCAbaGhWn9Ww1ZPx80qsahhPFe/8jgWP0IchNe0F3HwkU7n8ejhH8bjonqht8mQ==}
@@ -875,6 +894,17 @@ snapshots:
   '@capacitor/core@7.6.8':
     dependencies:
       tslib: 2.8.1
+
+  '@capacitor/filesystem@7.1.0(@capacitor/core@7.6.8)':
+    dependencies:
+      '@capacitor/core': 7.6.8
+      '@capacitor/synapse': 1.0.4
+
+  '@capacitor/share@7.0.0(@capacitor/core@7.6.8)':
+    dependencies:
+      '@capacitor/core': 7.6.8
+
+  '@capacitor/synapse@1.0.4': {}
 
   '@esbuild/aix-ppc64@0.28.2':
     optional: true
