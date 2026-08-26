@@ -5,6 +5,7 @@ import { Share } from '@capacitor/share';
 import './flash-editor.css';
 import './flash-levels.css';
 import './flash-shading-tools.js';
+import { saveKanaForgeFile } from './kanaforge-files.js';
 
 const exportStencil = async svg => { const blob = new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml' }); if (Capacitor.isNativePlatform()) { const data = await new Promise((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(String(reader.result).split(',')[1]); reader.onerror = reject; reader.readAsDataURL(blob); }); const file = await Filesystem.writeFile({ path: 'KanaForge/stencil-kanaforge.svg', data, directory: Directory.Documents, recursive: true }); if ((await Share.canShare()).value) await Share.share({ title: 'Stencil KanaForge', files: [file.uri], dialogTitle: 'Enregistrer ou partager le stencil' }); return; } const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'kanaforge-stencil.svg'; link.click(); setTimeout(() => URL.revokeObjectURL(link.href), 1200); };
 
@@ -25,7 +26,7 @@ function initFlashEditor() {
     for (let i = 0; i < pixels.length; i += 4) { const light = .2126 * pixels[i] + .7152 * pixels[i + 1] + .0722 * pixels[i + 2], adjusted = 255 * Math.pow(Math.max(0, Math.min(1, (light - black) / (white - black))), 1 / gamma), value = adjusted < threshold ? 0 : 255; pixels[i] = pixels[i + 1] = pixels[i + 2] = value; }
     svgText = ImageTracer.imagedataToSVG(imageData, { numberofcolors: 2, colorquantcycles: 1, pathomit: 8, ltres: .55, qtres: .55, rightangleenhance: true, blurradius: 0 });
     preview.innerHTML = svgText; const svg = preview.querySelector('svg'); svg.setAttribute('preserveAspectRatio', 'xMidYMid meet'); svg.querySelectorAll('path').forEach(path => { path.setAttribute('fill', 'none'); path.setAttribute('stroke', '#101114'); path.setAttribute('stroke-linecap', 'round'); path.setAttribute('stroke-linejoin', 'round'); path.dataset.width = $('#flash-stroke').value; path.setAttribute('stroke-width', path.dataset.width); path.onclick = () => selectPath(path); });
-    $('#flash-status').textContent = `${svg.querySelectorAll('path').length} contours vectorisés · cliquez un trait pour le calibrer.`; $('#flash-export').disabled = false;
+    $('#flash-status').textContent = `${svg.querySelectorAll('path').length} contours vectorisés · cliquez un trait pour le calibrer.`; $('#flash-export').disabled = false; if(!$('#flash-share')){$('#flash-export').insertAdjacentHTML('beforebegin','<button class="secondary flash-export" id="flash-share">Ajouter à mes fichiers KanaForge</button>');$('#flash-share').onclick=()=>{const current=preview.querySelector('svg');if(!current)return;saveKanaForgeFile({name:'Flash vectorisé',source:'Labo flash',image:'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(new XMLSerializer().serializeToString(current))});$('#flash-status').textContent='Flash ajouté à Mes fichiers KanaForge.';};}
   };
   const loadImage = file => { if (!file?.type.startsWith('image/')) return; const reader = new FileReader(); reader.onload = () => { const image = new Image(); image.onload = () => { source = image; $('#flash-auto').disabled = false; autoLevels(); }; image.src = reader.result; }; reader.readAsDataURL(file); };
   $('#flash-file').onchange = event => loadImage(event.target.files[0]);
