@@ -5,6 +5,7 @@ import { DecalGeometry } from 'three/examples/jsm/geometries/DecalGeometry.js';
 import { Capacitor } from '@capacitor/core';
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { Share } from '@capacitor/share';
+import { saveKanaForgeFile } from './kanaforge-files.js';
 import './avatar-placement.css';
 import './avatar-skin.css';
 import './motif-library.css';
@@ -106,7 +107,7 @@ function initAvatar() {
         const type = videoRecorder.mimeType || 'video/webm', blob = new Blob(videoChunks, { type });
         videoStream?.getTracks().forEach(track => track.stop()); resetVideoControls();
         if (!blob.size) { $('#avatar-status').textContent = 'Aucune image n’a été enregistrée. Réessayez la capture.'; return; }
-        try { await exportVideo(blob, videoName()); savePreview(); $('#avatar-status').textContent = 'Vidéo exportée · son aperçu est conservé dans KanaForge.'; } catch { $('#avatar-status').textContent = 'Vidéo prête, mais l’export a été bloqué sur cet appareil.'; }
+        try { const name = videoName(); await exportVideo(blob, name); renderer.render(scene, camera); saveKanaForgeFile({ name: `Vidéo placement · ${new Date().toLocaleString('fr-FR')}`, source: 'Placement 3D', image: renderer.domElement.toDataURL('image/jpeg', .86), kind: 'video' }); $('#avatar-status').textContent = 'Vidéo exportée · son aperçu est conservé dans Mes fichiers KanaForge.'; } catch { $('#avatar-status').textContent = 'Vidéo prête, mais l’export a été bloqué sur cet appareil.'; }
       };
       videoRecorder.start(250); videoStartedAt = Date.now(); updateVideoClock(); videoTimer = setInterval(updateVideoClock, 200); videoStopTimer = setTimeout(stopVideoRecording, 30000);
       $('#record-placement-video').hidden = true; $('#stop-placement-video').hidden = false; $('#placement-recording-status').hidden = false; $('#avatar-status').textContent = 'Enregistrement vidéo en cours · orientez le mannequin pour filmer le mouvement.';
