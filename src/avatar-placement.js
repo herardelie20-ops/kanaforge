@@ -6,6 +6,7 @@ import './avatar-placement.css';
 import './avatar-skin.css';
 import './motif-library.css';
 import './placement-bottom-controls.css';
+import './placement-hint-spacing.css';
 
 function begin() {
   if (new URLSearchParams(location.search).get('studio') !== 'placement') return;
