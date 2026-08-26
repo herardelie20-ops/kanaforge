@@ -1,6 +1,11 @@
 import ImageTracer from 'imagetracerjs';
+import { Capacitor } from '@capacitor/core';
+import { Directory, Filesystem } from '@capacitor/filesystem';
+import { Share } from '@capacitor/share';
 import './flash-editor.css';
 import './flash-levels.css';
+
+const exportStencil = async svg => { const blob = new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml' }); if (Capacitor.isNativePlatform()) { const data = await new Promise((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(String(reader.result).split(',')[1]); reader.onerror = reject; reader.readAsDataURL(blob); }); const file = await Filesystem.writeFile({ path: 'KanaForge/stencil-kanaforge.svg', data, directory: Directory.Documents, recursive: true }); if ((await Share.canShare()).value) await Share.share({ title: 'Stencil KanaForge', files: [file.uri], dialogTitle: 'Enregistrer ou partager le stencil' }); return; } const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'kanaforge-stencil.svg'; link.click(); setTimeout(() => URL.revokeObjectURL(link.href), 1200); };
 
 function initFlashEditor() {
   if (new URLSearchParams(location.search).get('studio') !== 'flash') return;
@@ -27,7 +32,7 @@ function initFlashEditor() {
   $('#flash-auto').onclick = autoLevels;
   $('#flash-stroke').oninput = () => { updateOutput(); if (selectedPath) { selectedPath.dataset.width = $('#flash-stroke').value; selectedPath.setAttribute('stroke-width', selectedPath.dataset.width); } };
   $('#needle-presets').onclick = event => { const button = event.target.closest('button'); if (!button) return; document.querySelectorAll('#needle-presets button').forEach(item => item.classList.toggle('active', item === button)); $('#flash-stroke').value = button.dataset.width; updateOutput(); if (selectedPath) { selectedPath.dataset.width = button.dataset.width; selectedPath.setAttribute('stroke-width', button.dataset.width); } };
-  $('#flash-export').onclick = () => { const svg = preview.querySelector('svg'); if (!svg) return; const blob = new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml' }), link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'kanaforge-stencil.svg'; link.click(); URL.revokeObjectURL(link.href); };
+  $('#flash-export').onclick = async () => { const svg = preview.querySelector('svg'); if (!svg) return; try { await exportStencil(svg); $('#flash-status').textContent = 'Stencil exporté : choisissez son emplacement ou son application de partage.'; } catch { $('#flash-status').textContent = 'L’export du stencil a échoué. Réessayez.'; } };
 }
 
 if (document.readyState === 'loading') addEventListener('DOMContentLoaded', initFlashEditor, { once: true }); else queueMicrotask(initFlashEditor);

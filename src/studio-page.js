@@ -1,4 +1,7 @@
 import './studio-page.css';
+import { Capacitor } from '@capacitor/core';
+import { Directory, Filesystem } from '@capacitor/filesystem';
+import { Share } from '@capacitor/share';
 import './mail-consent.css';
 import './placement-library.css';
 import './avatar-placement.js';
@@ -8,6 +11,7 @@ import './client-quotes.js';
 import './planning-calendar.js';
 import './communication-ai.js';
 import './portfolio-library.js';
+const exportLibraryPreview = async entry => { if (Capacitor.isNativePlatform()) { const file = await Filesystem.writeFile({ path: `KanaForge/placement-${entry.id}.jpg`, data: entry.image.split(',')[1], directory: Directory.Documents, recursive: true }); if ((await Share.canShare()).value) await Share.share({ title: 'Aperçu KanaForge', files: [file.uri], dialogTitle: 'Enregistrer ou partager l’aperçu' }); return; } const link = document.createElement('a'); link.href = entry.image; link.download = `kanaforge-placement-${entry.id}.jpg`; link.click(); };
 const root=document.querySelector('#tattoo-studio'),space=new URLSearchParams(location.search).get('studio')||'home';
 const data={home:['Studio tatouage','Un espace professionnel pour créer, présenter et organiser.','Choisissez votre atelier dans la navigation.'],lettering:['Labo lettrage','Composer une signature, un mot ou une phrase prête à tatouer.','Planche de composition · styles · préparation du stencil'],flash:['Labo flash','Construire des planches cohérentes, puis les présenter au client.','Bibliothèque · sélection · collection'],placement:['Placement 3D','Préparer une simulation de placement avant la séance.',''],portfolio:['Book numérique','Présenter vos créations sur tablette, sans distraction.','Galerie client · mode plein écran'],clients:['Clients & devis','Suivre les projets, les estimations et les informations essentielles.','Fiche client · zone · délai · devis'],planning:['Planning studio','Visualiser les consultations, séances et retouches.','Agenda · rappels · disponibilité'],communication:['Communication','Préparer vos messages, réponses et publications.','Boîte pro · agent de rédaction · réseaux']};
 const nav=[['home','Accueil'],['lettering','Labo lettrage'],['flash','Labo flash'],['placement','Placement 3D'],['portfolio','Book & galerie'],['clients','Clients & devis'],['planning','Planning'],['communication','Communication']];
@@ -21,7 +25,8 @@ if(space==='communication'){
     const entries=JSON.parse(localStorage.getItem('kanaforge-placement-library')||'[]');
     const existing=document.querySelector('.placement-library');
     existing?.remove();
-    inbox.insertAdjacentHTML('afterend',`<section class="placement-library"><div><small>BIBLIOTHÈQUE PERSONNELLE</small><h2>Aperçus de placement</h2></div><p>${entries.length?'Sélectionnez un rendu à préparer pour un client.':'Enregistrez un aperçu depuis Placement 3D : il apparaîtra ici.'}</p><div class="placement-library-grid">${entries.map(item=>`<article><img src="${item.image}" alt="Aperçu de placement enregistré"/><span>${item.createdAt}</span><div><a download="kanaforge-placement-${item.id}.jpg" href="${item.image}">Télécharger</a><button data-attach-preview="${item.id}">Préparer</button><button data-remove-preview="${item.id}">Retirer</button></div></article>`).join('')}</div></section>`);
+    inbox.insertAdjacentHTML('afterend',`<section class="placement-library"><div><small>BIBLIOTHÈQUE PERSONNELLE</small><h2>Aperçus de placement</h2></div><p>${entries.length?'Sélectionnez un rendu à préparer pour un client.':'Enregistrez un aperçu depuis Placement 3D : il apparaîtra ici.'}</p><div class="placement-library-grid">${entries.map(item=>`<article><img src="${item.image}" alt="Aperçu de placement enregistré"/><span>${item.createdAt}</span><div><button data-download-preview="${item.id}">Télécharger</button><button data-attach-preview="${item.id}">Préparer</button><button data-remove-preview="${item.id}">Retirer</button></div></article>`).join('')}</div></section>`);
+    document.querySelectorAll('[data-download-preview]').forEach(button=>button.onclick=async()=>{const entry=entries.find(item=>String(item.id)===button.dataset.downloadPreview);if(!entry)return;try{await exportLibraryPreview(entry);}catch{button.textContent='Export impossible';}});
     document.querySelectorAll('[data-attach-preview]').forEach(button=>button.onclick=()=>{const entry=entries.find(item=>String(item.id)===button.dataset.attachPreview);if(!entry)return;inbox.querySelector('textarea').value=`Bonjour,\n\nVoici l’aperçu de placement préparé le ${entry.createdAt}. Je vous le joins pour validation avant la séance.\n\nBien à vous,`;document.querySelectorAll('[data-attach-preview]').forEach(item=>item.classList.toggle('selected',item===button));});
     document.querySelectorAll('[data-remove-preview]').forEach(button=>button.onclick=()=>{const filtered=JSON.parse(localStorage.getItem('kanaforge-placement-library')||'[]').filter(item=>String(item.id)!==button.dataset.removePreview);localStorage.setItem('kanaforge-placement-library',JSON.stringify(filtered));renderPlacementLibrary();});
   };
