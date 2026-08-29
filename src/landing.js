@@ -1,0 +1,1 @@
+const button=document.querySelector('.menu-button');const nav=document.querySelector('nav');button?.addEventListener('click',()=>{const open=button.getAttribute('aria-expanded')==='true';button.setAttribute('aria-expanded',String(!open));nav.style.display=open?'':'flex'});
