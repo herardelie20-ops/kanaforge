@@ -1,0 +1,2 @@
+/* Le canvas 3D reste compact, indépendamment de la longueur des réglages. */
+.page-placement .workspace{align-items:start}.avatar-workspace{align-self:start;min-height:0!important;height:548px!important}.avatar-workspace #avatar-canvas{height:520px!important}.avatar-workspace .avatar-toolbar{bottom:13px}.avatar-workspace .avatar-toolbar>div{bottom:0}@media(max-width:1050px){.avatar-workspace{height:490px!important}.avatar-workspace #avatar-canvas{height:462px!important}}

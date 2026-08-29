@@ -1,0 +1,2 @@
+/* Les bibliothèques de glyphes s'étendent naturellement : aucune barre interne. */
+.special-character-panel #special-character-grid,.emoji-character-panel #emoji-character-grid{max-height:none!important;overflow:visible!important;padding-right:0!important}.glyph-layout aside{overflow:visible!important}

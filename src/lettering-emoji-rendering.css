@@ -1,0 +1,2 @@
+/* Les émojis ne doivent jamais hériter de la police calligraphique des glyphes. */
+#glyph-label.emoji{font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif!important;font-style:normal!important;font-weight:400!important;font-size:30px!important;line-height:1!important;min-width:36px;text-align:center}

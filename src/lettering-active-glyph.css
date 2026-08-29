@@ -1,0 +1,2 @@
+/* Réserve une zone entière au glyphe actif, y compris ses descendantes. */
+.drawing-zone{overflow:visible!important}.drawing-tools{min-height:49px;align-items:center!important;overflow:visible}.drawing-tools #glyph-label{display:grid;place-items:center;width:42px;min-width:42px;height:49px;margin:0;overflow:visible;font-size:35px;line-height:1.3!important;padding:0 2px}.drawing-tools #glyph-label:not(.emoji){font-family:"Playfair Display",serif;font-style:italic;font-weight:600}.drawing-tools #glyph-label.emoji{line-height:1!important}
