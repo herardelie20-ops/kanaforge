@@ -12,7 +12,7 @@ function installDestinations() {
     const entry = { id: Date.now(), name: title, image, createdAt: new Date().toLocaleString('fr-FR') };
     if (destination === 'object') {
       localStorage.setItem('kanaforge-pending-drawing', JSON.stringify(entry));
-      location.href = './index.html';
+      location.href = './object3d.html';
     }
     if (destination === 'placement') {
       const key = 'kanaforge-motif-library', entries = JSON.parse(localStorage.getItem(key) || '[]').filter(item => item.name !== entry.name);

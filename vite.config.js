@@ -12,6 +12,7 @@ export default defineConfig({
       input: {
         kanaforge: resolve(import.meta.dirname, 'index.html'),
         studio: resolve(import.meta.dirname, 'studio.html'),
+        object3d: resolve(import.meta.dirname, 'object3d.html'),
       },
     },
   },
