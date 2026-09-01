@@ -1,4 +1,6 @@
 import './communication-ai.css';
+import { Capacitor } from '@capacitor/core';
+import { Browser } from '@capacitor/browser';
 
 function initCommunicationAI() {
   if (new URLSearchParams(location.search).get('studio') !== 'communication') return;
@@ -9,6 +11,17 @@ function initCommunicationAI() {
   const config = JSON.parse(localStorage.getItem(key) || 'null');
   if (config) { $('#ai-tone').value = config.tone || $('#ai-tone').value; $('#ai-instructions').value = config.instructions || ''; $('#ai-endpoint').value = config.endpoint || ''; $('#ai-consent').checked = Boolean(config.consent); $('#ai-status').textContent = config.endpoint ? 'Configuration locale enregistrée · connexion à tester dans le serveur IA.' : 'Consignes IA enregistrées localement.'; }
   $('#ai-save-config').onclick = () => { const next = { tone: $('#ai-tone').value, instructions: $('#ai-instructions').value.trim(), endpoint: $('#ai-endpoint').value.trim(), consent: $('#ai-consent').checked }; if (next.endpoint && !next.consent) { $('#ai-status').textContent = 'Cochez votre autorisation avant de préparer cette connexion.'; return; } localStorage.setItem(key, JSON.stringify(next)); $('#ai-status').textContent = next.endpoint ? 'Configuration enregistrée. Le serveur doit garder la clé OpenAI côté serveur.' : 'Consignes enregistrées. Ajoutez un serveur sécurisé pour activer l’IA.'; };
+  const websiteKey = 'kanaforge-website-url';
+  const defaultWebsite = new URL('./', window.location.href).href;
+  const savedWebsite = localStorage.getItem(websiteKey) || defaultWebsite;
+  agent.insertAdjacentHTML('beforeend', `<section class="website-connection"><small>SITE WEB KANAFORGE</small><h3>Votre vitrine en ligne</h3><p>Gardez le lien de votre site à portée de main pour le partager avec vos clients depuis Communication.</p><label>Adresse du site<input id="website-url" type="url" inputmode="url" autocomplete="url" placeholder="https://votre-site.fr"/></label><div class="website-actions"><button id="website-open" type="button">Ouvrir le site</button><button id="website-copy" type="button">Copier le lien</button></div><button id="website-save" class="website-save" type="button">Enregistrer ce site</button><small id="website-status"></small></section>`);
+  const websiteInput = $('#website-url'), websiteStatus = $('#website-status');
+  websiteInput.value = savedWebsite;
+  const getWebsiteUrl = () => { try { const value = websiteInput.value.trim() || defaultWebsite, url = new URL(/^https?:\/\//i.test(value) ? value : `https://${value}`); return /^https?:$/.test(url.protocol) ? url.href : null; } catch { return null; } };
+  const saveWebsite = () => { const url = getWebsiteUrl(); if (!url) { websiteStatus.textContent = 'Indiquez une adresse web valide, commençant par https://.'; return null; } websiteInput.value = url; localStorage.setItem(websiteKey, url); websiteStatus.textContent = 'Lien du site enregistré sur cet appareil.'; return url; };
+  $('#website-save').onclick = saveWebsite;
+  $('#website-open').onclick = async () => { const url = saveWebsite(); if (!url) return; if (Capacitor.isNativePlatform()) { await Browser.open({ url }); return; } window.open(url, '_blank', 'noopener,noreferrer'); };
+  $('#website-copy').onclick = async () => { const url = saveWebsite(); if (!url) return; try { await navigator.clipboard.writeText(url); websiteStatus.textContent = 'Lien copié : prêt à être collé dans un message ou une bio.'; } catch { websiteInput.select(); websiteStatus.textContent = 'Lien sélectionné : copiez-le manuellement.'; } };
   const prepare = agent.querySelector('.primary');
   if (prepare) prepare.onclick = () => { const saved = JSON.parse(localStorage.getItem(key) || 'null'); const textarea = document.querySelector('.inbox textarea'); if (!saved?.endpoint || !saved.consent) { $('#ai-status').textContent = 'Configurez un serveur IA sécurisé et votre autorisation avant la génération.'; return; } $('#ai-status').textContent = 'Prêt à générer : le serveur IA sera appelé uniquement après la validation explicite de la réponse.'; textarea.focus(); };
 }
