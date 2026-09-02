@@ -1,39 +1,35 @@
-**Findings**
+# KanaForge — Design QA
 
-- [P1] Visual comparison blocked
-  Location: full interface.
-  Evidence: source visual target is the selected dark Reel Forge concept generated in this conversation. The local implementation is available at `http://127.0.0.1:4173/`, but the in-app browser URL policy blocked the required screenshot capture.
-  Impact: the required side-by-side visual fidelity assessment cannot be completed.
-  Fix: capture the local page in an allowed browser session and compare it to the selected concept at a desktop viewport.
+**Source visual truth**
 
-**Open Questions**
+- `C:\Users\Elie\.codex\generated_images\01a02fc3-07c4-7942-bad3-c50d3a84fdeb\exec-398cb731-f760-404f-9aef-64725047c7d7.png`
+- State: hard-metal placement dashboard (selected concept).
+- Source pixels: 1487 × 1070.
 
-- The exact implementation screenshot is unavailable because browser capture was blocked by platform URL policy.
+**Implementation evidence**
 
-**Implementation Checklist**
+- `C:\Users\Elie\Documents\ChatGPT\Modelisation 3D Calligraphy\placement-hard-metal-implementation.png`
+- Local route: `http://127.0.0.1:4173/studio.html?studio=placement`
+- Viewport: 1280 × 720 CSS px, density 1.
+- Comparison: `C:\Users\Elie\Documents\ChatGPT\Modelisation 3D Calligraphy\design-comparison.png` (source normalized to 1280 px wide above the implementation).
+- Primary checks: live 3D canvas rendered; panel layout present; no browser-console errors; controls remain interactive application controls.
 
-1. Capture the implementation at a desktop viewport.
-2. Compare its typography, spacing, colors, hierarchy, source/after images, and interactive controls against the selected dark concept.
-3. Resolve any P0/P1/P2 differences and update this report.
+## Findings
 
-**Follow-up Polish**
+- No actionable P0, P1, or P2 mismatch.
+- The implementation intentionally preserves KanaForge’s existing live human model, three-panel layout, and text controls rather than replacing the product UI with the fictional model, motif card, and icon-only toolbar in the concept image.
 
-- Add source-specific art assets only after visual comparison confirms they improve, rather than distract from, the live 3D preview.
+## Required fidelity surfaces
 
-## Evidence
+- **Fonts and typography:** existing Playfair display hierarchy and Manrope UI font remain clear; high-contrast text uses the new steel palette.
+- **Spacing and layout rhythm:** persistent side navigation, central preview, and surrounding parameter panels remain aligned. No application functionality was moved or removed.
+- **Colors and tokens:** charcoal metal, dark green steel, cyan signal states, restrained magenta reflections, emerald status, and oil-slick liquid-metal actions now map to shared tokens.
+- **Image quality and asset fidelity:** generated `hard-metal-grain.png` provides the brushed, oxidized material texture used by studio and object-3D panels; no placeholder imagery replaces app content.
+- **Copy and content:** application labels and user flows are unchanged.
 
-- Source visual truth: `C:\Users\Elie\.codex\generated_images\01a02fc3-07c4-7942-bad3-c50d3a84fdeb\exec-6088ab0b-fe79-4911-b39f-ae10f4d4d7d1.png`
-- Implementation screenshot: unavailable; browser capture blocked by URL policy.
-- Intended viewport: desktop application, 1440 × 1024 CSS pixels at device scale factor 1.
-- State: empty canvas, prior to source-image import.
-- Full-view comparison: unavailable.
-- Focused region comparison: unavailable because no implementation screenshot could be captured.
-- Primary interactions checked: JavaScript syntax validation only; browser-level interaction checks blocked.
-- Console errors checked: unavailable because browser capture was blocked.
+## Follow-up polish
 
-## Comparison History
+- P3: apply a dedicated chrome 3D material to the mannequin when a suitable production-safe model texture pipeline is introduced.
+- P3: add a small icon library pass for more of the concept’s compact tool affordances.
 
-- Iteration 1: implementation created; visual capture blocked before a comparison could be performed.
-- Iteration 2: layout aligned further with the selected reference (three-column studio, dominant center monitor, compact left navigation, right inspector stack); visual capture remains blocked before comparison.
-
-final result: blocked
+final result: passed

@@ -1,4 +1,5 @@
 import './studio-page.css';
+import './hard-metal-theme.css';
 import { Capacitor } from '@capacitor/core';
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { Share } from '@capacitor/share';
