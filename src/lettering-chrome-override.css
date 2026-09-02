@@ -41,3 +41,59 @@
   color: #dffbfa !important;
   box-shadow: inset 0 1px #ffffff30, inset 0 -1px #020607cc !important;
 }
+
+/* Recessed chrome controls keep the sliders tactile without browser-blue accents. */
+#tattoo-studio .page-lettering input[type='range'] {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 9px;
+  padding: 0;
+  border: 1px solid #6c8588;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #071012 0%, #263d40 45%, #0a1416 100%) !important;
+  box-shadow: inset 0 2px 3px #000c, inset 0 1px #ffffff25, 0 1px #000;
+  accent-color: transparent;
+  cursor: ew-resize;
+}
+
+#tattoo-studio .page-lettering input[type='range']::-webkit-slider-runnable-track {
+  height: 7px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #36d9d4 0%, #b9ffff 38%, #4b6970 39%, #122124 100%);
+  box-shadow: inset 0 1px #ffffff4d, inset 0 -1px #021012d9;
+}
+
+#tattoo-studio .page-lettering input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -6px;
+  border: 1px solid #e6ffff;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #183136 0%, #d9ffff 24%, #ffffff 41%, #5f8184 61%, #102126 100%) !important;
+  box-shadow: inset 0 2px 2px #ffffffd9, inset 0 -3px 3px #10272bd9, 0 2px 5px #000c, 0 0 10px #42e6e150;
+}
+
+#tattoo-studio .page-lettering input[type='range']:hover::-webkit-slider-thumb,
+#tattoo-studio .page-lettering input[type='range']:focus-visible::-webkit-slider-thumb {
+  filter: hue-rotate(18deg) saturate(1.25);
+  box-shadow: inset 0 2px 2px #ffffffef, inset 0 -3px 3px #10272bd9, 0 2px 5px #000c, 0 0 16px #42e6e188;
+}
+
+#tattoo-studio .page-lettering input[type='range']::-moz-range-track {
+  height: 7px;
+  border: 1px solid #6c8588;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #36d9d4 0%, #b9ffff 38%, #4b6970 39%, #122124 100%);
+  box-shadow: inset 0 1px #ffffff4d, inset 0 -1px #021012d9;
+}
+
+#tattoo-studio .page-lettering input[type='range']::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #e6ffff;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #183136 0%, #d9ffff 24%, #ffffff 41%, #5f8184 61%, #102126 100%);
+  box-shadow: inset 0 2px 2px #ffffffd9, inset 0 -3px 3px #10272bd9, 0 2px 5px #000c, 0 0 10px #42e6e150;
+}
