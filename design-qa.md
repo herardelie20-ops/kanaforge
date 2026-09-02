@@ -17,6 +17,7 @@
 ## Findings
 
 - No actionable P0, P1, or P2 mismatch.
+- Final micro-iteration: detailed photographic chrome was removed from export presets and the Instagram-video action. These controls now use a smooth mercury finish with a restrained moving highlight and engraved text treatment.
 - The implementation intentionally preserves KanaForge’s existing live human model, three-panel layout, and text controls rather than replacing the product UI with the fictional model, motif card, and icon-only toolbar in the concept image.
 
 ## Required fidelity surfaces
