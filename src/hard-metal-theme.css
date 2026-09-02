@@ -136,6 +136,10 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 /* L'image reste propre à chaque atelier : seul son volume, sa trajectoire et son irisation évoluent. */
 #tattoo-studio main:before{background-position:center,calc(50% + var(--metal-flow-x,0%)) calc(50% + var(--metal-flow-y,0%)),var(--metal-scroll) 0,calc(100% - var(--metal-scroll)) 20%,var(--metal-scroll) 100%;filter:hue-rotate(var(--metal-flow-hue,var(--oil-hue,0deg))) saturate(1.18);transition:background-size .7s cubic-bezier(.2,.8,.2,1),background-position .7s cubic-bezier(.2,.8,.2,1),filter .7s ease}
 #tattoo-studio .page-portfolio:before{transform:rotate(var(--metal-flow-rotation,0deg)) scale(1.26);transform-origin:54% 48%;transition:background-size 1.1s cubic-bezier(.2,.8,.2,1),background-position 1.1s cubic-bezier(.2,.8,.2,1),filter 1s ease,transform 1.1s cubic-bezier(.2,.8,.2,1)}
+
+/* Aperçu 3D : noir épuré, deux lueurs seulement pour privilégier le motif. */
+#object3d-app .viewport:has(#empty:not(.hidden)){background-image:radial-gradient(ellipse 72% 58% at 12% 4%,#32d8e022,transparent 62%),radial-gradient(ellipse 68% 64% at 94% 96%,#d457ca20,transparent 63%),linear-gradient(145deg,#020506,#000 55%,#05080b)!important;background-size:cover!important;background-position:center!important;animation:none!important}
+#object3d-app .viewport:has(#empty:not(.hidden)):after{background:linear-gradient(118deg,#40e2da10,transparent 37%,transparent 67%,#d55bc514)!important;animation:none!important}
 .app-shell:has(#object3d-app):before{background-position:center,calc(50% + var(--metal-flow-x,0%)) calc(50% + var(--metal-flow-y,0%)),center,center;filter:hue-rotate(var(--metal-flow-hue,0deg)) saturate(1.22);transition:background-size .7s cubic-bezier(.2,.8,.2,1),background-position .7s cubic-bezier(.2,.8,.2,1),filter .7s ease}
 
 /* Les commandes suivent les reflets de la nappe liquide active. */
