@@ -1,0 +1,6 @@
+/* Aucun réglage n'est rogné : les panneaux peuvent prolonger la page. */
+main.page-placement{height:auto!important;min-height:100vh!important;overflow:visible!important}
+.page-placement .workspace{height:auto!important;min-height:calc(100vh - 164px);grid-template-rows:auto auto!important;overflow:visible!important}
+.page-placement .avatar-bottom-settings,.page-placement .avatar-panel{height:auto!important;max-height:none!important;overflow:visible!important;scrollbar-width:auto}
+.page-placement .avatar-bottom-settings::-webkit-scrollbar,.page-placement .avatar-panel::-webkit-scrollbar{display:block}
+.page-placement .placement-preview-settings{height:auto!important;min-height:0!important;overflow:visible!important}

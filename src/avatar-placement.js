@@ -18,6 +18,7 @@ import './placement-compact-height.css';
 import './placement-bottom-settings.css';
 import './context-help-compact.css';
 import './placement-no-page-scroll.css';
+import './placement-full-panels.css';
 
 function begin() {
   if (new URLSearchParams(location.search).get('studio') !== 'placement') return;
