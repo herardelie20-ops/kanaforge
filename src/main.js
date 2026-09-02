@@ -35,9 +35,13 @@ import { liquidFlowAssets } from './liquid-flow-assets.js';
 
 const syncMetalScroll = () => {
   const progress = Math.min(1, window.scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight));
+  const turn=progress*Math.PI*2;
   document.documentElement.style.setProperty('--metal-scroll', `${Math.round(progress * 18)}%`);
-  document.documentElement.style.setProperty('--metal-flow-size', `${142 + Math.round(progress * 48)}%`);
-  document.documentElement.style.setProperty('--metal-flow-image', `url('${liquidFlowAssets[16 + Math.min(2, Math.floor(progress * 3))]}')`);
+  document.documentElement.style.setProperty('--metal-flow-size', `${150 + Math.round(progress * 38)}%`);
+  document.documentElement.style.setProperty('--metal-flow-x', `${Math.round(Math.cos(turn)*20)}%`);
+  document.documentElement.style.setProperty('--metal-flow-y', `${Math.round(Math.sin(turn)*15)}%`);
+  document.documentElement.style.setProperty('--metal-flow-hue', `${Math.round(progress*120)}deg`);
+  document.documentElement.style.setProperty('--metal-flow-image', `url('${liquidFlowAssets[16]}')`);
 };
 window.addEventListener('scroll', syncMetalScroll, { passive: true });
 syncMetalScroll();
