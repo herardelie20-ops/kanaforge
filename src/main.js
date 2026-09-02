@@ -31,11 +31,13 @@ import './studio-views.css';
 import './body-studio.css';
 import './menu-fix.css';
 import './hard-metal-theme.css';
+import { liquidFlowAssets } from './liquid-flow-assets.js';
 
 const syncMetalScroll = () => {
   const progress = Math.min(1, window.scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight));
   document.documentElement.style.setProperty('--metal-scroll', `${Math.round(progress * 18)}%`);
   document.documentElement.style.setProperty('--metal-flow-size', `${142 + Math.round(progress * 48)}%`);
+  document.documentElement.style.setProperty('--metal-flow-image', `url('${liquidFlowAssets[16 + Math.min(2, Math.floor(progress * 3))]}')`);
 };
 window.addEventListener('scroll', syncMetalScroll, { passive: true });
 syncMetalScroll();
