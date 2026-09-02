@@ -3,6 +3,7 @@ import { Directory, Filesystem } from '@capacitor/filesystem';
 import { Share } from '@capacitor/share';
 import './lettering-studio.css';
 import './lettering-theme.css';
+import './lettering-chrome-override.css';
 import './lettering-import.js';
 import './lettering-stroke-editor.js';
 import './lettering-font-export.js';

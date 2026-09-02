@@ -1,0 +1,43 @@
+/* The lettering workspace keeps its controls deliberately smooth: chrome, not a photo texture. */
+#tattoo-studio .page-lettering #letter-vectorize,
+#tattoo-studio .page-lettering #glyph-save,
+#tattoo-studio .page-lettering #composition-download,
+#tattoo-studio .page-lettering .letter-import-file,
+#tattoo-studio .page-lettering #letter-camera {
+  background-image: linear-gradient(112deg, #0b181b 0%, #5b7e80 13%, #e9ffff 25%, #b7d8d7 33%, #344e51 46%, #0b1719 58%, #347174 72%, #d5f1ef 86%, #112124 100%) !important;
+  background-size: 190% 100% !important;
+  background-position: 29% 50% !important;
+  border: 1px solid #b9ffff !important;
+  color: #071012 !important;
+  text-shadow: 0 1px 0 #ffffffb5, 0 -1px 0 #24404480 !important;
+  box-shadow: inset 0 1px 0 #ffffffd9, inset 0 -2px 0 #112527c9, 0 0 0 1px #071112, 0 7px 18px #0207088c !important;
+  transition: background-position .32s ease, filter .22s ease, transform .22s ease, box-shadow .22s ease;
+}
+
+#tattoo-studio .page-lettering #letter-vectorize:hover,
+#tattoo-studio .page-lettering #glyph-save:hover,
+#tattoo-studio .page-lettering #composition-download:hover,
+#tattoo-studio .page-lettering .letter-import-file:hover,
+#tattoo-studio .page-lettering #letter-camera:hover {
+  background-position: 76% 50% !important;
+  filter: saturate(1.18) hue-rotate(8deg) brightness(1.05);
+  box-shadow: inset 0 1px 0 #ffffffef, inset 0 -2px 0 #112527c9, 0 0 18px #42e6e14d, 0 8px 22px #0207089c !important;
+}
+
+#tattoo-studio .page-lettering #letter-vectorize:active,
+#tattoo-studio .page-lettering #glyph-save:active,
+#tattoo-studio .page-lettering #composition-download:active,
+#tattoo-studio .page-lettering .letter-import-file:active,
+#tattoo-studio .page-lettering #letter-camera:active {
+  background-position: 100% 50% !important;
+  filter: saturate(1.36) hue-rotate(24deg) brightness(.93);
+  transform: translateY(1px);
+}
+
+#tattoo-studio .page-lettering #glyph-clear,
+#tattoo-studio .page-lettering #glyph-undo {
+  background: linear-gradient(145deg, #213336, #0b1416 58%, #172c30) !important;
+  border: 1px solid #78989a !important;
+  color: #dffbfa !important;
+  box-shadow: inset 0 1px #ffffff30, inset 0 -1px #020607cc !important;
+}
