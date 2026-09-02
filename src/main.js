@@ -35,6 +35,7 @@ import './hard-metal-theme.css';
 const syncMetalScroll = () => {
   const progress = Math.min(1, window.scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight));
   document.documentElement.style.setProperty('--metal-scroll', `${Math.round(progress * 18)}%`);
+  document.documentElement.style.setProperty('--metal-flow-size', `${142 + Math.round(progress * 48)}%`);
 };
 window.addEventListener('scroll', syncMetalScroll, { passive: true });
 syncMetalScroll();
