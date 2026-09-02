@@ -63,8 +63,9 @@ body:has(#object3d-app):before{background:radial-gradient(circle at calc(44% + v
 .studio-grid .source-card,.studio-grid .decor-card{background:var(--metal-patina)!important;box-shadow:inset 0 1px #fff2,inset 0 -2px #0009,0 14px 30px #0007,0 0 0 1px #42e6e126!important}
 .section-tag,#object3d-app .kicker{color:var(--metal-cyan)!important}.material-card .section-tag,.motion-card .section-tag{color:var(--metal-magenta)!important}.light-card .section-tag{color:var(--metal-green)!important}
 #object3d-app .upload,#object3d-app .texture-upload{background:#071112!important;border-color:#4c7773!important}
-#object3d-app .effects button,.volume-styles button,#object3d-app .secondary{background:#091314!important;border-color:#405d5b!important;color:#d9e9e6!important}
-#object3d-app .effects button.chosen,.volume-styles button.chosen{background-image:linear-gradient(90deg,#0812139c,#07101120),var(--metal-chrome)!important;background-size:cover!important;border-color:#d6ffff!important;color:#efffff!important;text-shadow:0 1px 2px #000!important}
+#object3d-app .effects button,.volume-styles button,#object3d-app .secondary{background:#091314!important;background-image:none!important;border-color:#405d5b!important;color:#d9e9e6!important}
+#object3d-app .effects button.chosen,.volume-styles button.chosen{background-image:linear-gradient(108deg,#101b1e 0%,#17343a 30%,#26565c 47%,#4b295d 68%,#102328 100%)!important;background-size:180% 100%!important;background-position:38% 50%!important;border-color:#a8fffb!important;color:#efffff!important;text-shadow:0 1px 2px #000!important;box-shadow:inset 0 1px #d6ffff66,inset 0 -1px #020809d9,0 0 12px #42e6e136!important;animation:oil-sheen 7s ease-in-out infinite alternate}
+@keyframes oil-sheen{to{background-position:78% 50%}}
 #object3d-app .viewport{border-color:#5c7774!important;background:#071314!important;box-shadow:inset 0 0 0 1px #ffffff16,0 28px 55px #000b!important}
 #object3d-app .viewport:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,#42e6e113,transparent 26%,transparent 74%,#e35cc51a);mix-blend-mode:screen}
 #object3d-app .format button,#object3d-app .transport button{background:#0a1516!important;border-color:#516e6c!important;color:#e9f7f4!important}
