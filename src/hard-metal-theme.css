@@ -12,6 +12,7 @@
   --metal-magenta:#e35cc5;
   --metal-rust:#925637;
   --metal-liquid:linear-gradient(108deg,#667477 0%,#f4ffff 16%,#314145 32%,#35d9d0 53%,#d7a1ff 72%,#3b4d4d 88%,#eaf4f1 100%);
+  --metal-chrome:url('./assets/liquid-chrome-reflection.png');
   --metal-surface:linear-gradient(145deg,rgba(31,44,45,.94),rgba(10,16,17,.96)),url('./assets/hard-metal-grain.png');
   --metal-patina:linear-gradient(135deg,rgba(9,17,18,.94),rgba(29,35,35,.85) 62%,rgba(110,57,40,.34)),url('./assets/hard-metal-grain.png');
 }
@@ -31,13 +32,13 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 #tattoo-studio header p,.page-placement .placement-preview-settings>header p{color:var(--metal-cyan)!important}
 #tattoo-studio h1,#tattoo-studio h2{font-family:'Playfair Display',serif!important;text-shadow:0 1px 0 #fff2,0 12px 30px #000!important}
 #tattoo-studio header>a,#tattoo-studio .primary{border:1px solid #5f8784!important;border-radius:8px!important;background:var(--metal-surface)!important;color:#efffff!important;box-shadow:inset 0 1px #fff2,0 8px 22px #0008!important}
-#tattoo-studio .primary{background:var(--metal-liquid)!important;color:#061010!important;border-color:#c3ffff!important;text-shadow:0 1px #fff9!important}
+#tattoo-studio .primary{background-image:linear-gradient(90deg,#081213bc,#0a151a3d),var(--metal-chrome)!important;background-size:cover!important;background-position:center!important;color:#f4ffff!important;border-color:#b9ffff!important;text-shadow:0 1px 2px #000!important;box-shadow:inset 0 1px #ffffffa8,inset 0 -1px #000,0 0 0 1px #2faeb4,0 12px 28px #000c,0 0 23px #42e6e138!important}
 #tattoo-studio main:not(.page-placement) .workspace>section,#tattoo-studio main:not(.page-placement) .workspace>aside,#tattoo-studio .avatar-bottom-settings,#tattoo-studio .placement-preview-settings{background:var(--metal-surface)!important;border-color:#43595a!important;box-shadow:inset 0 1px #ffffff1f,0 18px 30px #0006!important}
 #tattoo-studio .workspace aside{background:var(--metal-patina)!important}
 #tattoo-studio input,#tattoo-studio textarea,#tattoo-studio select{background:#071011!important;color:#efffff!important;border-color:#496766!important}
 #tattoo-studio input[type=range]{accent-color:var(--metal-cyan)!important}
 #tattoo-studio input[type=range]::-webkit-slider-thumb{background:var(--metal-cyan)!important;box-shadow:0 0 0 3px #42e6e133!important}
-#tattoo-studio button:not(.primary),#tattoo-studio .chips button,#tattoo-studio .view-controls button{background:#0c1617!important;border-color:#466260!important;color:#e4f1ef!important;box-shadow:inset 0 1px #fff1!important}
+#tattoo-studio button:not(.primary),#tattoo-studio .chips button,#tattoo-studio .view-controls button{background-color:#0c1617!important;background-image:linear-gradient(180deg,#ffffff13,transparent 45%),url('./assets/hard-metal-grain.png')!important;background-size:auto,430px!important;border-color:#466260!important;color:#e4f1ef!important;box-shadow:inset 0 1px #fff2,inset 0 -2px #000a,0 4px 13px #0008!important}
 #tattoo-studio button:hover,#tattoo-studio button:focus-visible{border-color:var(--metal-cyan)!important;box-shadow:0 0 0 2px #42e6e12e,0 0 18px #42e6e12b!important}
 #tattoo-studio .avatar-workspace{background:radial-gradient(ellipse at 50% 36%,#294649 0%,#102124 54%,#080e0f 100%)!important;border-color:#4d6969!important}
 #tattoo-studio .avatar-panel,.page-placement .avatar-bottom-settings,.page-placement .placement-preview-settings{background:var(--metal-patina)!important}
@@ -45,8 +46,8 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 #tattoo-studio .page-placement .avatar-workspace{grid-column:2!important;grid-row:1!important;width:auto!important}
 #tattoo-studio .page-placement .avatar-panel{grid-column:3!important;grid-row:1!important;width:auto!important}
 #tattoo-studio .page-placement .placement-preview-settings{grid-column:2!important;grid-row:2!important;width:auto!important}
-#tattoo-studio .avatar-toolbar button.active{background:var(--metal-liquid)!important;color:#091010!important;border-color:#d8ffff!important}
-#tattoo-studio .avatar-reset,#tattoo-studio #record{background:var(--metal-liquid)!important;color:#081011!important;border-color:#c8ffff!important}
+#tattoo-studio .avatar-toolbar button.active{background-image:linear-gradient(90deg,#08121399,#0710111d),var(--metal-chrome)!important;background-size:cover!important;color:#efffff!important;border-color:#d8ffff!important;box-shadow:0 0 18px #42e6e166!important}
+#tattoo-studio .avatar-reset,#tattoo-studio #record{background-image:linear-gradient(90deg,#08121399,#0710111d),var(--metal-chrome)!important;background-size:cover!important;color:#efffff!important;border-color:#c8ffff!important}
 #tattoo-studio .avatar-drop-hint{background:#061011df!important;border-color:var(--metal-green)!important;color:#dffff4!important}
 
 /* Labo Objet 3D */
@@ -55,17 +56,17 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 .nav-brand b{background:var(--metal-liquid)!important;color:#071011!important;border:1px solid #d8ffff;box-shadow:0 0 24px #42e6e166!important}
 .nav-kicker{color:#5ed7d0!important}.nav button{color:#a7bcba!important;border:1px solid transparent!important}
 .nav button.nav-active,.nav button:hover{background:linear-gradient(115deg,rgba(42,227,207,.2),rgba(15,34,35,.72))!important;border-color:#4bcbc3!important;color:#f4ffff!important;box-shadow:inset 0 1px #fff2,0 0 20px #35d8c523!important}
-#object3d-app{background:transparent!important}.studio-grid .source-card,.studio-grid .tool-card,.studio-grid .compare-card,#object3d-app footer{background:var(--metal-surface)!important;border-color:#435a59!important;box-shadow:inset 0 1px #fff2,0 14px 30px #0007!important}
-.studio-grid .source-card,.studio-grid .decor-card{background:var(--metal-patina)!important}
+#object3d-app{background:transparent!important}.studio-grid .source-card,.studio-grid .tool-card,.studio-grid .compare-card,#object3d-app footer{background:var(--metal-surface)!important;border-color:#435a59!important;box-shadow:inset 0 1px #fff3,inset 0 -2px #0009,0 14px 30px #0007!important}
+.studio-grid .source-card,.studio-grid .decor-card{background:var(--metal-patina)!important;box-shadow:inset 0 1px #fff2,inset 0 -2px #0009,0 14px 30px #0007,0 0 0 1px #96563330!important}
 .section-tag,#object3d-app .kicker{color:var(--metal-cyan)!important}.material-card .section-tag,.motion-card .section-tag{color:var(--metal-magenta)!important}.light-card .section-tag{color:var(--metal-green)!important}
 #object3d-app .upload,#object3d-app .texture-upload{background:#071112!important;border-color:#4c7773!important}
 #object3d-app .effects button,.volume-styles button,#object3d-app .secondary{background:#091314!important;border-color:#405d5b!important;color:#d9e9e6!important}
-#object3d-app .effects button.chosen,.volume-styles button.chosen{background:var(--metal-liquid)!important;border-color:#d6ffff!important;color:#071011!important}
+#object3d-app .effects button.chosen,.volume-styles button.chosen{background-image:linear-gradient(90deg,#0812139c,#07101120),var(--metal-chrome)!important;background-size:cover!important;border-color:#d6ffff!important;color:#efffff!important;text-shadow:0 1px 2px #000!important}
 #object3d-app .viewport{border-color:#5c7774!important;background:#071314!important;box-shadow:inset 0 0 0 1px #ffffff16,0 28px 55px #000b!important}
 #object3d-app .viewport:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,#42e6e113,transparent 26%,transparent 74%,#e35cc51a);mix-blend-mode:screen}
 #object3d-app .format button,#object3d-app .transport button{background:#0a1516!important;border-color:#516e6c!important;color:#e9f7f4!important}
 #object3d-app .format .format-active{background:var(--metal-liquid)!important;color:#061010!important;border-color:#d8ffff!important}
-#object3d-app #record{background:var(--metal-liquid)!important;color:#071010!important;border:1px solid #e3ffff!important;box-shadow:0 0 26px #42e6e144!important}
+#object3d-app #record{background-image:linear-gradient(90deg,#08121398,#0710111b),var(--metal-chrome)!important;background-size:cover!important;color:#f5ffff!important;border:1px solid #e3ffff!important;text-shadow:0 1px 2px #000!important;box-shadow:inset 0 1px #ffffffc0,0 0 30px #42e6e166!important}
 #object3d-app #stl{background:#0a1415!important;border:1px solid #587572!important}
 #object3d-app input[type=range]{background:#526260!important}
 #object3d-app input[type=range]::-webkit-slider-thumb{background:var(--metal-cyan)!important;box-shadow:0 0 0 4px #42e6e12e!important}
