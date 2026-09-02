@@ -27,7 +27,17 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 #tattoo-studio .side nav a,#tattoo-studio .object-link{border:1px solid transparent;color:#aabbb8!important}
 #tattoo-studio .side nav a.active,#tattoo-studio .side nav a:hover{background:linear-gradient(110deg,rgba(38,229,210,.22),rgba(47,69,69,.42))!important;border-color:#4fc9c2!important;box-shadow:inset 0 1px rgba(255,255,255,.22),0 0 18px #36d7c527;color:white!important}
 #tattoo-studio .object-link{background:#111b1c!important;border-color:#4a6867!important}
-#tattoo-studio main{background:radial-gradient(circle at 75% 0,rgba(35,126,122,.18),transparent 30%),radial-gradient(circle at 95% 35%,rgba(126,43,103,.15),transparent 32%),var(--metal-void)!important}
+#tattoo-studio main{position:relative;isolation:isolate;background:linear-gradient(135deg,#050a0bbd,#071113c7 48%,#05090bbd)!important}
+#tattoo-studio main>*{position:relative;z-index:1}
+#tattoo-studio main:before{content:'';position:fixed;inset:0 0 0 218px;z-index:0;pointer-events:none;opacity:.62;background:radial-gradient(ellipse 82% 52% at calc(12% + var(--metal-scroll)) 8%,var(--oil-a),transparent 63%),radial-gradient(ellipse 70% 46% at calc(92% - var(--metal-scroll)) 42%,var(--oil-b),transparent 66%),radial-gradient(ellipse 84% 58% at calc(36% + var(--metal-scroll)) 96%,var(--oil-c),transparent 68%),linear-gradient(126deg,#020708,#0a171a 44%,#04090b);background-size:140% 128%,138% 122%,132% 130%,cover;background-position:var(--metal-scroll) 0,calc(100% - var(--metal-scroll)) 20%,var(--metal-scroll) 100%,center;transition:background-position .72s cubic-bezier(.2,.8,.2,1)}
+#tattoo-studio .page-home{--oil-a:#19dbd438;--oil-b:#4b65de28;--oil-c:#e35cc524}
+#tattoo-studio .page-lettering{--oil-a:#d45be63d;--oil-b:#42e6e12d;--oil-c:#7357e837}
+#tattoo-studio .page-flash{--oil-a:#42e6e13b;--oil-b:#34dd8f2e;--oil-c:#4b69e52a}
+#tattoo-studio .page-placement{--oil-a:#35d8cf32;--oil-b:#d657bd2d;--oil-c:#407ce130}
+#tattoo-studio .page-portfolio{--oil-a:#27dcb039;--oil-b:#42e6e12e;--oil-c:#e2af4b2a}
+#tattoo-studio .page-clients{--oil-a:#3ce38e36;--oil-b:#d8a74a2e;--oil-c:#42e6e122}
+#tattoo-studio .page-planning{--oil-a:#4b7de134;--oil-b:#dc5ec631;--oil-c:#42e6e128}
+#tattoo-studio .page-communication{--oil-a:#42e6e13c;--oil-b:#d65bc72d;--oil-c:#3ce38e2b}
 #tattoo-studio header{border-color:#3c4d4e!important}
 #tattoo-studio header p,.page-placement .placement-preview-settings>header p{color:var(--metal-cyan)!important}
 #tattoo-studio h1,#tattoo-studio h2{font-family:'Playfair Display',serif!important;text-shadow:0 1px 0 #fff2,0 12px 30px #000!important}
