@@ -32,6 +32,13 @@ import './body-studio.css';
 import './menu-fix.css';
 import './hard-metal-theme.css';
 
+const syncMetalScroll = () => {
+  const progress = Math.min(1, window.scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight));
+  document.documentElement.style.setProperty('--metal-scroll', `${Math.round(progress * 18)}%`);
+};
+window.addEventListener('scroll', syncMetalScroll, { passive: true });
+syncMetalScroll();
+
 const APK_URL='https://github.com/herardelie20-ops/kanaforge/releases/download/android-latest/app-debug.apk',APP_BUILD=Number(import.meta.env.VITE_APP_BUILD||0),UPDATE_API='https://api.github.com/repos/herardelie20-ops/kanaforge/actions/workflows/android-apk.yml/runs?status=success&per_page=1';
 async function checkAndroidUpdate(){if(!Capacitor.isNativePlatform())return;try{const data=await fetch(UPDATE_API,{headers:{Accept:'application/vnd.github+json'}}).then(r=>r.ok?r.json():null),latest=data?.workflow_runs?.[0]?.run_number||0;if(latest>APP_BUILD){const dialog=$('#app-update');dialog.hidden=false;$('#app-update-later').onclick=()=>{dialog.hidden=true};$('#app-update-download').onclick=async()=>{dialog.hidden=true;await Browser.open({url:APK_URL})}}}catch{}}
 window.addEventListener('DOMContentLoaded',checkAndroidUpdate);

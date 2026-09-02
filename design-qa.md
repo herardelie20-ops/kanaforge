@@ -8,11 +8,11 @@
 
 **Implementation evidence**
 
-- `C:\Users\Elie\Documents\ChatGPT\Modelisation 3D Calligraphy\object3d-liquid-chrome-implementation.png`
+- `C:\Users\Elie\Documents\ChatGPT\Modelisation 3D Calligraphy\object3d-mercury-empty-state.png`
 - Local route: `http://127.0.0.1:4173/object3d.html`
 - Viewport: 1280 × 720 CSS px, density 1.
 - Comparison: `C:\Users\Elie\Documents\ChatGPT\Modelisation 3D Calligraphy\design-comparison.png` (source normalized to 1280 px wide above the implementation).
-- Primary checks: live 3D stage rendered; panel layout present; no browser-console errors; controls remain interactive application controls.
+- Primary checks: liquid-mercury empty state rendered; scroll-linked reflection variable changes from `0%` to `14%`; panel layout present; no browser-console errors; controls remain interactive application controls.
 
 ## Findings
 
@@ -24,7 +24,7 @@
 - **Fonts and typography:** existing Playfair display hierarchy and Manrope UI font remain clear; high-contrast text uses the new steel palette.
 - **Spacing and layout rhythm:** persistent side navigation, central preview, and surrounding parameter panels remain aligned. No application functionality was moved or removed.
 - **Colors and tokens:** charcoal metal, dark green steel, cyan signal states, restrained magenta reflections, emerald status, and oil-slick liquid-metal actions now map to shared tokens.
-- **Image quality and asset fidelity:** generated `hard-metal-grain.png` provides brushed oxidation while `liquid-chrome-reflection.png` provides the high-polish petrol reflection for active and export controls; no placeholder imagery replaces app content.
+- **Image quality and asset fidelity:** `rusted-airbrush-plate.png` replaces the coarse grain with an airbrushed oxidized plate; `liquid-mercury-empty-state.png` powers the empty live preview; `liquid-chrome-reflection.png` supplies the high-polish petrol reflection for active, export, and engraved controls.
 - **Copy and content:** application labels and user flows are unchanged.
 
 ## Follow-up polish
