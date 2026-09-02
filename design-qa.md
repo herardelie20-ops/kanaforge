@@ -25,7 +25,7 @@
 - **Fonts and typography:** existing Playfair display hierarchy and Manrope UI font remain clear; high-contrast text uses the new steel palette.
 - **Spacing and layout rhythm:** persistent side navigation, central preview, and surrounding parameter panels remain aligned. No application functionality was moved or removed.
 - **Colors and tokens:** charcoal metal, dark green steel, cyan signal states, restrained magenta reflections, emerald status, and oil-slick liquid-metal actions now map to shared tokens.
-- **Image quality and asset fidelity:** `rusted-airbrush-plate.png` replaces the coarse grain with an airbrushed oxidized plate; `liquid-mercury-empty-state.png` powers the empty live preview; `liquid-chrome-reflection.png` supplies the high-polish petrol reflection for active, export, and engraved controls.
+- **Image quality and asset fidelity:** the interface now uses clean, code-controlled black-chrome surfaces; `liquid-mercury-empty-state.png` powers the empty live preview; `liquid-chrome-reflection.png` supplies the high-polish petrol reflection for active and engraved controls. Rust and coarse-grain assets are no longer consumed.
 - **Copy and content:** application labels and user flows are unchanged.
 
 ## Follow-up polish
