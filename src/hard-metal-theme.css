@@ -552,10 +552,10 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   z-index:8!important;
 }
 #tattoo-studio .page-planning .planning-board>header>div:first-child{
-  transform:translate(38px,106px);
+  transform:translate(38px,68px);
 }
 #tattoo-studio .page-planning .planning-board>header>div:last-child{
-  transform:translate(-38px,106px);
+  transform:translate(-38px,68px);
 }
 
 /* Clients & devis : le volume haut du cadre est relevé au-dessus de l'en-tête
