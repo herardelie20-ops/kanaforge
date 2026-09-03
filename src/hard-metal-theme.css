@@ -557,6 +557,13 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #object3d-app .studio-grid .compare-card::after,
 #object3d-app footer::after,
 #tattoo-studio button::after,#object3d-app button::after,#tattoo-studio .side nav a::after{mix-blend-mode:screen!important}
+
+/* Hiérarchie absolue : toute information reste devant les textures et cadres. */
+#tattoo-studio main :is(h1,h2,h3,h4,h5,p,span,strong,b,small,label,legend,output,button,a,input,select,textarea,option,li,dt,dd,th,td),
+#object3d-app :is(h1,h2,h3,h4,h5,p,span,strong,b,small,label,legend,output,button,a,input,select,textarea,option,li,dt,dd,th,td){
+  position:relative!important;
+  z-index:5!important;
+}
 #tattoo-studio :is(input:not([type=range]):not([type=color]):not([type=checkbox]),select,textarea),
 #object3d-app :is(input:not([type=range]):not([type=color]):not([type=checkbox]),select,textarea){
   background-color:transparent!important;
