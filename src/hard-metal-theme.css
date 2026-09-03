@@ -627,7 +627,7 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   background-position:center top!important;
 }
 #tattoo-studio .page-placement .avatar-panel{
-  padding:32px 24px 34px!important;
+  padding:56px 24px 34px!important;
 }
 #tattoo-studio .page-placement :is(.avatar-appearance,.avatar-focus,.placement-preview-settings-card){
   background:transparent!important;
@@ -845,10 +845,20 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
 #tattoo-studio .page-placement .avatar-workspace #avatar-canvas{
   position:relative!important;
   z-index:1!important;
+  height:calc(100% - 88px)!important;
 }
 #tattoo-studio .page-placement .avatar-workspace::after{
+  /* Le PNG possède sa propre marge transparente : on le prolonge de chaque
+     côté pour que son relief arrive réellement aux bords de la fenêtre. */
+  inset:-18px 0!important;
+  background-size:100% calc(100% + 36px)!important;
+  background-position:center top!important;
   z-index:4!important;
   pointer-events:none!important;
+}
+#tattoo-studio .page-placement .avatar-workspace{
+  clip-path:none!important;
+  overflow:visible!important;
 }
 
 /* Navigation : chaque libellé est optiquement centré dans sa bulle chromée. */
