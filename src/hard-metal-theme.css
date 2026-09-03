@@ -541,6 +541,19 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   --liquid-window-outline:url('./assets/chrome-frames/window-frame-vertical-right-fold.png')!important;
 }
 
+/* Le rail de vectorisation est très haut et étroit : un asset vertical natif
+   évite l'écrasement (et donc le flou) du cadre panoramique précédent. */
+#tattoo-studio .page-flash .flash-controls{
+  --liquid-window-outline:url('./assets/chrome-frames/claw-variants/13-right-settings-rail.png')!important;
+}
+#tattoo-studio .page-flash .flash-controls::after{
+  inset:-2px!important;
+  background-size:100% 100%!important;
+  background-position:center!important;
+  image-rendering:auto;
+  filter:grayscale(1) contrast(1.16) brightness(1.08)!important;
+}
+
 /* Objet 3D : cadre carré fourni, étiré à la proportion du panneau Décor. */
 #object3d-app .inspector .decor-card{
   --liquid-window-outline:url('./assets/chrome-frames/button-frame-icon-square.png')!important;
