@@ -261,6 +261,31 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #object3d-app .studio-grid .compare-card,
 #object3d-app footer{--liquid-window-frame:url('./assets/window-frame-liquid-corner.png')}
 
+/* Bibliothèque de cadres à griffes : chaque gabarit est choisi selon la
+   proportion de son composant. Le PNG ne vit que sur la bordure extérieure. */
+#tattoo-studio main:not(.page-placement) .workspace>section{--liquid-window-outline:url('./assets/chrome-frames/claw-variants/01-wide-top-left-claw.png')}
+#tattoo-studio main:not(.page-placement) .workspace>aside{--liquid-window-outline:url('./assets/chrome-frames/claw-variants/03-tall-left-hooks.png')}
+#tattoo-studio .page-placement .avatar-workspace{--liquid-window-outline:url('./assets/chrome-frames/claw-variants/17-dashboard-card-talon.png')}
+#tattoo-studio .page-placement .avatar-panel{--liquid-window-outline:url('./assets/chrome-frames/claw-variants/13-right-settings-rail.png')}
+#tattoo-studio .page-placement .avatar-bottom-settings{--liquid-window-outline:url('./assets/chrome-frames/claw-variants/14-modal-claw-crown.png')}
+#tattoo-studio .page-placement .placement-preview-settings{--liquid-window-outline:url('./assets/chrome-frames/claw-variants/02-wide-diagonal-claws.png')}
+#object3d-app .studio-grid .source-card{--liquid-window-outline:url('./assets/chrome-frames/claw-variants/18-compact-card-hook.png')}
+#object3d-app .studio-grid .tool-card{--liquid-window-outline:url('./assets/chrome-frames/claw-variants/03-tall-left-hooks.png')}
+#object3d-app .studio-grid .compare-card{--liquid-window-outline:url('./assets/chrome-frames/claw-variants/04-square-bottom-right-spikes.png')}
+#object3d-app footer{--liquid-window-outline:url('./assets/chrome-frames/claw-variants/20-footer-timeline-spear.png')}
+
+/* Les familles de boutons reçoivent des griffes plus fines, sans changer leur
+   remplissage ni la hiérarchie des libellés. */
+#tattoo-studio button,#object3d-app button,#tattoo-studio .side nav a{position:relative;isolation:isolate}
+#tattoo-studio button::after,#object3d-app button::after,#tattoo-studio .side nav a::after{content:'';position:absolute;z-index:0;pointer-events:none;inset:-7px;background:var(--chrome-control-frame) center/100% 100% no-repeat;filter:grayscale(1) contrast(1.22) brightness(1.12);opacity:.88}
+#tattoo-studio button>* ,#object3d-app button>*{position:relative;z-index:1}
+#tattoo-studio button,#object3d-app button{--chrome-control-frame:url('./assets/chrome-frames/claw-variants/06-button-asymmetric-thorns.png')}
+#tattoo-studio .primary,#object3d-app .primary{--chrome-control-frame:url('./assets/chrome-frames/claw-variants/05-primary-button-claws.png')}
+#tattoo-studio .glyph-grid button,#object3d-app .format button{--chrome-control-frame:url('./assets/chrome-frames/claw-variants/07-icon-button-corners.png')}
+#tattoo-studio .side nav a{--chrome-control-frame:url('./assets/chrome-frames/claw-variants/09-tab-left-hook.png')}
+#tattoo-studio .side nav a::after{inset:-5px;z-index:-1}
+#tattoo-studio input[type=text],#tattoo-studio input[type=email],#tattoo-studio input[type=date],#tattoo-studio select,#object3d-app input[type=text],#object3d-app select{background-image:url('./assets/chrome-frames/claw-variants/15-form-field-minimal-claws.png');background-repeat:no-repeat;background-size:100% 100%;background-position:center}
+
 /* Le frame se déplace très légèrement à l'interaction : il reste du chrome,
    jamais une animation décorative envahissante. */
 #tattoo-studio .workspace>section:hover,
