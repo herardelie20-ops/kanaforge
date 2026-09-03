@@ -536,7 +536,7 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   --liquid-window-outline:url('./assets/chrome-frames/claw-variants/13-right-settings-rail.png')!important;
 }
 #tattoo-studio .page-planning .planning-form>small{
-  margin-top:26px!important;
+  margin-top:83px!important;
 }
 
 /* Planning : retour au cadre Couronne vertical, mieux proportionné pour
