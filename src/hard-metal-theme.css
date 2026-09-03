@@ -566,7 +566,7 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   background-position:center top!important;
 }
 #tattoo-studio .page-clients .client-project header h2{
-  transform:translate(76px,113px);
+  transform:translate(76px,37px);
 }
 
 /* Communication : la boîte de réception gagne des montants hauts au lieu
