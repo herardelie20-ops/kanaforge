@@ -4,3 +4,8 @@ main.page-placement{height:auto!important;min-height:100vh!important;overflow:vi
 .page-placement .avatar-bottom-settings,.page-placement .avatar-panel{height:auto!important;max-height:none!important;overflow:visible!important;scrollbar-width:auto}
 .page-placement .avatar-bottom-settings::-webkit-scrollbar,.page-placement .avatar-panel::-webkit-scrollbar{display:block}
 .page-placement .placement-preview-settings{height:auto!important;min-height:0!important;overflow:visible!important}
+
+/* Le cadrage reste attaché à l'aperçu central, même si le panneau Corps est plus long. */
+.page-placement .workspace{grid-template-rows:548px auto!important;align-items:start!important}
+.page-placement .placement-preview-settings{grid-column:2!important;grid-row:2!important;align-self:start!important;margin-top:0!important}
+@media(max-width:1050px){.page-placement .workspace{grid-template-rows:490px auto!important}}
