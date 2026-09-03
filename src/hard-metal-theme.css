@@ -660,6 +660,28 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 }
 #object3d-app #dropzone small{font-size:8px!important}
 
+/* Lettrage : le panneau d'alphabet reprend le cadre Primary Claws fourni.
+   L'ornement est une couche extérieure et chaque lettre reste au premier plan. */
+#tattoo-studio .page-lettering .glyph-layout>aside{
+  position:relative!important;
+  isolation:isolate;
+  padding:28px 12px 18px!important;
+}
+#tattoo-studio .page-lettering .glyph-layout>aside::after{
+  content:'';
+  position:absolute;
+  z-index:0;
+  pointer-events:none;
+  inset:-8px;
+  background:url('./assets/chrome-frames/lettering-glyph-aside-primary-claws.png') center/100% 100% no-repeat;
+  filter:grayscale(1) contrast(1.18) brightness(1.08);
+  mix-blend-mode:screen;
+}
+#tattoo-studio .page-lettering .glyph-layout>aside>*{
+  position:relative!important;
+  z-index:5!important;
+}
+
 /* Planning : la nappe de fond reste mobile, mais exclusivement monochrome. */
 #tattoo-studio .page-planning::before{
   filter:grayscale(1) contrast(1.16) brightness(.76)!important;
