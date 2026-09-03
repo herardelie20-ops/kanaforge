@@ -184,7 +184,8 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #object3d-app footer{
   position:relative!important;
   isolation:isolate;
-  background-color:transparent!important;
+  /* Fond uni pour maximiser le contraste des outils et des libellés. */
+  background-color:#020506!important;
   background-image:none!important;
   border:0!important;
   border-radius:22px!important;
@@ -208,13 +209,17 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #object3d-app footer::after{
   content:'';
   position:absolute;
-  z-index:8;
+  z-index:0;
   pointer-events:none;
-  inset:0;
+  /* Le contour dépasse du plan de contenu : aucune information ne peut être
+     recouverte par son relief ou par la coulée asymétrique. */
+  inset:-1%;
   background-image:var(--liquid-window-outline);
   background-repeat:no-repeat;
   background-position:center;
   background-size:100% 100%;
+  transform:scale(1.02);
+  transform-origin:50% 50%;
 }
 #tattoo-studio main:not(.page-placement) .workspace>section>*,
 #tattoo-studio main:not(.page-placement) .workspace>aside>*,
@@ -225,7 +230,7 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #object3d-app .studio-grid .source-card>*,
 #object3d-app .studio-grid .tool-card>*,
 #object3d-app .studio-grid .compare-card>*,
-#object3d-app footer>*{position:relative;z-index:1}
+#object3d-app footer>*{position:relative;z-index:2}
 
 /* Atelier : une grande coulée pour les espaces de création, un rail pour les
    inspecteurs et une torsion plus dense autour de l'aperçu. */
