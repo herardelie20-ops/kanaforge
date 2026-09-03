@@ -1124,6 +1124,10 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   background:transparent!important;
   background-image:none!important;
 }
+#tattoo-studio .page-lettering .secondary-character-panel{
+  background:transparent!important;
+  background-image:none!important;
+}
 #tattoo-studio .page-lettering #glyph-progress{
   transform:translate(-19px,38px)!important;
 }
