@@ -455,6 +455,30 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #object3d-app #empty em{color:var(--kf-magenta)!important}
 #object3d-app :is(.material-card,.motion-card,.light-card,.decor-card) .section-tag{color:var(--kf-cyan)!important}
 
+/* Règle de construction universelle des cadres Kanaforge : la surface utile
+   est noire, tout pixel hors contour est transparent. Elle vaut aussi pour
+   les champs, les boutons et le menu — pas uniquement les grandes fenêtres. */
+#tattoo-studio,#object3d-app{--kf-frame-interior:url('./assets/chrome-frames/window-interior-black.svg');--kf-control-interior:url('./assets/chrome-frames/button-interior-black.svg')}
+#tattoo-studio main:not(.page-placement) .workspace>section::before,
+#tattoo-studio main:not(.page-placement) .workspace>aside::before,
+#tattoo-studio .page-placement .avatar-workspace::before,
+#tattoo-studio .page-placement .avatar-panel::before,
+#tattoo-studio .page-placement .avatar-bottom-settings::before,
+#tattoo-studio .page-placement .placement-preview-settings::before,
+#object3d-app .studio-grid .source-card::before,
+#object3d-app .studio-grid .tool-card::before,
+#object3d-app .studio-grid .compare-card::before,
+#object3d-app footer::before{background-color:#000!important;background-image:var(--kf-frame-interior)!important;background-position:center!important;background-size:100% 100%!important;background-repeat:no-repeat!important}
+#tattoo-studio :is(input:not([type=range]):not([type=color]):not([type=checkbox]),select,textarea),
+#object3d-app :is(input:not([type=range]):not([type=color]):not([type=checkbox]),select,textarea){
+  background-color:transparent!important;
+  background-image:var(--kf-control-interior)!important;
+  background-position:center!important;
+  background-size:100% 100%!important;
+  background-repeat:no-repeat!important;
+  color:var(--kf-white)!important;
+}
+
 /* Objet 3D : retour à la nappe fluide d'origine, déclinée en noir et blanc.
    Le scroll garde un mouvement très lent dans le sens naturel de l'image. */
 body:has(#object3d-app):before{background:none!important;opacity:0!important}
