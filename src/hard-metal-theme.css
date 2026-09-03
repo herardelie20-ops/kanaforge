@@ -641,7 +641,9 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   background-image:none!important;
 }
 #tattoo-studio .page-placement .avatar-bottom-settings{
-  padding:26px 22px 28px!important;
+  align-self:stretch!important;
+  min-height:620px!important;
+  padding:34px 28px 36px!important;
 }
 /* Le cadre du volet Apparence dépasse volontairement par le haut : le
    clip-path générique ne doit pas couper le relief avant son en-tête. */
@@ -655,6 +657,10 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 }
 #tattoo-studio .page-placement .avatar-panel{
   padding:56px 24px 34px!important;
+}
+#tattoo-studio .page-placement .placement-preview-settings{
+  min-height:520px!important;
+  padding:34px 30px 38px!important;
 }
 #tattoo-studio .page-placement :is(.avatar-appearance,.avatar-focus,.placement-preview-settings-card){
   background:transparent!important;
