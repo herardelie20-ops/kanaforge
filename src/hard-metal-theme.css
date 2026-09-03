@@ -286,6 +286,22 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #tattoo-studio .side nav a::after{inset:-5px;z-index:-1}
 #tattoo-studio input[type=text],#tattoo-studio input[type=email],#tattoo-studio input[type=date],#tattoo-studio select,#object3d-app input[type=text],#object3d-app select{background-image:url('./assets/chrome-frames/claw-variants/15-form-field-minimal-claws.png');background-repeat:no-repeat;background-size:100% 100%;background-position:center}
 
+/* Navigation : un unique bouton noir et chrome, sans teinte d'atelier. */
+#tattoo-studio .side nav a,
+#tattoo-studio .side nav a.active,
+#tattoo-studio .side nav a:hover,
+#tattoo-studio .side nav a.liquid-press{
+  color:#f8fbfa!important;
+  border:0!important;
+  border-radius:18px!important;
+  background:#000 url('./assets/chrome-frames/menu-button-chrome-black.png') center/100% 100% no-repeat!important;
+  box-shadow:none!important;
+  filter:grayscale(1) contrast(1.12) brightness(1.08)!important;
+  text-shadow:0 1px 2px #000!important;
+}
+#tattoo-studio .side nav a.active{filter:grayscale(1) contrast(1.2) brightness(1.22)!important}
+#tattoo-studio .side nav a::after{display:none!important}
+
 /* Le frame se déplace très légèrement à l'interaction : il reste du chrome,
    jamais une animation décorative envahissante. */
 #tattoo-studio .workspace>section:hover,
