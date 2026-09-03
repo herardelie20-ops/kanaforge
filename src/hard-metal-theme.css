@@ -616,6 +616,16 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #tattoo-studio .page-placement .avatar-bottom-settings{
   padding:26px 22px 28px!important;
 }
+/* Le cadre du volet Apparence dépasse volontairement par le haut : le
+   clip-path générique ne doit pas couper le relief avant son en-tête. */
+#tattoo-studio .page-placement .avatar-bottom-settings{
+  clip-path:none!important;
+}
+#tattoo-studio .page-placement .avatar-bottom-settings::after{
+  inset:-38px 0 0!important;
+  background-size:100% calc(100% + 38px)!important;
+  background-position:center top!important;
+}
 #tattoo-studio .page-placement .avatar-panel{
   padding:32px 24px 34px!important;
 }
