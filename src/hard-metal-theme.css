@@ -550,6 +550,14 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   z-index:8!important;
 }
 
+/* Clients & devis : le volume haut du cadre est relevé au-dessus de l'en-tête
+   afin de préserver une zone noire nette autour de « Projet & devis ». */
+#tattoo-studio .page-clients .client-project::after{
+  inset:-58px 0 0!important;
+  background-size:100% calc(100% + 58px)!important;
+  background-position:center top!important;
+}
+
 /* Communication : la boîte de réception gagne des montants hauts au lieu
    d'écraser le cadre horizontal. Le dégagement supérieur protège les sujets. */
 #tattoo-studio .page-communication .inbox{
