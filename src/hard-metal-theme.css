@@ -501,6 +501,10 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   background-color:transparent!important;
   border-color:transparent!important;
 }
+
+/* Asset composite vérifié : alpha 0 hors cadre, alpha 255 au centre noir. */
+#tattoo-studio .page-portfolio .book-library{--liquid-window-outline:url('./assets/chrome-frames/window-frame-wide-black-interior-filled.png')!important;padding:42px!important}
+#tattoo-studio .page-portfolio .book-library::after{inset:0!important}
 #tattoo-studio :is(input:not([type=range]):not([type=color]):not([type=checkbox]),select,textarea),
 #object3d-app :is(input:not([type=range]):not([type=color]):not([type=checkbox]),select,textarea){
   background-color:transparent!important;
