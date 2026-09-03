@@ -676,8 +676,8 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   padding:56px 24px 34px!important;
 }
 #tattoo-studio .page-placement .placement-preview-settings{
-  min-height:633px!important;
-  margin-top:-113px!important;
+  min-height:709px!important;
+  margin-top:-189px!important;
   padding:34px 30px 38px!important;
 }
 #tattoo-studio .page-placement :is(.avatar-appearance,.avatar-focus,.placement-preview-settings-card){
