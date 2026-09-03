@@ -788,7 +788,7 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   background-image:none!important;
 }
 #tattoo-studio .page-lettering .composition-lab::after{
-  mix-blend-mode:normal!important;
+  mix-blend-mode:screen!important;
   opacity:1!important;
 }
 
