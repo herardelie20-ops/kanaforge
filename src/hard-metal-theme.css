@@ -531,6 +531,11 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #object3d-app footer::after{inset:0!important}
 #tattoo-studio button::after,#object3d-app button::after,#tattoo-studio .side nav a::after{inset:0!important}
 
+/* Planning : rail de réglages vertical fourni pour le formulaire de créneau. */
+#tattoo-studio .page-planning .planning-form{
+  --liquid-window-outline:url('./assets/chrome-frames/claw-variants/13-right-settings-rail.png')!important;
+}
+
 /* Mode transparent global : ni fenêtres, ni cartes, ni champs, ni boutons
    n'ajoutent de fond. Le noir déjà contenu dans les PNG est fondu dans le
    décor ; le chrome reste visible comme un véritable contour détouré. */
