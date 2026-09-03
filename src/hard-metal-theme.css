@@ -976,3 +976,15 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   column-gap:0!important;
   transform:translate(38px,38px)!important;
 }
+
+/* Objet 3D : ajustements de placement millimétrés des repères demandés. */
+#object3d-app .tool-column .form-card:nth-of-type(2)>div:first-child>h2{
+  transform:translateX(76px)!important;
+}
+#object3d-app .canvas-area>.material-card>div:first-child>h2{
+  transform:translateX(38px)!important;
+}
+#object3d-app .canvas-area>.material-card>.texture-upload{
+  width:calc(100% - 76px)!important;
+  margin-inline:38px!important;
+}
