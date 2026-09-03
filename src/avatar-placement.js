@@ -30,6 +30,9 @@ function begin() {
 
 function initAvatar() {
   const $ = s => document.querySelector(s), host = $('#avatar-canvas'), loading = $('#avatar-loading'), hint = $('#avatar-drop-hint');
+  const toolbarActions = $('.avatar-toolbar > div');
+  toolbarActions.className = 'avatar-actions';
+  host.insertAdjacentElement('afterend', toolbarActions);
   $('#record-placement-video').insertAdjacentHTML('beforebegin', `<label class="placement-audio-file">♫ Audio <input id="placement-audio-file" type="file" accept="audio/mpeg,audio/mp4,audio/aac,audio/wav,audio/ogg,audio/webm"/><span id="placement-audio-name">30 s max</span></label>`);
   $('.avatar-panel h2').insertAdjacentHTML('afterend',`<div class="avatar-body-type"><label>Silhouette</label><div id="avatar-body"><button class="active" data-body="male">Homme</button><button data-body="female">Femme</button></div><small>Mannequin anatomique de présentation, sans vêtements.</small></div>`);
   $('#pose-torso').insertAdjacentHTML('afterend', '<label>Inclinaison du buste <output id="pose-lean-out">0°</output></label><input id="pose-lean" type="range" min="-35" max="35" value="0"/><label>Orientation de la tête <output id="pose-head-out">0°</output></label><input id="pose-head" type="range" min="-75" max="75" value="0"/><label>Écartement des jambes <output id="pose-stance-out">0°</output></label><input id="pose-stance" type="range" min="0" max="45" value="0"/>');
