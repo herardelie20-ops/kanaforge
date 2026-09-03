@@ -14,7 +14,7 @@
 **Required fidelity surfaces**
 
 - Fonts and typography: unchanged from the existing application; the border treatment does not alter readable text, weights, wrapping, or UI hierarchy.
-- Spacing and layout rhythm: the 9 px border is contained in each existing window box. Panels retain their grid positions and controls remain fully visible.
+- Spacing and layout rhythm: the 18 px border is contained in each existing window box. A rounded clipping mask removes the rectangular black spill while panels retain their grid positions and controls remain fully visible.
 - Colors and visual tokens: cyan, polished silver, magenta, and black are sampled directly from the selected visual asset. Existing atelier accent colors continue to coordinate the surrounding controls.
 - Image quality and asset fidelity: generated raster assets are used directly as `border-image` sources; no CSS illustration substitutes for the selected liquid-metal frame. Screenshot inspection shows crisp chrome rails at both wide and narrow panel sizes.
 - Copy and content: unchanged.
@@ -34,6 +34,7 @@
 
 - [x] Add selected liquid-chrome frame and two compatible variations as application assets.
 - [x] Apply role-based frame variants to Studio and Object 3D windows.
+- [x] Clip each frame to its rounded contour so no black rectangular corner can extend past the chrome.
 - [x] Preserve reduced-motion behavior and content readability.
 - [x] Build and visually verify the two principal interfaces.
 

@@ -185,12 +185,16 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   background-image:none!important;
   /* L'image est utilisée comme un véritable bord neuf-tranches : sa coulée
      reste sur le pourtour et ne passe jamais devant les contrôles. */
-  border:9px solid transparent!important;
+  border:18px solid transparent!important;
   border-image-source:var(--liquid-window-frame)!important;
-  border-image-slice:145!important;
-  border-image-width:9px!important;
+  border-image-slice:180!important;
+  border-image-width:18px!important;
   border-image-repeat:stretch!important;
-  box-shadow:0 18px 38px #000a!important;
+  border-radius:22px!important;
+  background-clip:padding-box!important;
+  clip-path:inset(0 round 22px);
+  overflow:hidden!important;
+  box-shadow:0 20px 42px #000c,0 0 0 1px #7cffff66!important;
 }
 
 /* Atelier : une grande coulée pour les espaces de création, un rail pour les
