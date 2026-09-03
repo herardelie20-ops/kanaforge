@@ -530,6 +530,33 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #object3d-app .studio-grid .compare-card::after,
 #object3d-app footer::after{inset:0!important}
 #tattoo-studio button::after,#object3d-app button::after,#tattoo-studio .side nav a::after{inset:0!important}
+
+/* Mode transparent global : ni fenêtres, ni cartes, ni champs, ni boutons
+   n'ajoutent de fond. Le noir déjà contenu dans les PNG est fondu dans le
+   décor ; le chrome reste visible comme un véritable contour détouré. */
+#tattoo-studio main :is(section,aside,article,.paper,.book-folder,.book-gallery,.book-library,.status,.mail-item,.planning-list article,.portfolio-grid div,.welcome div),
+#object3d-app :is(.source-card,.tool-card,.compare-card,footer){
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+}
+#tattoo-studio :is(button,.side nav a,input:not([type=range]):not([type=color]):not([type=checkbox]),select,textarea),
+#object3d-app :is(button,input:not([type=range]):not([type=color]):not([type=checkbox]),select,textarea){
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+}
+#tattoo-studio main:not(.page-placement) .workspace>section::after,
+#tattoo-studio main:not(.page-placement) .workspace>aside::after,
+#tattoo-studio .page-placement .avatar-workspace::after,
+#tattoo-studio .page-placement .avatar-panel::after,
+#tattoo-studio .page-placement .avatar-bottom-settings::after,
+#tattoo-studio .page-placement .placement-preview-settings::after,
+#object3d-app .studio-grid .source-card::after,
+#object3d-app .studio-grid .tool-card::after,
+#object3d-app .studio-grid .compare-card::after,
+#object3d-app footer::after,
+#tattoo-studio button::after,#object3d-app button::after,#tattoo-studio .side nav a::after{mix-blend-mode:screen!important}
 #tattoo-studio :is(input:not([type=range]):not([type=color]):not([type=checkbox]),select,textarea),
 #object3d-app :is(input:not([type=range]):not([type=color]):not([type=checkbox]),select,textarea){
   background-color:transparent!important;
