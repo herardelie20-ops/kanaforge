@@ -587,7 +587,7 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 }
 #tattoo-studio .page-communication .inbox>article,
 #tattoo-studio .page-communication .inbox>textarea{
-  transform:translate(38px,-76px);
+  transform:translate(0,-19px);
 }
 
 /* Communication : le bandeau des aperçus reprend le cadre Timeline fourni. */
