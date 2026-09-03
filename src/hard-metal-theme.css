@@ -543,10 +543,11 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   --liquid-window-outline:url('./assets/chrome-frames/planning-board-claw-crown-tall.png')!important;
 }
 #tattoo-studio .page-planning .planning-board::after{
-  inset:0!important;
+  inset:-30px -10px!important;
   background-size:100% auto!important;
   background-position:center top!important;
   image-rendering:auto;
+  z-index:8!important;
 }
 
 /* Communication : la boîte de réception gagne des montants hauts au lieu
