@@ -545,8 +545,8 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   --liquid-window-outline:url('./assets/chrome-frames/planning-board-claw-crown-tall.png')!important;
 }
 #tattoo-studio .page-planning .planning-board::after{
-  inset:0 -10px -90px!important;
-  background-size:100% auto!important;
+  inset:-56px -10px -90px!important;
+  background-size:100% 100%!important;
   background-position:center top!important;
   image-rendering:auto;
   z-index:8!important;
