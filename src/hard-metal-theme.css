@@ -1019,3 +1019,10 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
 #tattoo-studio .page-placement .placement-preview-settings::after{
   inset:-76px 0 0!important;
 }
+
+/* Placement : les commandes Fond & mannequin se posent 5 cm plus bas dans
+   leur panneau, sans modifier leurs dimensions ni leur ordre. */
+#tattoo-studio .page-placement .avatar-bottom-settings>header,
+#tattoo-studio .page-placement .avatar-bottom-settings>.avatar-appearance{
+  transform:translateY(189px)!important;
+}
