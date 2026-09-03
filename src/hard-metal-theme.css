@@ -543,9 +543,11 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   --liquid-window-outline:url('./assets/chrome-frames/planning-board-claw-crown-tall.png')!important;
 }
 #tattoo-studio .page-planning .planning-board::after{
-  inset:-90px -10px!important;
+  /* Le couronnement démarre au bord supérieur du panneau pour encadrer
+     l'intitulé « Vue hebdomadaire », sans déborder dans le titre de page. */
+  inset:0 -10px -90px!important;
   background-size:100% auto!important;
-  background-position:center center!important;
+  background-position:center top!important;
   image-rendering:auto;
   z-index:8!important;
 }
