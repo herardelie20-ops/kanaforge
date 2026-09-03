@@ -1034,3 +1034,6 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   font-size:50px!important;
   line-height:1.05!important;
 }
+#tattoo-studio .page-placement .avatar-panel>p:first-child{
+  transform:translateY(19px)!important;
+}
