@@ -337,6 +337,12 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #tattoo-studio input[type=range],#object3d-app input[type=range]{accent-color:#45e0de!important}
 #tattoo-studio .section-tag,#tattoo-studio header p,#object3d-app .section-tag,#object3d-app .preview-heading small{color:#45e0de!important}
 
+/* Objet 3D : grain noir fixe choisi par le studio. Le scroll déplace seulement
+   les reflets cyan et magenta, pour donner de la vie à la matière sans changer
+   son cadrage. */
+body:has(#object3d-app):before{background:none!important;opacity:0!important}
+.app-shell:has(#object3d-app):before{opacity:.78!important;background-image:radial-gradient(ellipse 42% 28% at calc(-10% + var(--metal-light-shift,0%)) 16%,#45e0de52,transparent 70%),radial-gradient(ellipse 38% 32% at calc(110% - var(--metal-light-shift,0%)) 84%,#df59c74a,transparent 72%),linear-gradient(118deg,#00000038,#00000088),url('./assets/background-textures/monochrome-industrial/11-grain-noir-reflets-defilement.png')!important;background-size:120% 120%,120% 120%,cover,cover!important;background-position:center,center,center,center!important;background-repeat:no-repeat!important;transform:none!important;filter:none!important;transition:background-position .85s cubic-bezier(.2,.8,.2,1),filter .7s ease!important}
+
 /* Le frame se déplace très légèrement à l'interaction : il reste du chrome,
    jamais une animation décorative envahissante. */
 #tattoo-studio .workspace>section:hover,

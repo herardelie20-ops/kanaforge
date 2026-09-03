@@ -41,6 +41,7 @@ const syncMetalScroll = () => {
   document.documentElement.style.setProperty('--metal-flow-y', '0%');
   document.documentElement.style.setProperty('--metal-flow-rotation', `${Math.round(progress*10)}deg`);
   document.documentElement.style.setProperty('--metal-flow-hue', `${Math.round(progress*24)}deg`);
+  document.documentElement.style.setProperty('--metal-light-shift', `${Math.round(progress * 100)}%`);
   document.documentElement.style.setProperty('--metal-flow-image', `url('${liquidFlowAssets[16]}')`);
 };
 window.addEventListener('scroll', syncMetalScroll, { passive: true });
