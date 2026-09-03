@@ -482,6 +482,16 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #object3d-app .studio-grid .tool-card,
 #object3d-app .studio-grid .compare-card,
 #object3d-app footer{background:transparent!important}
+
+/* Galerie : actions légères, vertes et sans surface de remplissage. */
+#tattoo-studio .page-portfolio #book-present,
+#tattoo-studio .page-portfolio header>a{
+  background:none!important;
+  border:1px solid #67e890!important;
+  color:#8dffae!important;
+  box-shadow:0 0 12px #47d97d3d!important;
+}
+#tattoo-studio .page-portfolio #book-present::after{display:none!important}
 #tattoo-studio :is(input:not([type=range]):not([type=color]):not([type=checkbox]),select,textarea),
 #object3d-app :is(input:not([type=range]):not([type=color]):not([type=checkbox]),select,textarea){
   background-color:transparent!important;
