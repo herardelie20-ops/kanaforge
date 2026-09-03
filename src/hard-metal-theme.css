@@ -302,6 +302,41 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #tattoo-studio .side nav a.active{filter:grayscale(1) contrast(1.2) brightness(1.22)!important}
 #tattoo-studio .side nav a::after{display:none!important}
 
+/* Le panneau lui-même n'est plus un aplat noir : le noir appartient au cadre
+   image, qui devient la couche de fond située sous tous les contrôles. */
+#tattoo-studio main:not(.page-placement) .workspace>section,
+#tattoo-studio main:not(.page-placement) .workspace>aside,
+#tattoo-studio .page-placement .avatar-workspace,
+#tattoo-studio .page-placement .avatar-panel,
+#tattoo-studio .page-placement .avatar-bottom-settings,
+#tattoo-studio .page-placement .placement-preview-settings,
+#object3d-app .studio-grid .source-card,
+#object3d-app .studio-grid .tool-card,
+#object3d-app .studio-grid .compare-card,
+#object3d-app footer{background-color:transparent!important;background-image:none!important}
+#tattoo-studio main:not(.page-placement) .workspace>section::after,
+#tattoo-studio main:not(.page-placement) .workspace>aside::after,
+#tattoo-studio .page-placement .avatar-workspace::after,
+#tattoo-studio .page-placement .avatar-panel::after,
+#tattoo-studio .page-placement .avatar-bottom-settings::after,
+#tattoo-studio .page-placement .placement-preview-settings::after,
+#object3d-app .studio-grid .source-card::after,
+#object3d-app .studio-grid .tool-card::after,
+#object3d-app .studio-grid .compare-card::after,
+#object3d-app footer::after{background-image:var(--liquid-window-outline),linear-gradient(#000,#000);background-size:100% 100%,100% 100%;background-repeat:no-repeat}
+
+/* Palette réduite : noir, blanc et gris, avec cyan ou magenta seulement pour
+   les états interactifs et les repères fonctionnels. */
+#tattoo-studio,#object3d-app{--metal-ink:#f5f7f7;--metal-muted:#a6afb1;--metal-line:#7f898b;--metal-black:#030405;--metal-silver:#d9dddd}
+#tattoo-studio button:not(.primary),#object3d-app button:not(.primary){background-color:var(--metal-black)!important;background-image:none!important;border-color:var(--metal-line)!important;color:var(--metal-ink)!important;box-shadow:inset 0 1px #ffffff22,0 4px 12px #0008!important}
+#tattoo-studio .side nav a{background:#000 url('./assets/chrome-frames/menu-button-chrome-black.png') center/100% 100% no-repeat!important;color:#fff!important}
+#tattoo-studio input:not([type=range]):not([type=color]),#tattoo-studio select,#object3d-app input:not([type=range]):not([type=color]),#object3d-app select{background-color:var(--metal-black)!important;color:var(--metal-ink)!important;border-color:var(--metal-line)!important}
+#tattoo-studio small,#tattoo-studio .muted,#object3d-app small,#object3d-app .muted{color:var(--metal-muted)!important}
+#tattoo-studio button.chosen,#object3d-app button.chosen,#tattoo-studio button.active:not(.primary),#object3d-app button.active:not(.primary){border-color:#45e0de!important;color:#f8ffff!important;box-shadow:inset 0 0 0 1px #45e0de66,0 0 12px #45e0de35!important}
+#tattoo-studio output,#object3d-app output{color:#45e0de!important}
+#tattoo-studio input[type=range],#object3d-app input[type=range]{accent-color:#45e0de!important}
+#tattoo-studio .section-tag,#tattoo-studio header p,#object3d-app .section-tag,#object3d-app .preview-heading small{color:#45e0de!important}
+
 /* Le frame se déplace très légèrement à l'interaction : il reste du chrome,
    jamais une animation décorative envahissante. */
 #tattoo-studio .workspace>section:hover,
