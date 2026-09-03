@@ -701,18 +701,37 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   z-index:5!important;
 }
 
-/* Accueil : les trois repères de parcours restent volontairement sans cadre. */
-#tattoo-studio .page-home .welcome,
-#tattoo-studio .page-home .welcome>div{
+/* Accueil : un cadre chrome unique passe devant les trois cartes. Les textes
+   restent au premier plan, mais le contour ne disparaît plus derrière elles. */
+#tattoo-studio .page-home .welcome{
+  position:relative!important;
+  isolation:isolate;
+  clip-path:none!important;
+  overflow:visible!important;
   border:0!important;
   box-shadow:none!important;
   background:transparent!important;
   background-image:none!important;
 }
-#tattoo-studio .page-home .welcome::after,
-#tattoo-studio .page-home .welcome>div::after{
-  display:none!important;
+#tattoo-studio .page-home .welcome>div{
+  position:relative!important;
+  z-index:5!important;
+  border:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+  background-image:none!important;
 }
+#tattoo-studio .page-home .welcome::after{
+  display:block!important;
+  inset:0!important;
+  z-index:4!important;
+  background-image:var(--liquid-window-outline)!important;
+  background-size:100% 100%!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+  pointer-events:none!important;
+}
+#tattoo-studio .page-home .welcome>div::after{display:none!important}
 #tattoo-studio .page-home>header>a{
   border:0!important;
   background:transparent!important;
