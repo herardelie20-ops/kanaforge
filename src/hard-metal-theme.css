@@ -492,6 +492,15 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   box-shadow:0 0 12px #47d97d3d!important;
 }
 #tattoo-studio .page-portfolio #book-present::after{display:none!important}
+
+/* Book : les deux grandes fenêtres ne gardent aucun aplat propre. Leur noir
+   est entièrement fourni par la couche intérieure du cadre. */
+#tattoo-studio .page-portfolio .book-library,
+#tattoo-studio .page-portfolio .book-gallery{
+  background:transparent!important;
+  background-color:transparent!important;
+  border-color:transparent!important;
+}
 #tattoo-studio :is(input:not([type=range]):not([type=color]):not([type=checkbox]),select,textarea),
 #object3d-app :is(input:not([type=range]):not([type=color]):not([type=checkbox]),select,textarea){
   background-color:transparent!important;
