@@ -279,10 +279,10 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #tattoo-studio button,#object3d-app button,#tattoo-studio .side nav a{position:relative;isolation:isolate}
 #tattoo-studio button::after,#object3d-app button::after,#tattoo-studio .side nav a::after{content:'';position:absolute;z-index:0;pointer-events:none;inset:-7px;background:var(--chrome-control-frame) center/100% 100% no-repeat;filter:grayscale(1) contrast(1.22) brightness(1.12);opacity:.88}
 #tattoo-studio button>* ,#object3d-app button>*{position:relative;z-index:1}
-#tattoo-studio button,#object3d-app button{--chrome-control-frame:url('./assets/chrome-frames/claw-variants/06-button-asymmetric-thorns.png')}
-#tattoo-studio .primary,#object3d-app .primary{--chrome-control-frame:url('./assets/chrome-frames/claw-variants/05-primary-button-claws.png')}
-#tattoo-studio .glyph-grid button,#object3d-app .format button{--chrome-control-frame:url('./assets/chrome-frames/claw-variants/07-icon-button-corners.png')}
-#tattoo-studio .side nav a{--chrome-control-frame:url('./assets/chrome-frames/claw-variants/09-tab-left-hook.png')}
+#tattoo-studio button,#object3d-app button{--chrome-control-frame:url('./assets/chrome-frames/button-frame-secondary-compact.png')}
+#tattoo-studio .primary,#object3d-app .primary{--chrome-control-frame:url('./assets/chrome-frames/button-frame-primary-long.png')}
+#tattoo-studio .glyph-grid button,#object3d-app .format button{--chrome-control-frame:url('./assets/chrome-frames/button-frame-icon-square.png')}
+#tattoo-studio .side nav a{--chrome-control-frame:url('./assets/chrome-frames/button-frame-secondary-compact.png')}
 #tattoo-studio .side nav a::after{inset:-5px;z-index:-1}
 #tattoo-studio input[type=text],#tattoo-studio input[type=email],#tattoo-studio input[type=date],#tattoo-studio select,#object3d-app input[type=text],#object3d-app select{background-image:url('./assets/chrome-frames/claw-variants/15-form-field-minimal-claws.png');background-repeat:no-repeat;background-size:100% 100%;background-position:center}
 
@@ -294,7 +294,7 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   color:#f8fbfa!important;
   border:0!important;
   border-radius:18px!important;
-  background:#000 url('./assets/chrome-frames/menu-button-chrome-black.png') center/100% 100% no-repeat!important;
+  background:#000 url('./assets/chrome-frames/button-frame-secondary-compact.png') center/100% 100% no-repeat!important;
   box-shadow:none!important;
   filter:grayscale(1) contrast(1.12) brightness(1.08)!important;
   text-shadow:0 1px 2px #000!important;
@@ -329,7 +329,7 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
    les états interactifs et les repères fonctionnels. */
 #tattoo-studio,#object3d-app{--metal-ink:#f5f7f7;--metal-muted:#a6afb1;--metal-line:#7f898b;--metal-black:#030405;--metal-silver:#d9dddd}
 #tattoo-studio button:not(.primary),#object3d-app button:not(.primary){background-color:var(--metal-black)!important;background-image:none!important;border-color:var(--metal-line)!important;color:var(--metal-ink)!important;box-shadow:inset 0 1px #ffffff22,0 4px 12px #0008!important}
-#tattoo-studio .side nav a{background:#000 url('./assets/chrome-frames/menu-button-chrome-black.png') center/100% 100% no-repeat!important;color:#fff!important}
+#tattoo-studio .side nav a{background:#000 url('./assets/chrome-frames/button-frame-secondary-compact.png') center/100% 100% no-repeat!important;color:#fff!important}
 #tattoo-studio input:not([type=range]):not([type=color]),#tattoo-studio select,#object3d-app input:not([type=range]):not([type=color]),#object3d-app select{background-color:var(--metal-black)!important;color:var(--metal-ink)!important;border-color:var(--metal-line)!important}
 #tattoo-studio small,#tattoo-studio .muted,#object3d-app small,#object3d-app .muted{color:var(--metal-muted)!important}
 #tattoo-studio button.chosen,#object3d-app button.chosen,#tattoo-studio button.active:not(.primary),#object3d-app button.active:not(.primary){border-color:#45e0de!important;color:#f8ffff!important;box-shadow:inset 0 0 0 1px #45e0de66,0 0 12px #45e0de35!important}
