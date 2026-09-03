@@ -9,7 +9,24 @@ function addFullscreenButton(container, toolbar, label) {
   document.addEventListener('fullscreenchange', refresh);
 }
 
+function addInterfaceFullscreenButton(button) {
+  if (!button) return;
+  const target = document.documentElement;
+  const refresh = () => {
+    const open = document.fullscreenElement === target;
+    button.textContent = open ? '↙ Quitter le plein écran' : '⛶ Plein écran';
+    button.setAttribute('aria-pressed', String(open));
+  };
+  button.addEventListener('click', () => {
+    if (document.fullscreenElement) document.exitFullscreen?.();
+    else target.requestFullscreen?.().catch(() => {});
+  });
+  document.addEventListener('fullscreenchange', refresh);
+  refresh();
+}
+
 function install() {
+  addInterfaceFullscreenButton(document.querySelector('#studio-app-fullscreen'));
   const studio = new URLSearchParams(location.search).get('studio');
   if (studio === 'lettering') addFullscreenButton(document.querySelector('.drawing-zone'), document.querySelector('.drawing-tools'), 'Grand format');
   if (studio === 'flash') addFullscreenButton(document.querySelector('.flash-stage'), document.querySelector('.flash-editor header'), 'Dessiner en grand');

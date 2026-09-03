@@ -10,6 +10,7 @@ import { GIFEncoder, quantize, applyPalette } from 'gifenc';
 import { encodeAnimation } from 'wasm-webp';
 import { BatchedRenderer, ParticleSystem, ConstantValue, IntervalValue, ConstantColor, SphereEmitter, RenderMode } from 'three.quarks';
 import { Capacitor } from '@capacitor/core';
+import './app-fullscreen.js';
 import { Browser } from '@capacitor/browser';
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { Share } from '@capacitor/share';
