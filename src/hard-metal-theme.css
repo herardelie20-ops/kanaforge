@@ -1117,3 +1117,6 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
 #tattoo-studio .page-placement .avatar-workspace #avatar-canvas{
   height:706px!important;
 }
+#tattoo-studio .page-placement .avatar-workspace .avatar-actions{
+  transform:translateY(-95px)!important;
+}
