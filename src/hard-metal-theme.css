@@ -181,21 +181,50 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #object3d-app .studio-grid .tool-card,
 #object3d-app .studio-grid .compare-card,
 #object3d-app footer{
-  background-color:#030607!important;
+  position:relative!important;
+  isolation:isolate;
+  background-color:transparent!important;
   background-image:none!important;
-  /* L'image est utilisée comme un véritable bord neuf-tranches : sa coulée
-     reste sur le pourtour et ne passe jamais devant les contrôles. */
-  border:18px solid transparent!important;
-  border-image-source:var(--liquid-window-frame)!important;
-  border-image-slice:180!important;
-  border-image-width:18px!important;
-  border-image-repeat:stretch!important;
+  border:0!important;
   border-radius:22px!important;
-  background-clip:padding-box!important;
   clip-path:inset(0 round 22px);
   overflow:hidden!important;
-  box-shadow:0 20px 42px #000c,0 0 0 1px #7cffff66!important;
+  box-shadow:0 14px 30px #0008,0 0 22px #6effff25!important;
+  --liquid-window-outline:url('./assets/window-frame-liquid-outline.png');
 }
+
+/* Un PNG à alpha réel est posé comme un cache de contour : le contenu intérieur
+   reste intégralement transparent et le chrome détermine seul la limite. */
+#tattoo-studio main:not(.page-placement) .workspace>section::after,
+#tattoo-studio main:not(.page-placement) .workspace>aside::after,
+#tattoo-studio .page-placement .avatar-workspace::after,
+#tattoo-studio .page-placement .avatar-panel::after,
+#tattoo-studio .page-placement .avatar-bottom-settings::after,
+#tattoo-studio .page-placement .placement-preview-settings::after,
+#object3d-app .studio-grid .source-card::after,
+#object3d-app .studio-grid .tool-card::after,
+#object3d-app .studio-grid .compare-card::after,
+#object3d-app footer::after{
+  content:'';
+  position:absolute;
+  z-index:8;
+  pointer-events:none;
+  inset:0;
+  background-image:var(--liquid-window-outline);
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:100% 100%;
+}
+#tattoo-studio main:not(.page-placement) .workspace>section>*,
+#tattoo-studio main:not(.page-placement) .workspace>aside>*,
+#tattoo-studio .page-placement .avatar-workspace>*,
+#tattoo-studio .page-placement .avatar-panel>*,
+#tattoo-studio .page-placement .avatar-bottom-settings>*,
+#tattoo-studio .page-placement .placement-preview-settings>*,
+#object3d-app .studio-grid .source-card>*,
+#object3d-app .studio-grid .tool-card>*,
+#object3d-app .studio-grid .compare-card>*,
+#object3d-app footer>*{position:relative;z-index:1}
 
 /* Atelier : une grande coulée pour les espaces de création, un rail pour les
    inspecteurs et une torsion plus dense autour de l'aperçu. */

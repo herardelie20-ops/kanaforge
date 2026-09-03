@@ -1,6 +1,6 @@
 **Comparison target**
 
-- Source visual truth: `src/assets/window-frame-liquid-corner.png` — 1487 × 1058 px, generated liquid-chrome window frame selected by the user.
+- Source visual truth: `src/assets/window-frame-liquid-outline.png` — generated transparent-alpha liquid-chrome outline derived from the selected KanaForge frame.
 - Implementation evidence: `frame-cards-qa.png` — 1265 × 712 px, browser-rendered lettering workspace at 1265 × 712 CSS px / device scale factor 1.
 - Additional implementation evidence: `object3d-frames-qa.png` — browser-rendered Object 3D workspace at the same viewport and state.
 - State: desktop, dark hard-metal theme, default/empty studio state. The source is a reusable frame asset rather than a full product screen; the comparison is therefore focused on the panel perimeter treatment rather than page layout.
@@ -8,15 +8,15 @@
 **Findings**
 
 - No actionable P0, P1 or P2 mismatches.
-- The selected chrome frame is now applied as a nine-slice border image rather than a stretched panel background. This preserves its cyan/silver/magenta perimeter without covering controls or text.
-- Source frame details are intentionally varied by panel role: liquid corner for broad creation/export panels, technical rail for inspectors, and left-flow contour for compact settings. The material, black interior, chrome highlights, and asymmetry remain consistent.
+- The generated outline is composited as a transparent overlay. Its black interior is physically transparent (alpha 0) and no longer contributes a dark panel fill.
+- Every framed panel is clipped to its 22 px rounded contour, so the chrome itself determines the visible edge and no rectangular black corner can protrude beyond it.
 
 **Required fidelity surfaces**
 
 - Fonts and typography: unchanged from the existing application; the border treatment does not alter readable text, weights, wrapping, or UI hierarchy.
-- Spacing and layout rhythm: the 18 px border is contained in each existing window box. A rounded clipping mask removes the rectangular black spill while panels retain their grid positions and controls remain fully visible.
+- Spacing and layout rhythm: the transparent chrome outline is inset exactly within each existing window box. A rounded clipping mask removes rectangular spill while panels retain their grid positions and controls remain fully visible.
 - Colors and visual tokens: cyan, polished silver, magenta, and black are sampled directly from the selected visual asset. Existing atelier accent colors continue to coordinate the surrounding controls.
-- Image quality and asset fidelity: generated raster assets are used directly as `border-image` sources; no CSS illustration substitutes for the selected liquid-metal frame. Screenshot inspection shows crisp chrome rails at both wide and narrow panel sizes.
+- Image quality and asset fidelity: a generated PNG with true alpha is used directly as the frame overlay; no black photographic asset or CSS illustration fills a window interior. Screenshot inspection shows a continuous chrome contour on both wide and narrow panels.
 - Copy and content: unchanged.
 
 **Focused-region comparison**
@@ -34,6 +34,7 @@
 
 - [x] Add selected liquid-chrome frame and two compatible variations as application assets.
 - [x] Apply role-based frame variants to Studio and Object 3D windows.
+- [x] Replace opaque frame interiors with a true transparent-alpha contour asset.
 - [x] Clip each frame to its rounded contour so no black rectangular corner can extend past the chrome.
 - [x] Preserve reduced-motion behavior and content readability.
 - [x] Build and visually verify the two principal interfaces.
