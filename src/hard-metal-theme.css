@@ -505,6 +505,31 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 /* Asset composite vérifié : alpha 0 hors cadre, alpha 255 au centre noir. */
 #tattoo-studio .page-portfolio .book-library{--liquid-window-outline:url('./assets/chrome-frames/window-frame-wide-black-interior-filled.png')!important;padding:42px!important}
 #tattoo-studio .page-portfolio .book-library::after{inset:0!important}
+
+/* Les PNG de la banque portent maintenant eux-mêmes leur noir intérieur.
+   On les pose donc exactement à la taille du composant ; aucune couche noire
+   CSS ne subsiste derrière, ni aucun débordement noir hors du PNG. */
+#tattoo-studio main:not(.page-placement) .workspace>section::before,
+#tattoo-studio main:not(.page-placement) .workspace>aside::before,
+#tattoo-studio .page-placement .avatar-workspace::before,
+#tattoo-studio .page-placement .avatar-panel::before,
+#tattoo-studio .page-placement .avatar-bottom-settings::before,
+#tattoo-studio .page-placement .placement-preview-settings::before,
+#object3d-app .studio-grid .source-card::before,
+#object3d-app .studio-grid .tool-card::before,
+#object3d-app .studio-grid .compare-card::before,
+#object3d-app footer::before{display:none!important}
+#tattoo-studio main:not(.page-placement) .workspace>section::after,
+#tattoo-studio main:not(.page-placement) .workspace>aside::after,
+#tattoo-studio .page-placement .avatar-workspace::after,
+#tattoo-studio .page-placement .avatar-panel::after,
+#tattoo-studio .page-placement .avatar-bottom-settings::after,
+#tattoo-studio .page-placement .placement-preview-settings::after,
+#object3d-app .studio-grid .source-card::after,
+#object3d-app .studio-grid .tool-card::after,
+#object3d-app .studio-grid .compare-card::after,
+#object3d-app footer::after{inset:0!important}
+#tattoo-studio button::after,#object3d-app button::after,#tattoo-studio .side nav a::after{inset:0!important}
 #tattoo-studio :is(input:not([type=range]):not([type=color]):not([type=checkbox]),select,textarea),
 #object3d-app :is(input:not([type=range]):not([type=color]):not([type=checkbox]),select,textarea){
   background-color:transparent!important;
