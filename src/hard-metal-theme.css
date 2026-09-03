@@ -584,7 +584,8 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
    d'écraser le cadre horizontal. Le dégagement supérieur protège les sujets. */
 #tattoo-studio .page-communication .inbox{
   --liquid-window-outline:url('./assets/chrome-frames/communication-inbox-tall-claw.png')!important;
-  padding:92px 34px 34px!important;
+  margin-top:-114px!important;
+  padding:206px 34px 34px!important;
 }
 #tattoo-studio .page-communication .inbox::after{
   inset:0!important;
