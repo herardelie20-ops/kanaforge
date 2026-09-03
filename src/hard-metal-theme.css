@@ -723,6 +723,9 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   background:transparent!important;
   background-image:none!important;
 }
+#tattoo-studio .page-home .welcome>div>span{font-size:11px!important}
+#tattoo-studio .page-home .welcome>div>h2{font-size:30px!important}
+#tattoo-studio .page-home .welcome>div>p{font-size:14px!important;line-height:1.45!important}
 #tattoo-studio .page-home .welcome::after{
   display:block!important;
   inset:0!important;
