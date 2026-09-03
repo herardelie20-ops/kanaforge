@@ -573,7 +573,7 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   transform:translate(114px,75px);
 }
 #tattoo-studio .page-clients .client-project header>label{
-  transform:translateY(-8px);
+  transform:translateY(11px);
 }
 #tattoo-studio .page-clients .quote-editor #quote-presets button{
   background:#000!important;
