@@ -1026,3 +1026,11 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
 #tattoo-studio .page-placement .avatar-bottom-settings>.avatar-appearance{
   transform:translateY(189px)!important;
 }
+
+/* Placement : le titre Corps & pose double de taille et décale le contenu
+   suivant pour conserver une lecture nette. */
+#tattoo-studio .page-placement .avatar-panel>h2{
+  margin:42px 0 20px!important;
+  font-size:50px!important;
+  line-height:1.05!important;
+}
