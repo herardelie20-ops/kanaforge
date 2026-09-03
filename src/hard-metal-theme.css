@@ -314,6 +314,16 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #object3d-app .studio-grid .tool-card,
 #object3d-app .studio-grid .compare-card,
 #object3d-app footer{background-color:transparent!important;background-image:none!important}
+#tattoo-studio main:not(.page-placement) .workspace>section::before,
+#tattoo-studio main:not(.page-placement) .workspace>aside::before,
+#tattoo-studio .page-placement .avatar-workspace::before,
+#tattoo-studio .page-placement .avatar-panel::before,
+#tattoo-studio .page-placement .avatar-bottom-settings::before,
+#tattoo-studio .page-placement .placement-preview-settings::before,
+#object3d-app .studio-grid .source-card::before,
+#object3d-app .studio-grid .tool-card::before,
+#object3d-app .studio-grid .compare-card::before,
+#object3d-app footer::before{content:'';position:absolute;z-index:0;pointer-events:none;inset:0;border-radius:22px;background:#000}
 #tattoo-studio main:not(.page-placement) .workspace>section::after,
 #tattoo-studio main:not(.page-placement) .workspace>aside::after,
 #tattoo-studio .page-placement .avatar-workspace::after,
@@ -323,7 +333,7 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #object3d-app .studio-grid .source-card::after,
 #object3d-app .studio-grid .tool-card::after,
 #object3d-app .studio-grid .compare-card::after,
-#object3d-app footer::after{background-image:var(--liquid-window-outline),linear-gradient(#000,#000);background-size:100% 100%,100% 100%;background-repeat:no-repeat}
+#object3d-app footer::after{z-index:1;background-image:var(--liquid-window-outline);background-size:100% 100%;background-repeat:no-repeat}
 
 /* Palette réduite : noir, blanc et gris, avec cyan ou magenta seulement pour
    les états interactifs et les repères fonctionnels. */
