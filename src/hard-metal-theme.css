@@ -536,16 +536,15 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   --liquid-window-outline:url('./assets/chrome-frames/claw-variants/13-right-settings-rail.png')!important;
 }
 
-/* Planning : même langage métal liquide que le cadre de référence, avec sa
-   masse organique en haut à gauche et ses pointes en bas à droite. */
+/* Planning : retour au cadre Couronne vertical, mieux proportionné pour
+   accompagner la grille hebdomadaire sans écraser ses en-têtes. */
 #tattoo-studio .page-planning .planning-board{
-  --liquid-window-outline:url('./assets/chrome-frames/claw-variants/04-square-bottom-right-spikes.png')!important;
+  --liquid-window-outline:url('./assets/chrome-frames/planning-board-claw-crown-tall.png')!important;
 }
 #tattoo-studio .page-planning .planning-board::after{
-  /* Le dessin enveloppe toute la fenêtre, y compris Vue hebdomadaire. */
-  inset:0!important;
-  background-size:100% 100%!important;
-  background-position:center!important;
+  inset:0 -10px -90px!important;
+  background-size:100% auto!important;
+  background-position:center top!important;
   image-rendering:auto;
   z-index:8!important;
 }
