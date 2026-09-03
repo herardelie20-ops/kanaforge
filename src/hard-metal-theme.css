@@ -220,6 +220,7 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   background-size:100% 100%;
   transform:scale(1.02);
   transform-origin:50% 50%;
+  filter:grayscale(1) contrast(1.28) brightness(1.14);
 }
 #tattoo-studio main:not(.page-placement) .workspace>section>*,
 #tattoo-studio main:not(.page-placement) .workspace>aside>*,
