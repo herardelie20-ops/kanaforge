@@ -536,6 +536,11 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   --liquid-window-outline:url('./assets/chrome-frames/claw-variants/13-right-settings-rail.png')!important;
 }
 
+/* Labo Flash : le panneau de préparation reprend le cadre vertical fourni. */
+#tattoo-studio .page-flash .flash-editor{
+  --liquid-window-outline:url('./assets/chrome-frames/window-frame-vertical-right-fold.png')!important;
+}
+
 /* Mode transparent global : ni fenêtres, ni cartes, ni champs, ni boutons
    n'ajoutent de fond. Le noir déjà contenu dans les PNG est fondu dans le
    décor ; le chrome reste visible comme un véritable contour détouré. */
