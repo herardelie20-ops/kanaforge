@@ -265,7 +265,7 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
    proportion de son composant. Le PNG ne vit que sur la bordure extérieure. */
 #tattoo-studio main:not(.page-placement) .workspace>section{--liquid-window-outline:url('./assets/chrome-frames/claw-variants/01-wide-top-left-claw.png')}
 #tattoo-studio main:not(.page-placement) .workspace>aside{--liquid-window-outline:url('./assets/chrome-frames/claw-variants/03-tall-left-hooks.png')}
-#tattoo-studio .page-placement .avatar-workspace{--liquid-window-outline:url('./assets/chrome-frames/claw-variants/17-dashboard-card-talon.png')}
+#tattoo-studio .page-placement .avatar-workspace{--liquid-window-outline:url('./assets/chrome-frames/claw-variants/15-form-field-minimal-claws.png')}
 #tattoo-studio .page-placement .avatar-panel{--liquid-window-outline:url('./assets/chrome-frames/claw-variants/13-right-settings-rail.png')}
 #tattoo-studio .page-placement .avatar-bottom-settings{--liquid-window-outline:url('./assets/chrome-frames/claw-variants/14-modal-claw-crown.png')}
 #tattoo-studio .page-placement .placement-preview-settings{--liquid-window-outline:url('./assets/chrome-frames/claw-variants/02-wide-diagonal-claws.png')}
