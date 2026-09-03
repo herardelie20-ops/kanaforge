@@ -702,6 +702,13 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   box-shadow:none!important;
 }
 #tattoo-studio .page-home>header>a::after{display:none!important}
+#tattoo-studio .page-home #kanaforge-files-button{
+  border:0!important;
+  background:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+}
+#tattoo-studio .page-home #kanaforge-files-button::after{display:none!important}
 
 /* Planning : la nappe de fond reste mobile, mais exclusivement monochrome. */
 #tattoo-studio .page-planning::before{
