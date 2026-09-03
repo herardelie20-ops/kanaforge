@@ -991,3 +991,15 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   width:calc(100% - 76px)!important;
   margin-inline:38px!important;
 }
+
+/* Objet 3D : réglages fins des contrôles signalés dans l'inspecteur. */
+#object3d-app .motion-card :is(#orientation,#speed,#position-x,#position-y){
+  width:calc(100% - 38px)!important;
+  margin-inline:19px!important;
+}
+#object3d-app .decor-card:nth-of-type(2)>h2{
+  transform:translate(38px,19px)!important;
+}
+#object3d-app .canvas-area footer #sticker{
+  transform:translateX(-95px)!important;
+}
