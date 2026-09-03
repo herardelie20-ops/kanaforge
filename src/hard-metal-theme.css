@@ -607,6 +607,9 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   background-position:center!important;
   image-rendering:auto;
 }
+#tattoo-studio .page-communication .placement-library>div:first-child{
+  transform:translateX(76px);
+}
 
 /* Communication : l'agent reçoit le pli vertical fourni ; les contrôles sont
    éloignés du relief afin que le cadre ne recouvre aucune information. */
@@ -619,6 +622,9 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   background-size:100% 100%!important;
   background-position:center!important;
   image-rendering:auto;
+}
+#tattoo-studio .page-communication .workspace>aside>:is(h2,p,.primary){
+  transform:translateY(19px);
 }
 
 /* Placement : panneaux libres de tout aplat, colonnes assez larges pour que
