@@ -368,6 +368,15 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #object3d-app .studio-grid .tool-card::after,
 #object3d-app .studio-grid .compare-card::after,
 #object3d-app footer::after{inset:-44px!important}
+
+/* Les panneaux larges et très denses ne déforment pas un cadre à griffes :
+   ils emploient un contour fluide simple, mieux adapté à leur proportion. */
+#object3d-app .canvas-area>.material-card,
+#object3d-app .canvas-area>.light-card,
+#object3d-app .canvas-area>.decor-card,
+#object3d-app footer{
+  --liquid-window-outline:url('./assets/window-frame-liquid-outline.png')!important;
+}
 #tattoo-studio output,#object3d-app output{color:#45e0de!important}
 #tattoo-studio input[type=range],#object3d-app input[type=range]{accent-color:#45e0de!important}
 #tattoo-studio .section-tag,#tattoo-studio header p,#object3d-app .section-tag,#object3d-app .preview-heading small{color:#45e0de!important}
