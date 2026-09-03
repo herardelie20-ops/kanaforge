@@ -152,3 +152,10 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 @keyframes menu-chrome-flash{0%{background-position:100% 50%;filter:brightness(.88)}58%{background-position:45% 50%;filter:brightness(1.18)}100%{background-position:0% 50%;filter:brightness(1)}}
 #tattoo-studio input[type=range]::-webkit-slider-thumb{background:linear-gradient(135deg,#173238 0%,#e3ffff 34%,var(--ui-accent,#42e6e1) 62%,#153037 100%)!important;box-shadow:0 0 0 3px var(--ui-glow,#42e6e133),0 2px 5px #000c!important}
 #tattoo-studio.metal-control-active .primary{background-position:var(--metal-reflect-position,82%) 50%!important;filter:saturate(1.3) brightness(1.1);box-shadow:inset 0 1px #fff,inset 0 -2px #061012d9,0 0 28px var(--ui-glow,#42e6e188)!important}
+
+/* La navigation est un cadre opaque au premier plan : aucune nappe de fond ne peut la traverser. */
+:root{--studio-side-width:235px}
+#tattoo-studio .side{z-index:50!important;isolation:isolate;overflow:hidden}
+#tattoo-studio main{z-index:1}
+#tattoo-studio main:before{inset:0 0 0 var(--studio-side-width)!important}
+@media(max-width:1050px){:root{--studio-side-width:195px}}
