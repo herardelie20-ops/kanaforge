@@ -163,3 +163,8 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 /* Zone de dessin : contraste noir pur, seulement deux lueurs de couleur. */
 #tattoo-studio .page-lettering .drawing-zone{isolation:isolate;border-radius:10px;background:radial-gradient(ellipse 70% 58% at 8% 4%,#39dfe329,transparent 64%),radial-gradient(ellipse 72% 64% at 96% 96%,#d55ac625,transparent 66%),linear-gradient(145deg,#020507,#000 54%,#05080b)}
 #tattoo-studio .page-lettering .drawing-zone canvas{background:transparent!important;border-color:#497476!important;filter:invert(1);mix-blend-mode:screen}
+
+/* Aperçu flash : même base sombre et épurée, sans modifier le SVG exporté. */
+#tattoo-studio .page-flash #flash-preview{background:radial-gradient(ellipse 72% 58% at 10% 5%,#38dfe029,transparent 64%),radial-gradient(ellipse 70% 62% at 94% 95%,#d55ac525,transparent 66%),linear-gradient(145deg,#020507,#000 54%,#05080b)!important;border-color:#497476!important}
+#tattoo-studio .page-flash #flash-preview>span{color:#c5dddc!important}
+#tattoo-studio .page-flash #flash-preview svg{background:transparent!important;filter:invert(1);mix-blend-mode:screen}
