@@ -536,6 +536,19 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   --liquid-window-outline:url('./assets/chrome-frames/claw-variants/13-right-settings-rail.png')!important;
 }
 
+/* Planning : version haute du cadre Couronne. Le bandeau haut, les griffes
+   basses et les montants sont conservés à leur échelle d'origine ; seul le
+   rail central est prolongé pour suivre la hauteur du calendrier. */
+#tattoo-studio .page-planning .planning-board{
+  --liquid-window-outline:url('./assets/chrome-frames/planning-board-claw-crown-tall.png')!important;
+}
+#tattoo-studio .page-planning .planning-board::after{
+  inset:0!important;
+  background-size:100% auto!important;
+  background-position:center top!important;
+  image-rendering:auto;
+}
+
 /* Labo Flash : le panneau de préparation reprend le cadre vertical fourni. */
 #tattoo-studio .page-flash .flash-editor{
   --liquid-window-outline:url('./assets/chrome-frames/window-frame-vertical-right-fold.png')!important;
