@@ -574,6 +574,19 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   image-rendering:auto;
 }
 
+/* Communication : l'agent reçoit le pli vertical fourni ; les contrôles sont
+   éloignés du relief afin que le cadre ne recouvre aucune information. */
+#tattoo-studio .page-communication .workspace>aside{
+  --liquid-window-outline:url('./assets/chrome-frames/communication-agent-vertical-right-fold.png')!important;
+  padding:56px 40px 42px!important;
+}
+#tattoo-studio .page-communication .workspace>aside::after{
+  inset:0!important;
+  background-size:100% 100%!important;
+  background-position:center!important;
+  image-rendering:auto;
+}
+
 /* Planning : la nappe de fond reste mobile, mais exclusivement monochrome. */
 #tattoo-studio .page-planning::before{
   filter:grayscale(1) contrast(1.16) brightness(.76)!important;
