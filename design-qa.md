@@ -1,37 +1,44 @@
-# KanaForge — Design QA
+**Comparison target**
 
-**Source visual truth**
+- Source visual truth: `src/assets/window-frame-liquid-corner.png` — 1487 × 1058 px, generated liquid-chrome window frame selected by the user.
+- Implementation evidence: `frame-cards-qa.png` — 1265 × 712 px, browser-rendered lettering workspace at 1265 × 712 CSS px / device scale factor 1.
+- Additional implementation evidence: `object3d-frames-qa.png` — browser-rendered Object 3D workspace at the same viewport and state.
+- State: desktop, dark hard-metal theme, default/empty studio state. The source is a reusable frame asset rather than a full product screen; the comparison is therefore focused on the panel perimeter treatment rather than page layout.
 
-- `C:\Users\Elie\.codex\generated_images\01a02fc3-07c4-7942-bad3-c50d3a84fdeb\exec-398cb731-f760-404f-9aef-64725047c7d7.png`
-- State: hard-metal placement dashboard (selected concept).
-- Source pixels: 1487 × 1070.
+**Findings**
 
-**Implementation evidence**
+- No actionable P0, P1 or P2 mismatches.
+- The selected chrome frame is now applied as a nine-slice border image rather than a stretched panel background. This preserves its cyan/silver/magenta perimeter without covering controls or text.
+- Source frame details are intentionally varied by panel role: liquid corner for broad creation/export panels, technical rail for inspectors, and left-flow contour for compact settings. The material, black interior, chrome highlights, and asymmetry remain consistent.
 
-- `C:\Users\Elie\Documents\ChatGPT\Modelisation 3D Calligraphy\object3d-mercury-empty-state.png`
-- Local route: `http://127.0.0.1:4173/object3d.html`
-- Viewport: 1280 × 720 CSS px, density 1.
-- Comparison: `C:\Users\Elie\Documents\ChatGPT\Modelisation 3D Calligraphy\design-comparison.png` (source normalized to 1280 px wide above the implementation).
-- Primary checks: liquid-mercury empty state rendered; scroll-linked reflection variable changes from `0%` to `14%`; panel layout present; no browser-console errors; controls remain interactive application controls.
+**Required fidelity surfaces**
 
-## Findings
+- Fonts and typography: unchanged from the existing application; the border treatment does not alter readable text, weights, wrapping, or UI hierarchy.
+- Spacing and layout rhythm: the 9 px border is contained in each existing window box. Panels retain their grid positions and controls remain fully visible.
+- Colors and visual tokens: cyan, polished silver, magenta, and black are sampled directly from the selected visual asset. Existing atelier accent colors continue to coordinate the surrounding controls.
+- Image quality and asset fidelity: generated raster assets are used directly as `border-image` sources; no CSS illustration substitutes for the selected liquid-metal frame. Screenshot inspection shows crisp chrome rails at both wide and narrow panel sizes.
+- Copy and content: unchanged.
 
-- No actionable P0, P1, or P2 mismatch.
-- Final micro-iteration: detailed photographic chrome was removed from export presets and the Instagram-video action. These controls now use a smooth mercury finish with a restrained moving highlight and engraved text treatment.
-- Final lettering pass: the import, vectorization, association, and download actions use a code-rendered smooth chrome gradient. No photographic reflection asset is used for these controls; the local lettering route rendered without console errors.
-- The implementation intentionally preserves KanaForge’s existing live human model, three-panel layout, and text controls rather than replacing the product UI with the fictional model, motif card, and icon-only toolbar in the concept image.
+**Focused-region comparison**
 
-## Required fidelity surfaces
+- Lettering screenshot: the left composition window uses the selected broad chrome language around a dense control area without crossing the controls.
+- Object 3D screenshot: source, output, inspector, and décor panels each use one of the three generated frame variants while retaining a quiet black working area.
 
-- **Fonts and typography:** existing Playfair display hierarchy and Manrope UI font remain clear; high-contrast text uses the new steel palette.
-- **Spacing and layout rhythm:** persistent side navigation, central preview, and surrounding parameter panels remain aligned. No application functionality was moved or removed.
-- **Colors and tokens:** charcoal metal, dark green steel, cyan signal states, restrained magenta reflections, emerald status, and oil-slick liquid-metal actions now map to shared tokens.
-- **Image quality and asset fidelity:** the interface now uses clean, code-controlled black-chrome surfaces; `liquid-mercury-empty-state.png` powers the empty live preview; `liquid-chrome-reflection.png` supplies the high-polish petrol reflection for active and engraved controls. Rust and coarse-grain assets are no longer consumed.
-- **Copy and content:** application labels and user flows are unchanged.
+**Primary interactions tested**
 
-## Follow-up polish
+- Loaded both `studio.html?studio=lettering` and `object3d.html` locally.
+- Confirmed the frame assets resolve in computed styles.
+- Checked browser console errors: none.
 
-- P3: apply a dedicated chrome 3D material to the mannequin when a suitable production-safe model texture pipeline is introduced.
-- P3: add a small icon library pass for more of the concept’s compact tool affordances.
+**Implementation Checklist**
+
+- [x] Add selected liquid-chrome frame and two compatible variations as application assets.
+- [x] Apply role-based frame variants to Studio and Object 3D windows.
+- [x] Preserve reduced-motion behavior and content readability.
+- [x] Build and visually verify the two principal interfaces.
+
+**Follow-up Polish**
+
+- [P3] If a future very-small mobile card needs more breathing room, reduce its border-image width from 9 px to 7 px at the corresponding breakpoint.
 
 final result: passed

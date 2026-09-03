@@ -168,3 +168,60 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #tattoo-studio .page-flash #flash-preview{background:radial-gradient(ellipse 72% 58% at 10% 5%,#38dfe029,transparent 64%),radial-gradient(ellipse 70% 62% at 94% 95%,#d55ac525,transparent 66%),linear-gradient(145deg,#020507,#000 54%,#05080b)!important;border-color:#497476!important}
 #tattoo-studio .page-flash #flash-preview>span{color:#c5dddc!important}
 #tattoo-studio .page-flash #flash-preview svg{background:transparent!important;filter:invert(1);mix-blend-mode:screen}
+
+/* Cadres liquides communs : les textures générées restent la matière du cadre,
+   le contenu garde un intérieur noir calme et lisible. */
+#tattoo-studio main:not(.page-placement) .workspace>section,
+#tattoo-studio main:not(.page-placement) .workspace>aside,
+#tattoo-studio .page-placement .avatar-workspace,
+#tattoo-studio .page-placement .avatar-panel,
+#tattoo-studio .page-placement .avatar-bottom-settings,
+#tattoo-studio .page-placement .placement-preview-settings,
+#object3d-app .studio-grid .source-card,
+#object3d-app .studio-grid .tool-card,
+#object3d-app .studio-grid .compare-card,
+#object3d-app footer{
+  background-color:#030607!important;
+  background-image:none!important;
+  /* L'image est utilisée comme un véritable bord neuf-tranches : sa coulée
+     reste sur le pourtour et ne passe jamais devant les contrôles. */
+  border:9px solid transparent!important;
+  border-image-source:var(--liquid-window-frame)!important;
+  border-image-slice:145!important;
+  border-image-width:9px!important;
+  border-image-repeat:stretch!important;
+  box-shadow:0 18px 38px #000a!important;
+}
+
+/* Atelier : une grande coulée pour les espaces de création, un rail pour les
+   inspecteurs et une torsion plus dense autour de l'aperçu. */
+#tattoo-studio main:not(.page-placement) .workspace>section{--liquid-window-frame:url('./assets/window-frame-liquid-corner.png')}
+#tattoo-studio main:not(.page-placement) .workspace>aside{--liquid-window-frame:url('./assets/window-frame-liquid-rail.png')}
+#tattoo-studio .page-placement .avatar-workspace{--liquid-window-frame:url('./assets/window-frame-liquid-corner.png')}
+#tattoo-studio .page-placement .avatar-panel{--liquid-window-frame:url('./assets/window-frame-liquid-rail.png')}
+#tattoo-studio .page-placement .avatar-bottom-settings,
+#tattoo-studio .page-placement .placement-preview-settings{--liquid-window-frame:url('./assets/window-frame-liquid-left.png')}
+
+/* Objet 3D : le même langage, pondéré pour les cartes étroites, les modules de
+   contrôle et les barres d'export. */
+#object3d-app .studio-grid .source-card{--liquid-window-frame:url('./assets/window-frame-liquid-left.png')}
+#object3d-app .studio-grid .tool-card{--liquid-window-frame:url('./assets/window-frame-liquid-rail.png')}
+#object3d-app .studio-grid .compare-card,
+#object3d-app footer{--liquid-window-frame:url('./assets/window-frame-liquid-corner.png')}
+
+/* Le frame se déplace très légèrement à l'interaction : il reste du chrome,
+   jamais une animation décorative envahissante. */
+#tattoo-studio .workspace>section:hover,
+#tattoo-studio .workspace>aside:hover,
+#object3d-app .studio-grid .source-card:hover,
+#object3d-app .studio-grid .tool-card:hover,
+#object3d-app .studio-grid .compare-card:hover{
+  filter:saturate(1.08) brightness(1.05);
+}
+@media(prefers-reduced-motion:reduce){
+  #tattoo-studio .workspace>section:hover,
+  #tattoo-studio .workspace>aside:hover,
+  #object3d-app .studio-grid .source-card:hover,
+  #object3d-app .studio-grid .tool-card:hover,
+  #object3d-app .studio-grid .compare-card:hover{filter:none}
+}
