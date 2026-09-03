@@ -820,3 +820,15 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   border:0!important;
   box-shadow:none!important;
 }
+
+/* Placement 3D : le rendu live est le plan arrière. Le PNG de chrome est
+   posé au-dessus, mais son ouverture alpha laisse intégralement voir l'aperçu. */
+#tattoo-studio .page-placement .avatar-workspace{isolation:isolate}
+#tattoo-studio .page-placement .avatar-workspace #avatar-canvas{
+  position:relative!important;
+  z-index:1!important;
+}
+#tattoo-studio .page-placement .avatar-workspace::after{
+  z-index:4!important;
+  pointer-events:none!important;
+}
