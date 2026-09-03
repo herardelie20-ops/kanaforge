@@ -1037,3 +1037,12 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
 #tattoo-studio .page-placement .avatar-panel>p:first-child{
   transform:translateY(19px)!important;
 }
+
+/* Placement : l'aperçu live et sa fenêtre gagnent 3 cm uniquement vers le bas. */
+#tattoo-studio .page-placement .avatar-workspace{
+  height:734px!important;
+  min-height:734px!important;
+}
+#tattoo-studio .page-placement .avatar-workspace #avatar-canvas{
+  height:706px!important;
+}
