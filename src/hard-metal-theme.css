@@ -840,3 +840,11 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   z-index:4!important;
   pointer-events:none!important;
 }
+
+/* Navigation : chaque libellé est optiquement centré dans sa bulle chromée. */
+#tattoo-studio .side nav a{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+}
