@@ -551,6 +551,9 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   image-rendering:auto;
   z-index:8!important;
 }
+#tattoo-studio .page-planning .planning-board>header>div{
+  transform:translateY(30px);
+}
 
 /* Clients & devis : le volume haut du cadre est relevé au-dessus de l'en-tête
    afin de préserver une zone noire nette autour de « Projet & devis ». */
