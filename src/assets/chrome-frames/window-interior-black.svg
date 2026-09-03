@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" preserveAspectRatio="none">
+  <!-- Fond porté par l'asset : transparent hors de la fenêtre, noir à l'intérieur. -->
+  <rect x="0" y="0" width="1000" height="700" rx="28" fill="#000"/>
+</svg>
