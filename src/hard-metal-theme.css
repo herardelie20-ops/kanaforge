@@ -413,6 +413,39 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   background-blend-mode:multiply,normal!important;
 }
 
+/* Palette Kanaforge unique : neutres noir/blanc/gris, cyan fonctionnel et
+   magenta de contraste. Les anciens ateliers ne conservent aucune teinte
+   beige, verte, violette, rouge ou dorée. */
+#tattoo-studio,#object3d-app{
+  --kf-black:#000;
+  --kf-charcoal:#0a0c0d;
+  --kf-slate:#1a1f21;
+  --kf-line:#7f898b;
+  --kf-white:#f5f7f7;
+  --kf-muted:#a5afb1;
+  --kf-cyan:#45e0de;
+  --kf-magenta:#df59c7;
+}
+#tattoo-studio main{color:var(--kf-white)!important;background-color:#020304!important}
+#tattoo-studio main :is(h1,h2,h3,h4,strong,b,legend,th){color:var(--kf-white)!important}
+#tattoo-studio main :is(p,small,label,span,td,li,.helper,.muted){color:var(--kf-muted)!important}
+#tattoo-studio main :is(.paper,.flash-grid article,.gallery article,.calendar article,.welcome div,.inbox article,.status,.client-sheet,.body-stage,.script,.preview-card,.quote-card,.file-card,.mail-card,.reminder-card,.planning-card,.portfolio-card){
+  background:linear-gradient(145deg,var(--kf-slate),var(--kf-black))!important;
+  border-color:var(--kf-line)!important;
+  color:var(--kf-white)!important;
+}
+#tattoo-studio main :is(.paper input,.client-sheet input,.calendar input,.inbox textarea,.inbox input,.inbox select,.mail-card input,.mail-card textarea,.file-card input){
+  background:#000!important;
+  border-color:var(--kf-line)!important;
+  color:var(--kf-white)!important;
+}
+#tattoo-studio main .mannequin{filter:grayscale(1)!important}
+#tattoo-studio main :is(.status,.calendar b,.online,.section-tag,header p){color:var(--kf-cyan)!important}
+#tattoo-studio main :is(.highlight,.accent-magenta,.deadline,.warning){color:var(--kf-magenta)!important}
+#object3d-app #empty b,#object3d-app #empty em,#object3d-app .export-note{color:var(--kf-white)!important}
+#object3d-app #empty em{color:var(--kf-magenta)!important}
+#object3d-app :is(.material-card,.motion-card,.light-card,.decor-card) .section-tag{color:var(--kf-cyan)!important}
+
 /* Objet 3D : retour à la nappe fluide d'origine, déclinée en noir et blanc.
    Le scroll garde un mouvement très lent dans le sens naturel de l'image. */
 body:has(#object3d-app):before{background:none!important;opacity:0!important}
