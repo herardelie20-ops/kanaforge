@@ -685,6 +685,21 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #object3d-app #dropzone.has-preview{height:52px!important;min-height:52px!important}
 #object3d-app #dropzone.has-preview .import-preview{width:32px!important;height:32px!important}
 
+/* Objet 3D : les repères de vectorisation et de volume se lisent au centre
+   du rail, avec leurs valeurs conservées juste après le libellé. */
+#object3d-app .tool-column .form-card>label{
+  display:block!important;
+  text-align:center!important;
+}
+#object3d-app .tool-column .form-card>label output{
+  float:none!important;
+  display:inline!important;
+  margin-left:8px!important;
+}
+#object3d-app .tool-column .form-card .vectorize-help{
+  text-align:center!important;
+}
+
 /* Lettrage : le panneau d'alphabet reprend le cadre Primary Claws fourni.
    L'ornement est une couche extérieure et chaque lettre reste au premier plan. */
 #tattoo-studio .page-lettering .glyph-layout>aside{
