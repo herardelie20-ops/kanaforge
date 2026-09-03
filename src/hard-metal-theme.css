@@ -536,18 +536,16 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   --liquid-window-outline:url('./assets/chrome-frames/claw-variants/13-right-settings-rail.png')!important;
 }
 
-/* Planning : version haute du cadre Couronne. Le bandeau haut, les griffes
-   basses et les montants sont conservés à leur échelle d'origine ; seul le
-   rail central est prolongé pour suivre la hauteur du calendrier. */
+/* Planning : même langage métal liquide que le cadre de référence, avec sa
+   masse organique en haut à gauche et ses pointes en bas à droite. */
 #tattoo-studio .page-planning .planning-board{
-  --liquid-window-outline:url('./assets/chrome-frames/planning-board-claw-crown-tall.png')!important;
+  --liquid-window-outline:url('./assets/chrome-frames/claw-variants/04-square-bottom-right-spikes.png')!important;
 }
 #tattoo-studio .page-planning .planning-board::after{
-  /* Le couronnement démarre au bord supérieur du panneau pour encadrer
-     l'intitulé « Vue hebdomadaire », sans déborder dans le titre de page. */
-  inset:0 -10px -90px!important;
-  background-size:100% auto!important;
-  background-position:center top!important;
+  /* Le dessin enveloppe toute la fenêtre, y compris Vue hebdomadaire. */
+  inset:0!important;
+  background-size:100% 100%!important;
+  background-position:center!important;
   image-rendering:auto;
   z-index:8!important;
 }
