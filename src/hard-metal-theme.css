@@ -565,6 +565,9 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   background-size:100% calc(100% + 58px)!important;
   background-position:center top!important;
 }
+#tattoo-studio .page-clients .client-project header h2{
+  transform:translate(76px,113px);
+}
 
 /* Communication : la boîte de réception gagne des montants hauts au lieu
    d'écraser le cadre horizontal. Le dégagement supérieur protège les sujets. */
