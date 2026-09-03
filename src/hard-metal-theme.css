@@ -195,6 +195,18 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   --liquid-window-outline:url('./assets/window-frame-liquid-outline.png');
 }
 
+/* Hors des panneaux à défilement, le contour vit réellement à l'extérieur de
+   la fenêtre. Les contrôles restent dans la boîte noire intérieure. */
+#tattoo-studio main:not(.page-placement) .workspace>section,
+#tattoo-studio main:not(.page-placement) .workspace>aside,
+#object3d-app .studio-grid .source-card,
+#object3d-app .studio-grid .tool-card,
+#object3d-app .studio-grid .compare-card,
+#object3d-app footer{
+  clip-path:none;
+  overflow:visible!important;
+}
+
 /* Un PNG à alpha réel est posé comme un cache de contour : le contenu intérieur
    reste intégralement transparent et le chrome détermine seul la limite. */
 #tattoo-studio main:not(.page-placement) .workspace>section::after,
@@ -213,12 +225,12 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   pointer-events:none;
   /* Le contour dépasse du plan de contenu : aucune information ne peut être
      recouverte par son relief ou par la coulée asymétrique. */
-  inset:-1%;
+  inset:-22px;
   background-image:var(--liquid-window-outline);
   background-repeat:no-repeat;
   background-position:center;
   background-size:100% 100%;
-  transform:scale(1.02);
+  transform:scale(1);
   transform-origin:50% 50%;
   filter:grayscale(1) contrast(1.28) brightness(1.14);
 }
