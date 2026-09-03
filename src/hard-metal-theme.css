@@ -1042,11 +1042,10 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   text-align:center!important;
 }
 
-/* Accueil : le triptyque devient plus compact, puis est posé 1 cm plus bas
-   et à droite comme demandé. Le gap nul évite tout chevauchement des cartes. */
+/* Accueil : triptyque compact, posé 2 cm plus bas et 3 cm à droite. */
 #tattoo-studio .page-home .welcome{
   column-gap:0!important;
-  transform:translate(38px,38px)!important;
+  transform:translate(114px,76px)!important;
 }
 
 /* Objet 3D : ajustements de placement millimétrés des repères demandés. */
