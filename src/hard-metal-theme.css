@@ -964,6 +964,12 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   clip-path:none!important;
   overflow:visible!important;
 }
+#tattoo-studio .page-placement #avatar-interaction-help{
+  transform:translateY(-76px);
+}
+#tattoo-studio .page-placement .avatar-panel>h2{
+  font-size:13px!important;
+}
 
 /* Navigation : chaque libellé est optiquement centré dans sa bulle chromée. */
 #tattoo-studio .side nav a{
@@ -1002,4 +1008,9 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
 }
 #object3d-app .canvas-area footer #sticker{
   transform:translateX(-95px)!important;
+}
+
+/* Flash : repère de titre déplacé selon la maquette. */
+#tattoo-studio .page-flash .flash-editor>header>div:first-child>h2{
+  transform:translate(-38px,76px)!important;
 }
