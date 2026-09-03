@@ -810,3 +810,13 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   #object3d-app .studio-grid .tool-card:hover,
   #object3d-app .studio-grid .compare-card:hover{filter:none}
 }
+
+/* Communication : les modules de connexion restent des informations posées
+   dans le rail, sans cartouche opaque ni trait concurrent avec le chrome. */
+#tattoo-studio .page-communication .workspace>aside :is(.mail-consent,.ai-connection,.website-connection){
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  border:0!important;
+  box-shadow:none!important;
+}
