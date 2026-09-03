@@ -133,16 +133,17 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 .app-shell:has(#object3d-app):before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55;background-image:linear-gradient(132deg,#04090ab8,#07131894 54%,#04090ab8),var(--metal-flow-image,url('./assets/liquid-flow-17.png')),radial-gradient(circle at calc(44% + var(--metal-scroll)) 14%,rgba(42,231,224,.2),transparent 26%),radial-gradient(circle at calc(88% - var(--metal-scroll)) 53%,rgba(229,78,198,.16),transparent 30%);background-size:cover,var(--metal-flow-size) auto,auto,auto;background-position:center,calc(50% + var(--metal-scroll)) calc(48% - var(--metal-scroll)),center,center;background-repeat:no-repeat;transition:background-size .72s cubic-bezier(.2,.8,.2,1),background-position .72s cubic-bezier(.2,.8,.2,1)}
 @media(prefers-reduced-motion:reduce){#tattoo-studio main:before,body:has(#object3d-app):before{transition:none!important}}
 
-/* L'image reste propre à chaque atelier : seul son volume, sa trajectoire et son irisation évoluent. */
-#tattoo-studio main:before{background-position:center,calc(50% + var(--metal-flow-x,0%)) calc(50% + var(--metal-flow-y,0%)),var(--metal-scroll) 0,calc(100% - var(--metal-scroll)) 20%,var(--metal-scroll) 100%;filter:hue-rotate(var(--metal-flow-hue,var(--oil-hue,0deg))) saturate(1.18);transition:background-size .7s cubic-bezier(.2,.8,.2,1),background-position .7s cubic-bezier(.2,.8,.2,1),filter .7s ease}
-#tattoo-studio .page-portfolio:before{transform:rotate(var(--metal-flow-rotation,0deg)) scale(1.26);transform-origin:54% 48%;transition:background-size 1.1s cubic-bezier(.2,.8,.2,1),background-position 1.1s cubic-bezier(.2,.8,.2,1),filter 1s ease,transform 1.1s cubic-bezier(.2,.8,.2,1)}
-#tattoo-studio .page-lettering:before{transform:rotate(var(--metal-flow-rotation,0deg)) scale(1.22);transform-origin:50% 50%;transition:background-size 1s cubic-bezier(.2,.8,.2,1),background-position 1s cubic-bezier(.2,.8,.2,1),filter 1s ease,transform 1s cubic-bezier(.2,.8,.2,1)}
-#tattoo-studio .page-planning:before{transform:rotate(var(--metal-flow-rotation,0deg)) scale(1.34);transform-origin:50% 50%;transition:background-size 1.1s cubic-bezier(.2,.8,.2,1),filter 1s ease,transform 1.1s cubic-bezier(.2,.8,.2,1)}
+/* Chaque image reste centrée : le défilement n'entraîne qu'une légère rotation
+   horaire, sans translation ni zoom qui changeraient son cadrage. */
+#tattoo-studio main:before{background-position:center,50% 50%,0 0,100% 20%,0 100%;transform:rotate(var(--metal-flow-rotation,0deg)) scale(1.25);transform-origin:50% 50%;filter:hue-rotate(var(--metal-flow-hue,var(--oil-hue,0deg))) saturate(1.18);transition:filter .7s ease,transform 1s cubic-bezier(.2,.8,.2,1)}
+#tattoo-studio .page-portfolio:before{transform:rotate(var(--metal-flow-rotation,0deg)) scale(1.28)}
+#tattoo-studio .page-lettering:before{transform:rotate(var(--metal-flow-rotation,0deg)) scale(1.25)}
+#tattoo-studio .page-planning:before{transform:rotate(var(--metal-flow-rotation,0deg)) scale(1.32)}
 
 /* Aperçu 3D : noir épuré, deux lueurs seulement pour privilégier le motif. */
 #object3d-app .viewport:has(#empty:not(.hidden)){background-image:radial-gradient(ellipse 72% 58% at 12% 4%,#32d8e022,transparent 62%),radial-gradient(ellipse 68% 64% at 94% 96%,#d457ca20,transparent 63%),linear-gradient(145deg,#020506,#000 55%,#05080b)!important;background-size:cover!important;background-position:center!important;animation:none!important}
 #object3d-app .viewport:has(#empty:not(.hidden)):after{background:linear-gradient(118deg,#40e2da10,transparent 37%,transparent 67%,#d55bc514)!important;animation:none!important}
-.app-shell:has(#object3d-app):before{background-position:center,calc(50% + var(--metal-flow-x,0%)) calc(50% + var(--metal-flow-y,0%)),center,center;filter:hue-rotate(var(--metal-flow-hue,0deg)) saturate(1.22);transition:background-size .7s cubic-bezier(.2,.8,.2,1),background-position .7s cubic-bezier(.2,.8,.2,1),filter .7s ease}
+.app-shell:has(#object3d-app):before{background-position:center,50% 50%,center,center;transform:rotate(var(--metal-flow-rotation,0deg)) scale(1.2);transform-origin:50% 50%;filter:hue-rotate(var(--metal-flow-hue,0deg)) saturate(1.22);transition:filter .7s ease,transform 1s cubic-bezier(.2,.8,.2,1)}
 
 /* Les commandes suivent les reflets de la nappe liquide active. */
 #tattoo-studio .primary,#tattoo-studio header>a,#tattoo-studio .side nav a.active,#tattoo-studio .avatar-toolbar button.active{border-color:var(--ui-accent,#42e6e1)!important;box-shadow:inset 0 1px #fff8,inset 0 -2px #061012d9,0 0 18px var(--ui-glow,#42e6e155)!important}

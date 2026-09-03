@@ -35,12 +35,12 @@ import { liquidFlowAssets } from './liquid-flow-assets.js';
 
 const syncMetalScroll = () => {
   const progress = Math.min(1, window.scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight));
-  const turn=progress*Math.PI*2;
-  document.documentElement.style.setProperty('--metal-scroll', `${Math.round(progress * 18)}%`);
-  document.documentElement.style.setProperty('--metal-flow-size', `${150 + Math.round(progress * 38)}%`);
-  document.documentElement.style.setProperty('--metal-flow-x', `${Math.round(Math.cos(turn)*20)}%`);
-  document.documentElement.style.setProperty('--metal-flow-y', `${Math.round(Math.sin(turn)*15)}%`);
-  document.documentElement.style.setProperty('--metal-flow-hue', `${Math.round(progress*120)}deg`);
+  document.documentElement.style.setProperty('--metal-scroll', '0%');
+  document.documentElement.style.setProperty('--metal-flow-size', '158%');
+  document.documentElement.style.setProperty('--metal-flow-x', '0%');
+  document.documentElement.style.setProperty('--metal-flow-y', '0%');
+  document.documentElement.style.setProperty('--metal-flow-rotation', `${Math.round(progress*10)}deg`);
+  document.documentElement.style.setProperty('--metal-flow-hue', `${Math.round(progress*24)}deg`);
   document.documentElement.style.setProperty('--metal-flow-image', `url('${liquidFlowAssets[16]}')`);
 };
 window.addEventListener('scroll', syncMetalScroll, { passive: true });
