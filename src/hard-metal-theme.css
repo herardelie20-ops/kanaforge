@@ -1014,3 +1014,8 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
 #tattoo-studio .page-flash .flash-editor>header>div:first-child>h2{
   transform:translate(-38px,76px)!important;
 }
+
+/* Placement : le cadre Motif & cadrage gagne 2 cm uniquement vers le haut. */
+#tattoo-studio .page-placement .placement-preview-settings::after{
+  inset:-76px 0 0!important;
+}
