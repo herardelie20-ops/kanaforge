@@ -358,11 +358,10 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 #tattoo-studio input[type=range],#object3d-app input[type=range]{accent-color:#45e0de!important}
 #tattoo-studio .section-tag,#tattoo-studio header p,#object3d-app .section-tag,#object3d-app .preview-heading small{color:#45e0de!important}
 
-/* Objet 3D : grain noir fixe choisi par le studio. Le scroll déplace seulement
-   les reflets cyan et magenta, pour donner de la vie à la matière sans changer
-   son cadrage. */
+/* Objet 3D : retour à la nappe fluide d'origine, déclinée en noir et blanc.
+   Le scroll garde un mouvement très lent dans le sens naturel de l'image. */
 body:has(#object3d-app):before{background:none!important;opacity:0!important}
-.app-shell:has(#object3d-app):before{opacity:.78!important;background-image:radial-gradient(ellipse 42% 28% at calc(-10% + var(--metal-light-shift,0%)) 16%,#45e0de52,transparent 70%),radial-gradient(ellipse 38% 32% at calc(110% - var(--metal-light-shift,0%)) 84%,#df59c74a,transparent 72%),linear-gradient(118deg,#00000038,#00000088),url('./assets/background-textures/monochrome-industrial/11-grain-noir-reflets-defilement.png')!important;background-size:120% 120%,120% 120%,cover,cover!important;background-position:center,center,center,center!important;background-repeat:no-repeat!important;transform:none!important;filter:none!important;transition:background-position .85s cubic-bezier(.2,.8,.2,1),filter .7s ease!important}
+.app-shell:has(#object3d-app):before{opacity:.64!important;background-image:linear-gradient(132deg,#000000c4,#1010108a 54%,#000000ca),var(--metal-flow-image,url('./assets/liquid-flow-17.png'))!important;background-size:cover,158% auto!important;background-position:center,50% 50%!important;background-repeat:no-repeat!important;transform:rotate(var(--metal-flow-rotation,0deg)) scale(1.2)!important;transform-origin:50% 50%!important;filter:grayscale(1) contrast(1.18) brightness(.82)!important;transition:filter .7s ease,transform 1s cubic-bezier(.2,.8,.2,1)!important}
 
 /* Le frame se déplace très légèrement à l'interaction : il reste du chrome,
    jamais une animation décorative envahissante. */
