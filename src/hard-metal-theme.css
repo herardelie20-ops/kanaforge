@@ -562,6 +562,18 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   image-rendering:auto;
 }
 
+/* Communication : le bandeau des aperçus reprend le cadre Timeline fourni. */
+#tattoo-studio .page-communication .placement-library{
+  --liquid-window-outline:url('./assets/chrome-frames/communication-placement-library-timeline-spear.png')!important;
+  padding:42px 38px 30px!important;
+}
+#tattoo-studio .page-communication .placement-library::after{
+  inset:0!important;
+  background-size:100% 100%!important;
+  background-position:center!important;
+  image-rendering:auto;
+}
+
 /* Planning : la nappe de fond reste mobile, mais exclusivement monochrome. */
 #tattoo-studio .page-planning::before{
   filter:grayscale(1) contrast(1.16) brightness(.76)!important;
