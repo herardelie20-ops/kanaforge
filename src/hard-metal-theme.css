@@ -680,6 +680,11 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   margin-top:-189px!important;
   padding:34px 30px 38px!important;
 }
+#tattoo-studio .page-placement .placement-preview-settings::after{
+  inset:0!important;
+  background-size:100% 100%!important;
+  background-position:center!important;
+}
 #tattoo-studio .page-placement :is(.avatar-appearance,.avatar-focus,.placement-preview-settings-card){
   background:transparent!important;
   background-image:none!important;
