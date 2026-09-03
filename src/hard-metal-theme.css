@@ -545,10 +545,11 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   --liquid-window-outline:url('./assets/chrome-frames/planning-board-claw-crown-tall.png')!important;
 }
 #tattoo-studio .page-planning .planning-board::after{
-  inset:-56px -10px -90px!important;
+  inset:-56px -48px -90px!important;
   background-size:100% 100%!important;
   background-position:center top!important;
   image-rendering:auto;
+  filter:grayscale(1) contrast(1.65) brightness(1.18)!important;
   z-index:8!important;
 }
 #tattoo-studio .page-planning .planning-board>header>div:first-child{
@@ -969,6 +970,47 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
 }
 #tattoo-studio .page-placement .avatar-panel>h2{
   font-size:13px!important;
+}
+
+/* Contours circulaires : le même médaillon liquide reste centré sur chaque
+   pastille et contrôle rond, sans transformer les boutons rectangulaires. */
+#tattoo-studio,#object3d-app{
+  --circular-thorns-frame:url('./assets/chrome-frames/claw-variants/19-status-badge-thorns.png');
+}
+#tattoo-studio .page-placement #avatar-skin-tones button{
+  position:relative!important;
+  border:0!important;
+  overflow:visible!important;
+}
+#tattoo-studio .page-placement #avatar-skin-tones button::after{display:none!important}
+#tattoo-studio .page-placement #avatar-skin-tones button::before{
+  content:'';
+  position:absolute;
+  z-index:2;
+  inset:-4px;
+  pointer-events:none;
+  background:var(--circular-thorns-frame) center/100% 100% no-repeat;
+}
+#object3d-app #light-gizmo,
+#tattoo-studio input[type=range]::-webkit-slider-thumb,
+#object3d-app input[type=range]::-webkit-slider-thumb{
+  border:0!important;
+  background:#000 var(--circular-thorns-frame) center/100% 100% no-repeat!important;
+}
+#tattoo-studio input[type=range]::-moz-range-thumb,
+#object3d-app input[type=range]::-moz-range-thumb{
+  border:0!important;
+  background:#000 var(--circular-thorns-frame) center/100% 100% no-repeat!important;
+}
+#tattoo-studio .side small::before,
+#object3d-app .online{
+  display:inline-block;
+  width:16px;
+  height:16px;
+  margin-right:5px;
+  vertical-align:middle;
+  color:transparent!important;
+  background:var(--circular-thorns-frame) center/100% 100% no-repeat!important;
 }
 
 /* Navigation : chaque libellé est optiquement centré dans sa bulle chromée. */
