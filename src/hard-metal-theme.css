@@ -639,6 +639,27 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
   }
 }
 
+/* Objet 3D : zone d'import plus compacte, avec une nappe chrome lisible. */
+#object3d-app #dropzone{
+  height:70px!important;
+  min-height:70px!important;
+  padding:8px 10px!important;
+  gap:2px!important;
+  background-image:linear-gradient(105deg,#071012cc 0%,#33494baa 21%,#dce9e8a8 42%,#596d6faa 56%,#0a1517cf 78%,#95aaa9a6 100%)!important;
+  background-size:190% 100%!important;
+  background-position:42% 50%!important;
+  border-color:#d4efee!important;
+  box-shadow:inset 0 1px #fff8,inset 0 -2px #020607c9,0 0 14px #42e6e136!important;
+}
+#object3d-app #dropzone strong,
+#object3d-app #dropzone small{
+  color:#f6ffff!important;
+  text-shadow:0 1px 2px #000,0 0 8px #000!important;
+  position:relative;
+  z-index:5;
+}
+#object3d-app #dropzone small{font-size:8px!important}
+
 /* Planning : la nappe de fond reste mobile, mais exclusivement monochrome. */
 #tattoo-studio .page-planning::before{
   filter:grayscale(1) contrast(1.16) brightness(.76)!important;
