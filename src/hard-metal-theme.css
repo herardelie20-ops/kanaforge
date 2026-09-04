@@ -1120,6 +1120,56 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
 #tattoo-studio .page-placement .avatar-workspace .avatar-actions{
   transform:translateY(-95px)!important;
 }
+
+/* Placement : le titre de cadrage gagne l'air demandé sans déplacer le cadre. */
+#tattoo-studio .page-placement .placement-preview-settings>header{
+  padding-top:19px!important;
+}
+
+/* Placement : chaque réglette devient une pièce de métal chromé, avec un
+   curseur poli et lisible sur les deux panneaux de réglages. */
+#tattoo-studio .page-placement input[type=range]{
+  appearance:none!important;
+  -webkit-appearance:none!important;
+  height:11px!important;
+  padding:0!important;
+  border:1px solid #9aa4a8!important;
+  border-radius:999px!important;
+  background:linear-gradient(180deg,#fbffff 0%,#6f7b80 22%,#12191c 49%,#9ba6aa 78%,#f9ffff 100%)!important;
+  box-shadow:inset 0 1px 2px #ffffffb8,inset 0 -2px 3px #000c,0 1px 2px #000!important;
+  accent-color:transparent!important;
+}
+#tattoo-studio .page-placement input[type=range]::-webkit-slider-runnable-track{
+  height:9px!important;
+  border-radius:999px!important;
+  background:linear-gradient(90deg,#192326 0%,#dffeff 18%,#566368 46%,#0a1113 61%,#aebdc0 82%,#172124 100%)!important;
+  box-shadow:inset 0 1px 2px #ffffffa6,inset 0 -2px 2px #000b!important;
+}
+#tattoo-studio .page-placement input[type=range]::-webkit-slider-thumb{
+  appearance:none!important;
+  -webkit-appearance:none!important;
+  width:20px!important;
+  height:20px!important;
+  margin-top:-6px!important;
+  border:1px solid #f5ffff!important;
+  border-radius:50%!important;
+  background:radial-gradient(circle at 34% 28%,#fff 0 12%,#aebcc1 24%,#29363b 56%,#e8ffff 76%,#172126 100%)!important;
+  box-shadow:inset 0 1px 3px #ffffffd9,inset 0 -3px 4px #061012,0 2px 6px #000e,0 0 8px #d9ffff66!important;
+}
+#tattoo-studio .page-placement input[type=range]::-moz-range-track{
+  height:9px!important;
+  border:1px solid #9aa4a8!important;
+  border-radius:999px!important;
+  background:linear-gradient(90deg,#192326,#dffeff 18%,#566368 46%,#0a1113 61%,#aebdc0 82%,#172124)!important;
+}
+#tattoo-studio .page-placement input[type=range]::-moz-range-thumb{
+  width:18px!important;
+  height:18px!important;
+  border:1px solid #f5ffff!important;
+  border-radius:50%!important;
+  background:radial-gradient(circle at 34% 28%,#fff 0 12%,#aebcc1 24%,#29363b 56%,#e8ffff 76%,#172126 100%)!important;
+  box-shadow:inset 0 1px 3px #ffffffd9,inset 0 -3px 4px #061012,0 2px 6px #000e!important;
+}
 #tattoo-studio .page-lettering .letter-import{
   background:transparent!important;
   background-image:none!important;
