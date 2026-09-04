@@ -177,7 +177,10 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 
 /* Aperçu flash : même base sombre et épurée, sans modifier le SVG exporté. */
 #tattoo-studio .page-flash #flash-preview{background:radial-gradient(ellipse 72% 58% at 10% 5%,#38dfe029,transparent 64%),radial-gradient(ellipse 70% 62% at 94% 95%,#d55ac525,transparent 66%),linear-gradient(145deg,#020507,#000 54%,#05080b)!important;border-color:#497476!important}
+#tattoo-studio .page-flash #flash-preview{position:relative;isolation:isolate}
+#tattoo-studio .page-flash #flash-preview>.flash-empty-liquid{position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none}
 #tattoo-studio .page-flash #flash-preview>span{color:#c5dddc!important}
+#tattoo-studio .page-flash #flash-preview>span{position:relative;z-index:1;text-shadow:0 2px 14px #000}
 #tattoo-studio .page-flash #flash-preview svg{background:transparent!important;filter:invert(1);mix-blend-mode:screen}
 
 /* Cadres liquides communs : les textures générées restent la matière du cadre,

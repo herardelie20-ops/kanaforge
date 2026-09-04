@@ -55,7 +55,8 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
     canvas.width = Math.max(1, Math.round(box.width * ratio));
     canvas.height = Math.max(1, Math.round(box.height * ratio));
   };
-  new ResizeObserver(resize).observe(page);
+  const resizeObserver = new ResizeObserver(resize);
+  resizeObserver.observe(page);
   resize();
 
   window.addEventListener('pointermove', event => {
@@ -67,6 +68,10 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
   }, { passive: true });
 
   const paint = now => {
+    if (!canvas.isConnected) {
+      resizeObserver.disconnect();
+      return;
+    }
     requestAnimationFrame(paint);
     if (!heights || now - lastFrame < 42) return;
     lastFrame = now;
