@@ -11,8 +11,8 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
   const context = canvas.getContext('2d', { alpha: false });
   const field = document.createElement('canvas');
   const isMenuBackground = className === 'electron-menu-background';
-  const width = isMenuBackground ? 160 : 300;
-  const height = isMenuBackground ? 560 : 300;
+  const width = isMenuBackground ? 192 : 512;
+  const height = isMenuBackground ? 672 : 512;
   field.width = width;
   field.height = height;
   const fieldContext = field.getContext('2d', { alpha: false });
@@ -51,7 +51,7 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
 
   const resize = () => {
     const box = page.getBoundingClientRect();
-    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    const ratio = Math.min(window.devicePixelRatio || 1, 2.5);
     canvas.width = Math.max(1, Math.round(box.width * ratio));
     canvas.height = Math.max(1, Math.round(box.height * ratio));
   };
@@ -68,7 +68,7 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
 
   const paint = now => {
     requestAnimationFrame(paint);
-    if (!heights || now - lastFrame < 34) return;
+    if (!heights || now - lastFrame < 42) return;
     lastFrame = now;
 
     const time = now * 0.00042;
@@ -91,20 +91,22 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
         const nx = -(sample(sx + 1, sy) - h) * 4;
         const ny = -(sample(sx, sy + 1) - h) * 4;
         const normalLength = Math.hypot(nx, ny, 1);
-        const ambient = Math.exp(-((ambientDistance / 62) ** 2)) * (30 + h * 52);
-        const focus = Math.exp(-((distance / 82) ** 2)) * (16 + h * 42);
-        const relief = Math.max(0, 1 / normalLength) * h * 18;
-        const light = Math.min(255, 1 + ambient + focus + relief);
+        const ambient = Math.exp(-((ambientDistance / 62) ** 2)) * (13 + h * 28);
+        const focus = Math.exp(-((distance / 82) ** 2)) * (8 + h * 30);
+        const relief = Math.max(0, 1 / normalLength) * h * 14;
+        const sparkle = Math.exp(-((distance / 34) ** 2)) * (10 + Math.pow(h, 4.5) * 232);
+        const light = Math.min(255, 1 + ambient + focus + relief + sparkle);
         const index = (y * width + x) * 4;
-        data[index] = light * 0.08;
-        data[index + 1] = light * 0.21;
-        data[index + 2] = light * 0.26;
+        data[index] = light;
+        data[index + 1] = light;
+        data[index + 2] = light;
         data[index + 3] = 255;
       }
     }
 
     fieldContext.putImageData(pixels, 0, 0);
     context.imageSmoothingEnabled = true;
+    context.imageSmoothingQuality = 'high';
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(field, 0, 0, canvas.width, canvas.height);
   };
