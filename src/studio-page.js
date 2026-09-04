@@ -1,7 +1,7 @@
 import './studio-page.css';
 import './hard-metal-theme.css';
 import { liquidFlowAssets } from './liquid-flow-assets.js';
-import { installHomeElectronBackground, installMenuElectronBackground } from './home-electron-background.js';
+import { installElectronLiquidBackground, installHomeElectronBackground, installMenuElectronBackground } from './home-electron-background.js';
 import { installStudioLayoutEditor } from './studio-layout-editor.js';
 import './mail-consent.css';
 import './placement-library.css';
@@ -37,7 +37,8 @@ if(space==='communication'){
     const entries=JSON.parse(localStorage.getItem('kanaforge-placement-library')||'[]');
     const existing=document.querySelector('.placement-library');
     existing?.remove();
-    inbox.insertAdjacentHTML('afterend',`<section class="placement-library"><div><small>BIBLIOTHÈQUE PERSONNELLE</small><h2>Aperçus de placement</h2></div><p>${entries.length?'Sélectionnez un rendu à préparer pour un client.':'Enregistrez un aperçu depuis Placement 3D : il apparaîtra ici.'}</p><div class="placement-library-grid">${entries.map(item=>`<article><img src="${item.image}" alt="Aperçu de placement enregistré"/><span>${item.createdAt}</span><div><button data-download-preview="${item.id}">Télécharger</button><button data-attach-preview="${item.id}">Préparer</button><button data-remove-preview="${item.id}">Retirer</button></div></article>`).join('')}</div></section>`);
+    inbox.insertAdjacentHTML('afterend',`<section class="placement-library"><div><small>BIBLIOTHÈQUE PERSONNELLE</small><h2>Aperçus de placement</h2></div><p>${entries.length?'Sélectionnez un rendu à préparer pour un client.':'Enregistrez un aperçu depuis Placement 3D : il apparaîtra ici.'}</p><div class="placement-library-grid">${entries.map(item=>`<article><div class="placement-library-preview"><img src="${item.image}" alt="Aperçu de placement enregistré"/></div><span>${item.createdAt}</span><div><button data-download-preview="${item.id}">Télécharger</button><button data-attach-preview="${item.id}">Préparer</button><button data-remove-preview="${item.id}">Retirer</button></div></article>`).join('')}</div></section>`);
+    document.querySelectorAll('.placement-library-preview').forEach(preview => installElectronLiquidBackground(preview, 'electron-placement-library-background'));
     document.querySelectorAll('[data-download-preview]').forEach(button=>button.onclick=async()=>{const entry=entries.find(item=>String(item.id)===button.dataset.downloadPreview);if(!entry)return;try{await exportLibraryPreview(entry);}catch{button.textContent='Export impossible';}});
     document.querySelectorAll('[data-attach-preview]').forEach(button=>button.onclick=()=>{const entry=entries.find(item=>String(item.id)===button.dataset.attachPreview);if(!entry)return;inbox.querySelector('textarea').value=`Bonjour,\n\nVoici l’aperçu de placement préparé le ${entry.createdAt}. Je vous le joins pour validation avant la séance.\n\nBien à vous,`;document.querySelectorAll('[data-attach-preview]').forEach(item=>item.classList.toggle('selected',item===button));});
     document.querySelectorAll('[data-remove-preview]').forEach(button=>button.onclick=()=>{const filtered=JSON.parse(localStorage.getItem('kanaforge-placement-library')||'[]').filter(item=>String(item.id)!==button.dataset.removePreview);localStorage.setItem('kanaforge-placement-library',JSON.stringify(filtered));renderPlacementLibrary();});
