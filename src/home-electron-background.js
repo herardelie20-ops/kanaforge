@@ -1,11 +1,10 @@
 import menuGrainUrl from '../kanaforge-desktop/assets/menu-grain.png';
 
-export function installHomeElectronBackground() {
-  const page = document.querySelector('#tattoo-studio .page-home');
-  if (!page || page.querySelector('.electron-liquid-background')) return;
+export function installElectronLiquidBackground(page, className = 'electron-liquid-background') {
+  if (!page || page.querySelector(`.${className}`)) return;
 
   const canvas = document.createElement('canvas');
-  canvas.className = 'electron-liquid-background';
+  canvas.className = className;
   canvas.setAttribute('aria-hidden', 'true');
   page.prepend(canvas);
 
@@ -110,4 +109,12 @@ export function installHomeElectronBackground() {
   };
 
   requestAnimationFrame(paint);
+}
+
+export function installHomeElectronBackground() {
+  installElectronLiquidBackground(document.querySelector('#tattoo-studio .page-home'));
+}
+
+export function installMenuElectronBackground() {
+  installElectronLiquidBackground(document.querySelector('#tattoo-studio .side'), 'electron-menu-background');
 }

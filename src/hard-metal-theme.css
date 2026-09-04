@@ -157,6 +157,16 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 /* La navigation est un cadre opaque au premier plan : aucune nappe de fond ne peut la traverser. */
 :root{--studio-side-width:235px}
 #tattoo-studio .side{z-index:50!important;isolation:isolate;overflow:hidden}
+#tattoo-studio .side>.electron-menu-background{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  opacity:.94;
+}
+#tattoo-studio .side>:not(.electron-menu-background){position:relative;z-index:1}
 #tattoo-studio main{z-index:1}
 #tattoo-studio main:before{inset:0 0 0 var(--studio-side-width)!important}
 @media(max-width:1050px){:root{--studio-side-width:195px}}
