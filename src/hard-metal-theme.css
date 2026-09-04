@@ -1208,7 +1208,7 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
 /* Accueil : les trois actions bougent ensemble, sans entraîner le cadre
    métallique partagé qui demeure calé sur la zone d'accueil. */
 #tattoo-studio .page-home .welcome>div{
-  transform:translate(-76px,76px)!important;
+  transform:translate(-76px,152px)!important;
 }
 
 /* La nappe doit rester perceptiblement vivante même lorsqu'une interface ne
