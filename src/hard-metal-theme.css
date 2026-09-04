@@ -1291,6 +1291,14 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   mix-blend-mode:screen!important;
 }
 
+/* Placement 3D : décor général très sombre pour faire ressortir le mannequin
+   et les repères chrome, sans toucher au rendu de l'aperçu lui-même. */
+#tattoo-studio .page-placement{background:#000!important}
+#tattoo-studio .page-placement::before{
+  opacity:.74!important;
+  filter:grayscale(1) contrast(1.92) brightness(.3)!important;
+}
+
 /* Lettrage : la nappe devient monochrome ; une seule lueur cyan rappelle les
    repères techniques du studio, sans réintroduire les anciennes couleurs. */
 #tattoo-studio .page-lettering::before{
