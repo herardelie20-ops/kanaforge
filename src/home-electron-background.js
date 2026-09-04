@@ -10,8 +10,9 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
 
   const context = canvas.getContext('2d', { alpha: false });
   const field = document.createElement('canvas');
-  const width = 144;
-  const height = 360;
+  const isMenuBackground = className === 'electron-menu-background';
+  const width = isMenuBackground ? 160 : 300;
+  const height = isMenuBackground ? 560 : 300;
   field.width = width;
   field.height = height;
   const fieldContext = field.getContext('2d', { alpha: false });
@@ -90,14 +91,14 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
         const nx = -(sample(sx + 1, sy) - h) * 4;
         const ny = -(sample(sx, sy + 1) - h) * 4;
         const normalLength = Math.hypot(nx, ny, 1);
-        const ambient = Math.exp(-((ambientDistance / 62) ** 2)) * (42 + h * 76);
-        const focus = Math.exp(-((distance / 82) ** 2)) * (18 + h * 54);
-        const relief = Math.max(0, 1 / normalLength) * h * 26;
-        const light = Math.min(255, 4 + ambient + focus + relief);
+        const ambient = Math.exp(-((ambientDistance / 62) ** 2)) * (30 + h * 52);
+        const focus = Math.exp(-((distance / 82) ** 2)) * (16 + h * 42);
+        const relief = Math.max(0, 1 / normalLength) * h * 18;
+        const light = Math.min(255, 1 + ambient + focus + relief);
         const index = (y * width + x) * 4;
-        data[index] = light * 0.22;
-        data[index + 1] = light * 0.48;
-        data[index + 2] = light * 0.58;
+        data[index] = light * 0.08;
+        data[index + 1] = light * 0.21;
+        data[index + 2] = light * 0.26;
         data[index + 3] = 255;
       }
     }

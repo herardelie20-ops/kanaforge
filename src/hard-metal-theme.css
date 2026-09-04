@@ -1234,8 +1234,8 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   width:calc(100vw - var(--studio-side-width));
   height:100vh;
   pointer-events:none;
-  background:#020608;
-  opacity:.95;
+  background:#010304;
+  opacity:1;
 }
 #tattoo-studio .page-home>:is(header,.workspace){position:relative;z-index:1}
 
