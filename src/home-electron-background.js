@@ -19,6 +19,7 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
     'flash-empty-liquid',
     'electron-paint-intro-background',
   ].includes(className);
+  const hasWormTexture = !isLivePreviewBackground;
   // Le calcul épouse le format réel de la zone, plutôt qu'un carré surdimensionné.
   // On conserve plus de finesse utile tout en évitant de calculer des pixels invisibles.
   const box = page.getBoundingClientRect();
@@ -40,19 +41,9 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
   let isPageVisible = document.visibilityState === 'visible';
   let isInViewport = true;
   let hasPointer = false;
-  const creatures = Array.from({ length: isLivePreviewBackground ? 0 : isMenuBackground ? 16 : 52 }, (_, index) => {
-    const random = multiplier => {
-      const value = Math.sin((index + 1) * multiplier) * 43758.5453;
-      return value - Math.floor(value);
-    };
-    return {
-      x: random(12.9898), y: random(78.233), phase: random(37.719) * Math.PI * 2,
-      group: Math.floor(random(91.173) * 7), drift: 7 + random(19.317) * 15,
-      speed: .45 + random(9.191) * .75, pulse: .6 + random(53.531) * 1.25,
-      size: 7 + random(17.113) * 12,
-      offsetX: 0, offsetY: 0, velocityX: 0, velocityY: 0,
-    };
-  });
+  // La densité est dessinée directement dans le champ : elle donne l'impression
+  // d'une infinité de petits volumes, sans traits isolés ni effet « ficelle ».
+  const creatures = [];
 
   const grain = new Image();
   grain.onload = () => {
@@ -205,7 +196,33 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
         const cursorSweep = cursorHalo * (isLivePreviewBackground ? 3 + h * 12 : 8 + h * 30);
         const relief = Math.max(0, 1 / normalLength) * h * 5;
         const microRelief = Math.min(1, Math.hypot(nx, ny) * 1.8) * (2 + h * 6);
-        const rawLight = cursorSweep + relief + sparkle + microRelief;
+        let inkBody = 0;
+        let wormRim = 0;
+        if (hasWormTexture) {
+          // Une petite forme arrondie par cellule, déformée par une marée :
+          // l'ensemble crée une masse d'encre mouvante de milliers de vers courts.
+          const fleeAmount = hasPointer ? cursorHalo * 11 : 0;
+          const weaveX = sx + Math.sin(sy * .145 + time * 3.4) * 5 + ((x - focusX) / (cursorDistance + 1)) * fleeAmount;
+          const weaveY = sy + Math.cos(sx * .13 - time * 2.8) * 5 + ((y - focusY) / (cursorDistance + 1)) * fleeAmount;
+          const cellSize = isMenuBackground ? 5.8 : 7.4;
+          const cellX = Math.floor(weaveX / cellSize);
+          const cellY = Math.floor(weaveY / cellSize);
+          const localX = weaveX - (cellX + .5) * cellSize;
+          const localY = weaveY - (cellY + .5) * cellSize;
+          const wormSeedRaw = Math.sin(cellX * 127.1 + cellY * 311.7) * 43758.5453;
+          const wormSeed = wormSeedRaw - Math.floor(wormSeedRaw);
+          const angle = (wormSeed - .5) * 2.4 + Math.sin(time * 1.9 + cellX * .31 + cellY * .17) * .38;
+          const along = localX * Math.cos(angle) + localY * Math.sin(angle);
+          const across = -localX * Math.sin(angle) + localY * Math.cos(angle);
+          const halfLength = cellSize * (.26 + wormSeed * .2);
+          const radius = cellSize * (.105 + ((wormSeed * 13.1) % 1) * .045);
+          const segmentDistance = Math.hypot(Math.max(0, Math.abs(along) - halfLength), across);
+          inkBody = Math.max(0, 1 - segmentDistance / radius);
+          const rimDistance = segmentDistance - radius * .78;
+          const rim = Math.exp(-(rimDistance * rimDistance) / Math.max(.4, radius * radius * .14));
+          wormRim = rim * (2 + h * 19 + cursorHalo * 8);
+        }
+        const rawLight = (cursorSweep + relief + sparkle + microRelief + wormRim) * (1 - inkBody * .88);
         const light = Math.min(255, Math.max(0, (rawLight - 3) * 1.22));
         const index = (y * width + x) * 4;
         data[index] = light;
@@ -216,7 +233,6 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
     }
 
     fieldContext.putImageData(pixels, 0, 0);
-    drawGlassCreatures(time, focusX, focusY);
     context.imageSmoothingEnabled = true;
     context.imageSmoothingQuality = 'high';
     context.clearRect(0, 0, canvas.width, canvas.height);
