@@ -24,6 +24,7 @@ root.innerHTML=`<aside class="side"><a class="brand" href="./studio.html">K <spa
 installStudioLayoutEditor(root,space);
 installMenuElectronBackground();
 if(space==='home')installHomeElectronBackground();
+if(space==='painting')installElectronLiquidBackground(root.querySelector('.page-painting'),'electron-painting-background');
 const prefetchedStudios=new Set();
 const prefetchStudio=key=>{if(prefetchedStudios.has(key)||!studioModules[key])return;prefetchedStudios.add(key);studioModules[key]().catch(()=>prefetchedStudios.delete(key));};
 root.querySelectorAll('.side nav a').forEach(link=>{const key=link.dataset.studioLink;link.addEventListener('pointerenter',()=>prefetchStudio(key),{once:true});link.addEventListener('touchstart',()=>prefetchStudio(key),{once:true,passive:true});link.addEventListener('click',event=>{if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;prefetchStudio(key);link.classList.add('liquid-press');});});

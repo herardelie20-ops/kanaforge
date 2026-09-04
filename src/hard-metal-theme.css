@@ -1272,6 +1272,13 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
 }
 #tattoo-studio .page-home>:is(header,.workspace){position:relative;z-index:1}
 
+/* Peinture numérique : Electron devient la nappe animée de toute la page,
+   derrière les fenêtres de travail et les réglages. */
+#tattoo-studio .page-painting{background:#010304!important}
+#tattoo-studio .page-painting::before{display:none!important}
+#tattoo-studio .page-painting>.electron-painting-background{position:fixed!important;inset:0 0 0 var(--studio-side-width)!important;z-index:0!important;width:calc(100vw - var(--studio-side-width))!important;height:100vh!important;pointer-events:none!important;filter:contrast(1.38) brightness(1.13)}
+#tattoo-studio .page-painting>:is(header,.workspace){position:relative!important;z-index:1!important}
+
 /* Lettrage : la nappe devient monochrome ; une seule lueur cyan rappelle les
    repères techniques du studio, sans réintroduire les anciennes couleurs. */
 #tattoo-studio .page-lettering::before{
