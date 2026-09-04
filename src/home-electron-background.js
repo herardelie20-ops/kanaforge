@@ -32,6 +32,19 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
   let frameInterval = 36;
   let isPageVisible = document.visibilityState === 'visible';
   let isInViewport = true;
+  let hasPointer = false;
+  const creatures = Array.from({ length: isMenuBackground ? 9 : isViewportBackground ? 18 : 26 }, (_, index) => {
+    const random = multiplier => {
+      const value = Math.sin((index + 1) * multiplier) * 43758.5453;
+      return value - Math.floor(value);
+    };
+    return {
+      x: random(12.9898), y: random(78.233), phase: random(37.719) * Math.PI * 2,
+      drift: 5 + random(19.317) * 12, speed: .45 + random(9.191) * .75,
+      pulse: .6 + random(53.531) * 1.25, size: 4 + random(17.113) * 10,
+      offsetX: 0, offsetY: 0, velocityX: 0, velocityY: 0,
+    };
+  });
 
   const grain = new Image();
   grain.onload = () => {
@@ -75,19 +88,58 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
   const syncPageVisibility = () => { isPageVisible = document.visibilityState === 'visible'; };
   document.addEventListener('visibilitychange', syncPageVisibility);
 
-  window.addEventListener('pointermove', event => {
+  const updatePointer = event => {
     const box = page.getBoundingClientRect();
+    hasPointer = true;
     pointer = {
       x: Math.max(0, Math.min(1, (event.clientX - box.left) / box.width)),
       y: Math.max(0, Math.min(1, (event.clientY - box.top) / box.height)),
     };
-  }, { passive: true });
+  };
+  window.addEventListener('pointermove', updatePointer, { passive: true });
+
+  const drawGlassCreatures = (time, focusX, focusY) => {
+    fieldContext.save();
+    fieldContext.globalCompositeOperation = 'screen';
+    for (const creature of creatures) {
+      const driftX = Math.sin(time * creature.speed + creature.phase) * creature.drift;
+      const driftY = Math.cos(time * creature.speed * .78 + creature.phase * 1.7) * creature.drift * .58;
+      const baseX = creature.x * width + driftX;
+      const baseY = creature.y * height + driftY;
+      const dx = baseX + creature.offsetX - focusX;
+      const dy = baseY + creature.offsetY - focusY;
+      const distance = Math.hypot(dx, dy) || 1;
+      const flee = hasPointer ? Math.max(0, 1 - distance / (width * .2)) : 0;
+      creature.velocityX = creature.velocityX * .79 + (dx / distance) * flee * 8.8;
+      creature.velocityY = creature.velocityY * .79 + (dy / distance) * flee * 8.8;
+      creature.offsetX = Math.max(-width * .14, Math.min(width * .14, creature.offsetX + creature.velocityX));
+      creature.offsetY = Math.max(-height * .14, Math.min(height * .14, creature.offsetY + creature.velocityY));
+      const emergence = Math.pow(Math.max(0, Math.sin(time * creature.pulse + creature.phase)), 5);
+      if (emergence < .018 && flee < .04) continue;
+      const x = baseX + creature.offsetX;
+      const y = baseY + creature.offsetY;
+      const angle = Math.atan2(driftY + creature.velocityY, driftX + creature.velocityX || .001);
+      const length = creature.size * (1 + emergence * 1.7 + flee * .9);
+      const bend = Math.sin(time * 2.2 + creature.phase) * creature.size * .55;
+      const alpha = Math.min(.33, .025 + emergence * .2 + flee * .14);
+      fieldContext.strokeStyle = `rgba(214, 255, 250, ${alpha})`;
+      fieldContext.lineWidth = .45 + emergence * .75;
+      fieldContext.shadowColor = 'rgba(185,255,248,.38)';
+      fieldContext.shadowBlur = 2 + emergence * 7;
+      fieldContext.beginPath();
+      fieldContext.moveTo(x - Math.cos(angle) * length * .5, y - Math.sin(angle) * length * .5);
+      fieldContext.quadraticCurveTo(x + Math.sin(angle) * bend, y - Math.cos(angle) * bend, x + Math.cos(angle) * length * .5, y + Math.sin(angle) * length * .5);
+      fieldContext.stroke();
+    }
+    fieldContext.restore();
+  };
 
   const paint = now => {
     if (!canvas.isConnected) {
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
       document.removeEventListener('visibilitychange', syncPageVisibility);
+      window.removeEventListener('pointermove', updatePointer);
       return;
     }
     requestAnimationFrame(paint);
@@ -142,6 +194,7 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
     }
 
     fieldContext.putImageData(pixels, 0, 0);
+    drawGlassCreatures(time, focusX, focusY);
     context.imageSmoothingEnabled = true;
     context.imageSmoothingQuality = 'high';
     context.clearRect(0, 0, canvas.width, canvas.height);
