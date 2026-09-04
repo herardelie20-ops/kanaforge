@@ -1193,6 +1193,22 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
 #tattoo-studio .page-home .welcome::after{
   transform:translateX(-114px)!important;
 }
+
+/* Peinture numérique : le plein écran conserve strictement le ratio de toile. */
+#tattoo-studio .digital-painting:fullscreen .paint-canvas-wrap{
+  display:grid!important;
+  place-items:center!important;
+}
+#tattoo-studio .digital-painting:fullscreen .paint-canvas-wrap canvas{
+  width:min(100%,calc((100vh - 178px)*1.5625))!important;
+  height:auto!important;
+  aspect-ratio:25/16!important;
+}
+@media(max-width:900px){
+  #tattoo-studio .digital-painting:fullscreen .paint-canvas-wrap canvas{
+    width:min(100%,calc((100vh - 200px)*1.5625))!important;
+  }
+}
 #tattoo-studio .page-lettering .letter-import{
   background:transparent!important;
   background-image:none!important;
