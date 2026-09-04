@@ -1,0 +1,26 @@
+{
+  "name": "kanaforge",
+  "version": "0.1.1",
+  "description": "KanaForge — bureau de création 3D à partir de dessins",
+  "main": "src/main.cjs",
+  "scripts": {
+    "build:renderer": "set VITE_BASE_PATH=./&& pnpm --dir .. build",
+    "start": "pnpm run build:renderer && electron .",
+    "pack": "pnpm run build:renderer && electron-builder --dir",
+    "dist": "pnpm run build:renderer && electron-builder --win nsis"
+  },
+  "build": {
+    "appId": "studio.kanaforge.app",
+    "productName": "KanaForge",
+    "directories": { "output": "C:\\Users\\Elie\\AppData\\Local\\Temp\\kanaforge-playtest-build" },
+    "files": ["src/main.cjs", "src/preload.cjs", "package.json"],
+    "extraResources": [
+      { "from": "../dist/client", "to": "renderer" }
+    ],
+    "win": { "target": "nsis", "artifactName": "KanaForge-Setup-${version}.exe" }
+  },
+  "devDependencies": {
+    "electron": "^39.2.7",
+    "electron-builder": "^26.0.12"
+  }
+}
