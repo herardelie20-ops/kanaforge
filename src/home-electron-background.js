@@ -12,8 +12,10 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
   const field = document.createElement('canvas');
   const isMenuBackground = className === 'electron-menu-background';
   const isViewportBackground = className === 'electron-viewport-background';
-  const width = isMenuBackground ? 192 : 512;
-  const height = isMenuBackground ? 672 : 512;
+  // Le champ est volontairement calculé en haute définition : il reste net
+  // dans les grands cadres et sur les écrans à forte densité de pixels.
+  const width = isMenuBackground ? 256 : 768;
+  const height = isMenuBackground ? 896 : 768;
   field.width = width;
   field.height = height;
   const fieldContext = field.getContext('2d', { alpha: false });
@@ -52,7 +54,7 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
 
   const resize = () => {
     const box = page.getBoundingClientRect();
-    const ratio = Math.min(window.devicePixelRatio || 1, 2.5);
+    const ratio = Math.min(window.devicePixelRatio || 1, 3);
     canvas.width = Math.max(1, Math.round(box.width * ratio));
     canvas.height = Math.max(1, Math.round(box.height * ratio));
   };
@@ -102,7 +104,8 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
         const relief = Math.max(0, 1 / normalLength) * h * 31;
         const sparkle = Math.exp(-((distance / 48) ** 2)) * (24 + Math.pow(h, 4.5) * 360);
         const shimmer = Math.max(0, Math.sin((x + y) * 0.035 + time * 5.6)) * Math.pow(h, 2.1) * 42;
-        const rawLight = ambient + focus + relief + sparkle + shimmer;
+        const microRelief = Math.min(1, Math.hypot(nx, ny) * 1.8) * (8 + h * 18);
+        const rawLight = ambient + focus + relief + sparkle + shimmer + microRelief;
         const light = Math.min(255, Math.max(0, (rawLight - 8) * 1.55 + 3));
         const index = (y * width + x) * 4;
         data[index] = light;
