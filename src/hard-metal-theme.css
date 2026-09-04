@@ -1194,6 +1194,14 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   transform:translateX(-114px)!important;
 }
 
+/* Peinture numérique : le cadre se prolonge vers le haut et la gauche sans
+   modifier l'emprise du laboratoire, de la toile ou de ses commandes. */
+#tattoo-studio .page-painting .digital-painting::after{
+  inset:-114px 0 0 -19px!important;
+  background-size:100% 100%!important;
+  background-position:left top!important;
+}
+
 /* Peinture numérique : le plein écran conserve strictement le ratio de toile. */
 #tattoo-studio .digital-painting:fullscreen .paint-canvas-wrap{
   display:grid!important;
