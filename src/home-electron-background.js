@@ -100,15 +100,12 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
     const data = pixels.data;
     const focusX = pointer.x * (width - 1);
     const focusY = pointer.y * (height - 1);
-    const diagonalSpan = Math.hypot(width * 0.62, height * 0.78);
-    const primaryPhase = time * (isViewportBackground ? 0.72 : 0.92);
-    const secondaryPhase = time * (isViewportBackground ? 0.42 : 0.58) + 0.31;
+    const glintCycle = time * (isViewportBackground ? 1.35 : 1.8);
+    const glintStep = Math.floor(glintCycle);
+    const glintPulse = Math.sin((glintCycle - glintStep) * Math.PI);
 
     for (let y = 0; y < height; y += 1) {
       for (let x = 0; x < width; x += 1) {
-        const diagonal = x * 0.62 + y * 0.78;
-        const primaryWave = Math.pow(Math.max(0, Math.cos((diagonal / diagonalSpan - primaryPhase) * Math.PI * 2)), 1.8);
-        const secondaryWave = Math.pow(Math.max(0, Math.cos((diagonal / diagonalSpan + secondaryPhase) * Math.PI * 2)), 2.7);
         const cursorDistance = Math.hypot(x - focusX, y - focusY);
         const cursorHalo = Math.exp(-((cursorDistance / (width * 0.16)) ** 2));
         const sx = x + Math.sin(y * (isViewportBackground ? 0.12 : 0.085) + time * (isViewportBackground ? 5.7 : 4.2)) * 3 + Math.sin(y * 0.17 - time * 1.6) * 1.4;
@@ -117,14 +114,25 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
         const nx = -(sample(sx + 1, sy) - h) * 4;
         const ny = -(sample(sx, sy + 1) - h) * 4;
         const normalLength = Math.hypot(nx, ny, 1);
-        const sweep = primaryWave * (23 + h * 72) + secondaryWave * (12 + h * 46);
-        const cursorSweep = cursorHalo * (16 + h * 62);
-        const relief = Math.max(0, 1 / normalLength) * h * 31;
-        const sparkle = (primaryWave * .72 + cursorHalo * .5) * (20 + Math.pow(h, 4.5) * 340);
-        const shimmer = Math.max(0, Math.sin(diagonal * 0.045 - time * 5.6)) * Math.pow(h, 2.1) * 38;
-        const microRelief = Math.min(1, Math.hypot(nx, ny) * 1.8) * (8 + h * 18);
-        const rawLight = sweep + cursorSweep + relief + sparkle + shimmer + microRelief;
-        const light = Math.min(255, Math.max(0, (rawLight - 8) * 1.55 + 3));
+        const cellX = (x / 76) | 0;
+        const cellY = (y / 76) | 0;
+        const seedRaw = Math.sin(cellX * 127.1 + cellY * 311.7 + glintStep * 74.7) * 43758.5453;
+        const seed = seedRaw - Math.floor(seedRaw);
+        let sparkle = 0;
+        if (seed > 0.87) {
+          const sparkleX = cellX * 76 + ((seed * 19.7) % 1) * 76;
+          const sparkleY = cellY * 76 + ((seed * 43.1) % 1) * 76;
+          const sparkleDX = x - sparkleX;
+          const sparkleDY = y - sparkleY;
+          const glow = Math.exp(-(sparkleDX * sparkleDX + sparkleDY * sparkleDY) * 0.006);
+          const ray = Math.exp(-(sparkleDX * sparkleDX * 0.024 + sparkleDY * sparkleDY * 0.00075));
+          sparkle = glintPulse * (glow * (20 + h * 110) + ray * (10 + h * 48));
+        }
+        const cursorSweep = cursorHalo * (8 + h * 30);
+        const relief = Math.max(0, 1 / normalLength) * h * 5;
+        const microRelief = Math.min(1, Math.hypot(nx, ny) * 1.8) * (2 + h * 6);
+        const rawLight = cursorSweep + relief + sparkle + microRelief;
+        const light = Math.min(255, Math.max(0, (rawLight - 3) * 1.22));
         const index = (y * width + x) * 4;
         data[index] = light;
         data[index + 1] = light;
