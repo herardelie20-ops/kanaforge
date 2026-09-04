@@ -1234,6 +1234,12 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   transform:translateX(-114px)!important;
 }
 
+/* Accueil : le noir inclus dans le PNG de chrome se fond dans le décor.
+   Seuls les reflets métalliques restent visibles au-dessus de l'animation. */
+#tattoo-studio .page-home .welcome::after{
+  mix-blend-mode:screen!important;
+}
+
 /* Peinture numérique : le cadre se prolonge vers le haut et la gauche sans
    modifier l'emprise du laboratoire, de la toile ou de ses commandes. */
 #tattoo-studio .page-painting .digital-painting::after{
