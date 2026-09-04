@@ -1188,6 +1188,11 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
 #tattoo-studio .page-lettering .glyph-lab>header>div:first-child{
   transform:translateX(152px)!important;
 }
+
+/* Accueil : le contour chrome du triptyque avance seul de 3 cm vers la gauche. */
+#tattoo-studio .page-home .welcome::after{
+  transform:translateX(-114px)!important;
+}
 #tattoo-studio .page-lettering .letter-import{
   background:transparent!important;
   background-image:none!important;
