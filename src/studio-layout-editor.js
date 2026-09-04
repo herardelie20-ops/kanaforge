@@ -21,7 +21,7 @@ const loadLayout = space => {
 
 export const installStudioLayoutEditor = (root, space) => {
   const toggle = root.querySelector('#studio-layout-editor');
-  const main = root.querySelector('main');
+  const main = root.matches('main') ? root : root.querySelector('main');
   if (!toggle || !main) return;
 
   root.insertAdjacentHTML('beforeend', `<section class="studio-layout-editor-panel" aria-live="polite" hidden><b>MODE ÉDITEUR</b><span>Glissez pour déplacer · double-cliquez puis tirez l’angle pour étirer.</span><div><button type="button" data-layout-reset>Réinitialiser cette page</button><button type="button" data-layout-close>Terminer</button></div></section><button class="studio-layout-resize-handle" type="button" aria-label="Étirez cet élément depuis son angle" hidden></button>`);
@@ -95,7 +95,7 @@ export const installStudioLayoutEditor = (root, space) => {
     resizeHandle.hidden = true;
   });
   root.addEventListener('pointerdown', event => {
-    if (!active || !(event.target instanceof Element) || event.target.closest('.studio-layout-editor-panel, .studio-header-actions')) return;
+    if (!active || !(event.target instanceof Element) || event.target.closest('.studio-layout-editor-panel, .studio-header-actions, #studio-layout-editor, .studio-layout-resize-handle')) return;
     const element = event.target;
     event.preventDefault();
     select(element);
@@ -135,7 +135,7 @@ export const installStudioLayoutEditor = (root, space) => {
   root.addEventListener('pointerup', finishDrag);
   root.addEventListener('pointercancel', finishDrag);
   root.addEventListener('dblclick', event => {
-    if (!active || !(event.target instanceof Element) || event.target.closest('.studio-layout-editor-panel, .studio-header-actions')) return;
+    if (!active || !(event.target instanceof Element) || event.target.closest('.studio-layout-editor-panel, .studio-header-actions, #studio-layout-editor, .studio-layout-resize-handle')) return;
     event.preventDefault();
     showResizeHandle(event.target);
   });
