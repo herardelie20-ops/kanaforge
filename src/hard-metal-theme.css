@@ -1228,6 +1228,22 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
 }
 #tattoo-studio .page-home>:is(header,.workspace){position:relative;z-index:1}
 
+/* Lettrage : la nappe devient monochrome ; une seule lueur cyan rappelle les
+   repères techniques du studio, sans réintroduire les anciennes couleurs. */
+#tattoo-studio .page-lettering::before{
+  filter:grayscale(1) contrast(1.18) brightness(.76)!important;
+}
+#tattoo-studio .page-lettering::after{
+  content:'';
+  position:fixed;
+  inset:0 0 0 var(--studio-side-width);
+  z-index:0;
+  pointer-events:none;
+  background:radial-gradient(ellipse 54% 34% at 78% 20%,rgba(54,224,222,.13),transparent 68%);
+  mix-blend-mode:screen;
+}
+#tattoo-studio .page-lettering>:is(header,.workspace){position:relative;z-index:1}
+
 /* La nappe doit rester perceptiblement vivante même lorsqu'une interface ne
    nécessite aucun défilement. Cette animation CSS fonctionne également dans
    le renderer local d'Electron, sans dépendre d'un événement de scroll. */
