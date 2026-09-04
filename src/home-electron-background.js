@@ -40,15 +40,16 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
   let isPageVisible = document.visibilityState === 'visible';
   let isInViewport = true;
   let hasPointer = false;
-  const creatures = Array.from({ length: isLivePreviewBackground ? 0 : isMenuBackground ? 9 : 26 }, (_, index) => {
+  const creatures = Array.from({ length: isLivePreviewBackground ? 0 : isMenuBackground ? 16 : 52 }, (_, index) => {
     const random = multiplier => {
       const value = Math.sin((index + 1) * multiplier) * 43758.5453;
       return value - Math.floor(value);
     };
     return {
       x: random(12.9898), y: random(78.233), phase: random(37.719) * Math.PI * 2,
-      drift: 5 + random(19.317) * 12, speed: .45 + random(9.191) * .75,
-      pulse: .6 + random(53.531) * 1.25, size: 4 + random(17.113) * 10,
+      group: Math.floor(random(91.173) * 7), drift: 7 + random(19.317) * 15,
+      speed: .45 + random(9.191) * .75, pulse: .6 + random(53.531) * 1.25,
+      size: 7 + random(17.113) * 12,
       offsetX: 0, offsetY: 0, velocityX: 0, velocityY: 0,
     };
   });
@@ -109,8 +110,13 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
     fieldContext.save();
     fieldContext.globalCompositeOperation = 'screen';
     for (const creature of creatures) {
-      const driftX = Math.sin(time * creature.speed + creature.phase) * creature.drift;
-      const driftY = Math.cos(time * creature.speed * .78 + creature.phase * 1.7) * creature.drift * .58;
+      // Les groupes partagent une même marée : ils se croisent comme une nuée,
+      // plutôt que de donner l'impression de fragments indépendants.
+      const wave = time * (.92 + creature.group * .045) + creature.group * 1.71;
+      const tideX = Math.sin(wave + creature.y * 10) * width * .038;
+      const tideY = Math.cos(wave * 1.32 + creature.x * 12) * height * .028;
+      const driftX = tideX + Math.sin(time * creature.speed * 2.3 + creature.phase) * creature.drift;
+      const driftY = tideY + Math.cos(time * creature.speed * 1.9 + creature.phase * 1.7) * creature.drift * .7;
       const baseX = creature.x * width + driftX;
       const baseY = creature.y * height + driftY;
       const dx = baseX + creature.offsetX - focusX;
@@ -121,21 +127,29 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
       creature.velocityY = creature.velocityY * .79 + (dy / distance) * flee * 8.8;
       creature.offsetX = Math.max(-width * .14, Math.min(width * .14, creature.offsetX + creature.velocityX));
       creature.offsetY = Math.max(-height * .14, Math.min(height * .14, creature.offsetY + creature.velocityY));
-      const emergence = Math.pow(Math.max(0, Math.sin(time * creature.pulse + creature.phase)), 5);
-      if (emergence < .018 && flee < .04) continue;
+      const emergence = Math.pow(Math.max(0, Math.sin(time * creature.pulse * 1.35 + creature.phase)), 2.6);
+      const revealBand = Math.pow(Math.max(0, Math.sin(wave * .72 + creature.phase * .55)), 2);
+      if (emergence * revealBand < .01 && flee < .03) continue;
       const x = baseX + creature.offsetX;
       const y = baseY + creature.offsetY;
       const angle = Math.atan2(driftY + creature.velocityY, driftX + creature.velocityX || .001);
-      const length = creature.size * (1 + emergence * 1.7 + flee * .9);
-      const bend = Math.sin(time * 2.2 + creature.phase) * creature.size * .55;
-      const alpha = Math.min(.33, .025 + emergence * .2 + flee * .14);
-      fieldContext.strokeStyle = `rgba(214, 255, 250, ${alpha})`;
-      fieldContext.lineWidth = .45 + emergence * .75;
-      fieldContext.shadowColor = 'rgba(185,255,248,.38)';
-      fieldContext.shadowBlur = 2 + emergence * 7;
+      const length = creature.size * (1.15 + emergence * 1.95 + revealBand * .75 + flee * 1.1);
+      const bend = Math.sin(time * 4.6 + creature.phase) * creature.size * (.75 + emergence * .4);
+      const alpha = Math.min(.5, .035 + emergence * revealBand * .38 + flee * .24);
+      fieldContext.strokeStyle = `rgba(220, 255, 252, ${alpha})`;
+      fieldContext.lineWidth = .6 + emergence * 1.15 + revealBand * .4;
+      fieldContext.shadowColor = 'rgba(196,255,250,.56)';
+      fieldContext.shadowBlur = 3 + emergence * 10 + revealBand * 4;
       fieldContext.beginPath();
-      fieldContext.moveTo(x - Math.cos(angle) * length * .5, y - Math.sin(angle) * length * .5);
-      fieldContext.quadraticCurveTo(x + Math.sin(angle) * bend, y - Math.cos(angle) * bend, x + Math.cos(angle) * length * .5, y + Math.sin(angle) * length * .5);
+      fieldContext.moveTo(x - Math.cos(angle) * length * .58, y - Math.sin(angle) * length * .58);
+      fieldContext.bezierCurveTo(
+        x - Math.cos(angle) * length * .12 + Math.sin(angle) * bend,
+        y - Math.sin(angle) * length * .12 - Math.cos(angle) * bend,
+        x + Math.cos(angle) * length * .1 - Math.sin(angle) * bend,
+        y + Math.sin(angle) * length * .1 + Math.cos(angle) * bend,
+        x + Math.cos(angle) * length * .58,
+        y + Math.sin(angle) * length * .58,
+      );
       fieldContext.stroke();
     }
     fieldContext.restore();
