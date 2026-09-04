@@ -12,6 +12,13 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
   const field = document.createElement('canvas');
   const isMenuBackground = className === 'electron-menu-background';
   const isViewportBackground = className === 'electron-viewport-background';
+  const isLivePreviewBackground = [
+    'electron-viewport-background',
+    'electron-placement-library-background',
+    'electron-placement-background',
+    'flash-empty-liquid',
+    'electron-paint-intro-background',
+  ].includes(className);
   // Le calcul épouse le format réel de la zone, plutôt qu'un carré surdimensionné.
   // On conserve plus de finesse utile tout en évitant de calculer des pixels invisibles.
   const box = page.getBoundingClientRect();
@@ -33,7 +40,7 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
   let isPageVisible = document.visibilityState === 'visible';
   let isInViewport = true;
   let hasPointer = false;
-  const creatures = Array.from({ length: isMenuBackground ? 9 : isViewportBackground ? 18 : 26 }, (_, index) => {
+  const creatures = Array.from({ length: isLivePreviewBackground ? 0 : isMenuBackground ? 9 : 26 }, (_, index) => {
     const random = multiplier => {
       const value = Math.sin((index + 1) * multiplier) * 43758.5453;
       return value - Math.floor(value);
@@ -171,16 +178,17 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
         const seedRaw = Math.sin(cellX * 127.1 + cellY * 311.7 + glintStep * 74.7) * 43758.5453;
         const seed = seedRaw - Math.floor(seedRaw);
         let sparkle = 0;
-        if (seed > 0.87) {
+        if (seed > (isLivePreviewBackground ? 0.965 : 0.87)) {
           const sparkleX = cellX * 76 + ((seed * 19.7) % 1) * 76;
           const sparkleY = cellY * 76 + ((seed * 43.1) % 1) * 76;
           const sparkleDX = x - sparkleX;
           const sparkleDY = y - sparkleY;
           const glow = Math.exp(-(sparkleDX * sparkleDX + sparkleDY * sparkleDY) * 0.006);
           const ray = Math.exp(-(sparkleDX * sparkleDX * 0.024 + sparkleDY * sparkleDY * 0.00075));
-          sparkle = glintPulse * (glow * (20 + h * 110) + ray * (10 + h * 48));
+          const sparkleStrength = isLivePreviewBackground ? .42 : 1;
+          sparkle = glintPulse * sparkleStrength * (glow * (20 + h * 110) + ray * (10 + h * 48));
         }
-        const cursorSweep = cursorHalo * (8 + h * 30);
+        const cursorSweep = cursorHalo * (isLivePreviewBackground ? 3 + h * 12 : 8 + h * 30);
         const relief = Math.max(0, 1 / normalLength) * h * 5;
         const microRelief = Math.min(1, Math.hypot(nx, ny) * 1.8) * (2 + h * 6);
         const rawLight = cursorSweep + relief + sparkle + microRelief;
