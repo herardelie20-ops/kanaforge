@@ -1205,6 +1205,12 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   background-position:left top!important;
 }
 
+/* Accueil : les trois actions bougent ensemble, sans entraîner le cadre
+   métallique partagé qui demeure calé sur la zone d'accueil. */
+#tattoo-studio .page-home .welcome>div{
+  transform:translate(-76px,76px)!important;
+}
+
 /* Peinture numérique : le plein écran conserve strictement le ratio de toile. */
 #tattoo-studio .digital-painting:fullscreen .paint-canvas-wrap{
   display:grid!important;
