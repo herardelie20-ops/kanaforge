@@ -1313,6 +1313,20 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   background:radial-gradient(ellipse 54% 34% at 78% 20%,rgba(54,224,222,.13),transparent 68%);
   mix-blend-mode:screen;
 }
+
+/* Accueil : le triptyque n'ajoute aucun aplat noir. Le PNG chromé est fondu
+   dans la nappe Electron ; son fond noir agit comme une alpha et seul le métal reste. */
+#tattoo-studio .page-home .workspace,
+#tattoo-studio .page-home .welcome,
+#tattoo-studio .page-home .welcome>div{
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+}
+#tattoo-studio .page-home .welcome::after{
+  background-color:transparent!important;
+  mix-blend-mode:screen!important;
+}
 #tattoo-studio .page-lettering>:is(header,.workspace){position:relative;z-index:1}
 
 /* La nappe doit rester perceptiblement vivante même lorsqu'une interface ne
