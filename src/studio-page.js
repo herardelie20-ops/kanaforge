@@ -31,6 +31,11 @@ const prefetchStudio=key=>{if(prefetchedStudios.has(key)||!studioModules[key])re
 root.querySelectorAll('.side nav a').forEach(link=>{const key=link.dataset.studioLink;link.addEventListener('pointerenter',()=>prefetchStudio(key),{once:true});link.addEventListener('touchstart',()=>prefetchStudio(key),{once:true,passive:true});link.addEventListener('click',event=>{if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;prefetchStudio(key);link.classList.add('liquid-press');});});
 const deferEnhancements=()=>Promise.all([import('./kanaforge-files.js'),import('./studio-canvas-fullscreen.js'),import('./context-help.js')]);
 const loadedStudio=studioModule?.()||Promise.resolve();
+loadedStudio.then(()=>{
+  if(space!=='lettering')return;
+  installElectronLiquidBackground(root.querySelector('.drawing-zone'),'electron-lettering-drawing-background');
+  installElectronLiquidBackground(root.querySelector('.composition-lab'),'electron-lettering-composition-background');
+});
 loadedStudio.finally(()=>{const queue=()=>{if('requestIdleCallback' in window)requestIdleCallback(deferEnhancements,{timeout:900});else setTimeout(deferEnhancements,180)};setTimeout(queue,0)});
 if(space==='communication'){
   const agent=document.querySelector('.workspace aside');

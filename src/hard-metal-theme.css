@@ -1327,6 +1327,38 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   background-color:transparent!important;
   mix-blend-mode:screen!important;
 }
+
+/* Lettrage : Electron anime les deux surfaces d'aperçu. Les canvases gardent
+   leurs tracés lisibles grâce aux modes de fusion, sans aplat opaque. */
+#tattoo-studio .page-lettering :is(.drawing-zone,.composition-lab){
+  position:relative!important;
+  isolation:isolate;
+  overflow:hidden;
+}
+#tattoo-studio .page-lettering :is(.drawing-zone,.composition-lab)>
+:is(.electron-lettering-drawing-background,.electron-lettering-composition-background){
+  position:absolute!important;
+  inset:0!important;
+  z-index:0!important;
+  width:100%!important;
+  height:100%!important;
+  pointer-events:none!important;
+  filter:contrast(1.28) brightness(1.06);
+}
+#tattoo-studio .page-lettering .drawing-zone>:not(.electron-lettering-drawing-background),
+#tattoo-studio .page-lettering .composition-lab>:not(.electron-lettering-composition-background){
+  position:relative;
+  z-index:1;
+}
+#tattoo-studio .page-lettering .drawing-zone #glyph-canvas{
+  background:transparent!important;
+  filter:none!important;
+  mix-blend-mode:multiply!important;
+}
+#tattoo-studio .page-lettering .composition-lab #composition-canvas{
+  background:transparent!important;
+  mix-blend-mode:screen!important;
+}
 #tattoo-studio .page-lettering>:is(header,.workspace){position:relative;z-index:1}
 
 /* La nappe doit rester perceptiblement vivante même lorsqu'une interface ne

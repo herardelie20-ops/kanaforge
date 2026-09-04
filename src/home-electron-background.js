@@ -18,6 +18,8 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
     'electron-placement-background',
     'flash-empty-liquid',
     'electron-paint-intro-background',
+    'electron-lettering-drawing-background',
+    'electron-lettering-composition-background',
   ].includes(className);
   const hasWormTexture = !isLivePreviewBackground;
   // Le calcul épouse le format réel de la zone, plutôt qu'un carré surdimensionné.
