@@ -12,10 +12,13 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
   const field = document.createElement('canvas');
   const isMenuBackground = className === 'electron-menu-background';
   const isViewportBackground = className === 'electron-viewport-background';
-  // Le champ est volontairement calculé en haute définition : il reste net
-  // dans les grands cadres et sur les écrans à forte densité de pixels.
-  const width = isMenuBackground ? 256 : 768;
-  const height = isMenuBackground ? 896 : 768;
+  // Le calcul épouse le format réel de la zone, plutôt qu'un carré surdimensionné.
+  // On conserve plus de finesse utile tout en évitant de calculer des pixels invisibles.
+  const box = page.getBoundingClientRect();
+  const aspect = Math.max(0.35, Math.min(3.5, box.width / Math.max(1, box.height)));
+  const longEdge = 640;
+  const width = isMenuBackground ? 224 : Math.round(aspect >= 1 ? longEdge : longEdge * aspect);
+  const height = isMenuBackground ? 784 : Math.round(aspect >= 1 ? longEdge / aspect : longEdge);
   field.width = width;
   field.height = height;
   const fieldContext = field.getContext('2d', { alpha: false });
@@ -26,6 +29,9 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
   let heights = null;
   let pointer = { x: 0.5, y: 0.5 };
   let lastFrame = 0;
+  let frameInterval = 36;
+  let isPageVisible = document.visibilityState === 'visible';
+  let isInViewport = true;
 
   const grain = new Image();
   grain.onload = () => {
@@ -54,13 +60,20 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
 
   const resize = () => {
     const box = page.getBoundingClientRect();
-    const ratio = Math.min(window.devicePixelRatio || 1, 3);
+    const ratio = Math.min(window.devicePixelRatio || 1, 2.5);
     canvas.width = Math.max(1, Math.round(box.width * ratio));
     canvas.height = Math.max(1, Math.round(box.height * ratio));
   };
   const resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(page);
   resize();
+
+  const intersectionObserver = new IntersectionObserver(entries => {
+    isInViewport = entries.some(entry => entry.isIntersecting);
+  }, { threshold: 0.01 });
+  intersectionObserver.observe(page);
+  const syncPageVisibility = () => { isPageVisible = document.visibilityState === 'visible'; };
+  document.addEventListener('visibilitychange', syncPageVisibility);
 
   window.addEventListener('pointermove', event => {
     const box = page.getBoundingClientRect();
@@ -73,11 +86,14 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
   const paint = now => {
     if (!canvas.isConnected) {
       resizeObserver.disconnect();
+      intersectionObserver.disconnect();
+      document.removeEventListener('visibilitychange', syncPageVisibility);
       return;
     }
     requestAnimationFrame(paint);
-    if (!heights || now - lastFrame < 42) return;
+    if (!isPageVisible || !isInViewport || !heights || now - lastFrame < frameInterval) return;
     lastFrame = now;
+    const renderStartedAt = performance.now();
 
     const time = now * 0.00042;
     const pixels = fieldContext.createImageData(width, height);
@@ -120,6 +136,8 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
     context.imageSmoothingQuality = 'high';
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(field, 0, 0, canvas.width, canvas.height);
+    const renderDuration = performance.now() - renderStartedAt;
+    frameInterval = renderDuration > 28 ? 72 : renderDuration > 20 ? 54 : 36;
   };
 
   requestAnimationFrame(paint);
