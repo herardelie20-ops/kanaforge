@@ -1279,6 +1279,12 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
 #tattoo-studio .page-painting>.electron-painting-background{position:fixed!important;inset:0 0 0 var(--studio-side-width)!important;z-index:0!important;width:calc(100vw - var(--studio-side-width))!important;height:100vh!important;pointer-events:none!important;filter:contrast(1.38) brightness(1.13)}
 #tattoo-studio .page-painting>:is(header,.workspace){position:relative!important;z-index:1!important}
 
+/* Book numérique : le décor animé historique est remplacé par Electron. */
+#tattoo-studio .page-portfolio{background:#010304!important}
+#tattoo-studio .page-portfolio::before{display:none!important}
+#tattoo-studio .page-portfolio>.electron-portfolio-background{position:fixed!important;inset:0 0 0 var(--studio-side-width)!important;z-index:0!important;width:calc(100vw - var(--studio-side-width))!important;height:100vh!important;pointer-events:none!important;filter:contrast(1.38) brightness(1.13)}
+#tattoo-studio .page-portfolio>:is(header,.workspace){position:relative!important;z-index:1!important}
+
 /* Lettrage : la nappe devient monochrome ; une seule lueur cyan rappelle les
    repères techniques du studio, sans réintroduire les anciennes couleurs. */
 #tattoo-studio .page-lettering::before{
