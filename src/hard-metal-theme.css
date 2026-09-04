@@ -1359,6 +1359,10 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   background:transparent!important;
   mix-blend-mode:screen!important;
 }
+#tattoo-studio .page-lettering .composition-lab>h2{
+  font-size:15px!important;
+  line-height:1.08!important;
+}
 #tattoo-studio .page-lettering>:is(header,.workspace){position:relative;z-index:1}
 
 /* La nappe doit rester perceptiblement vivante même lorsqu'une interface ne
