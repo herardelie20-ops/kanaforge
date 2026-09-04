@@ -29,6 +29,7 @@ export const installStudioLayoutEditor = (root, space) => {
   const resizeHandles = root.querySelector('.studio-layout-resize-handles');
   let active = false;
   let selected = null;
+  const selection = new Set();
   let drag = null;
   let resize = null;
   const undoStack = [];
@@ -45,10 +46,24 @@ export const installStudioLayoutEditor = (root, space) => {
     if (placement.height) element.style.height = `${placement.height}px`;
   };
   const applyAll = () => main.querySelectorAll('*').forEach(apply);
-  const select = element => {
-    selected?.classList.remove('kf-editor-selected');
+  const clearSelection = () => {
+    selection.forEach(element => element.classList.remove('kf-editor-selected'));
+    selection.clear();
+    selected = null;
+  };
+  const select = (element, additive = false) => {
+    if (additive && selection.has(element)) {
+      element.classList.remove('kf-editor-selected');
+      selection.delete(element);
+      selected = [...selection].at(-1) || null;
+      if (!selected) resizeHandles.hidden = true;
+      return false;
+    }
+    if (!additive) clearSelection();
+    selection.add(element);
     selected = element;
-    selected.classList.add('kf-editor-selected');
+    element.classList.add('kf-editor-selected');
+    return true;
   };
   const positionResizeHandle = () => {
     if (!selected || !active || resizeHandles.hidden) return;
@@ -70,8 +85,7 @@ export const installStudioLayoutEditor = (root, space) => {
     drag = null;
     resize = null;
     root.classList.remove('layout-editor-active');
-    selected?.classList.remove('kf-editor-selected');
-    selected = null;
+    clearSelection();
     resizeHandles.hidden = true;
     panel.hidden = true;
     toggle.setAttribute('aria-pressed', 'false');
@@ -92,32 +106,32 @@ export const installStudioLayoutEditor = (root, space) => {
   };
   const findElement = key => [...main.querySelectorAll('*')].find(element => getElementKey(element) === key);
   const removeSelected = () => {
-    if (!selected) return;
-    const key = getElementKey(selected);
-    undoStack.push({ key });
+    if (!selection.size) return;
+    const keys = [...selection].map(getElementKey);
+    undoStack.push({ keys });
     const layout = loadLayout(space);
-    layout[key] = { ...(layout[key] || {}), hidden: true };
+    [...selection].forEach(element => { const key = getElementKey(element); layout[key] = { ...(layout[key] || {}), hidden: true }; element.style.display = 'none'; });
     localStorage.setItem(storageKey(space), JSON.stringify(layout));
-    selected.style.display = 'none';
-    selected.classList.remove('kf-editor-selected');
-    selected = null;
+    clearSelection();
     resizeHandles.hidden = true;
   };
   const undoDelete = () => {
     const action = undoStack.pop();
     if (!action) return;
     const layout = loadLayout(space);
-    delete layout[action.key];
+    action.keys.forEach(key => delete layout[key]);
     localStorage.setItem(storageKey(space), JSON.stringify(layout));
-    const element = findElement(action.key);
-    if (!element) return;
-    element.style.position = '';
-    element.style.left = '';
-    element.style.top = '';
-    element.style.width = '';
-    element.style.height = '';
-    element.style.display = '';
-    select(element);
+    action.keys.forEach(key => {
+      const element = findElement(key);
+      if (!element) return;
+      element.style.position = '';
+      element.style.left = '';
+      element.style.top = '';
+      element.style.width = '';
+      element.style.height = '';
+      element.style.display = '';
+      select(element, true);
+    });
   };
 
   toggle.addEventListener('click', () => active ? close() : open());
@@ -125,30 +139,29 @@ export const installStudioLayoutEditor = (root, space) => {
   panel.querySelector('[data-layout-reset]').addEventListener('click', () => {
     localStorage.removeItem(storageKey(space));
     main.querySelectorAll('*').forEach(element => { element.style.position = ''; element.style.left = ''; element.style.top = ''; element.style.width = ''; element.style.height = ''; element.style.display = ''; });
-    selected?.classList.remove('kf-editor-selected');
-    selected = null;
+    clearSelection();
     resizeHandles.hidden = true;
   });
   root.addEventListener('pointerdown', event => {
     if (!active || !(event.target instanceof Element) || event.target.closest('.studio-layout-editor-panel, .studio-header-actions, #studio-layout-editor, .studio-layout-resize-handles')) return;
     const element = event.target;
     event.preventDefault();
-    select(element);
+    const kept = select(element, event.shiftKey);
+    if (!kept) return;
     if (event.detail > 1) {
       showResizeHandle(element);
       return;
     }
-    const style = getComputedStyle(element);
-    drag = { element, x: event.clientX, y: event.clientY, left: Number.parseFloat(style.left) || 0, top: Number.parseFloat(style.top) || 0 };
+    drag = { x: event.clientX, y: event.clientY, elements: [...selection].map(item => { const style = getComputedStyle(item); return { element:item, left:Number.parseFloat(style.left) || 0, top:Number.parseFloat(style.top) || 0 }; }) };
     element.setPointerCapture?.(event.pointerId);
   });
   root.addEventListener('pointermove', event => {
     if (drag) {
-      const x = drag.left + event.clientX - drag.x;
-      const y = drag.top + event.clientY - drag.y;
-      drag.element.style.position = 'relative';
-      drag.element.style.left = `${x}px`;
-      drag.element.style.top = `${y}px`;
+      drag.elements.forEach(item => {
+        item.element.style.position = 'relative';
+        item.element.style.left = `${item.left + event.clientX - drag.x}px`;
+        item.element.style.top = `${item.top + event.clientY - drag.y}px`;
+      });
       positionResizeHandle();
     }
     if (resize) {
@@ -167,7 +180,7 @@ export const installStudioLayoutEditor = (root, space) => {
   });
   const finishDrag = () => {
     if (drag) {
-      save(drag.element, Number.parseFloat(drag.element.style.left) || 0, Number.parseFloat(drag.element.style.top) || 0);
+      drag.elements.forEach(item => save(item.element, Number.parseFloat(item.element.style.left) || 0, Number.parseFloat(item.element.style.top) || 0));
       drag = null;
     }
     if (resize) {
