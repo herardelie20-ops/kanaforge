@@ -1211,6 +1211,21 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   transform:translate(-76px,76px)!important;
 }
 
+/* La nappe doit rester perceptiblement vivante même lorsqu'une interface ne
+   nécessite aucun défilement. Cette animation CSS fonctionne également dans
+   le renderer local d'Electron, sans dépendre d'un événement de scroll. */
+@keyframes kanaforge-liquid-drift{
+  from{background-position:center,45% 47%,0 0,100% 20%,0 100%}
+  to{background-position:center,55% 53%,0 0,100% 20%,0 100%}
+}
+#tattoo-studio main::before{
+  animation:kanaforge-liquid-drift 18s cubic-bezier(.45,0,.55,1) infinite alternate!important;
+  will-change:background-position;
+}
+@media(prefers-reduced-motion:reduce){
+  #tattoo-studio main::before{animation:none!important}
+}
+
 /* Peinture numérique : le plein écran conserve strictement le ratio de toile. */
 #tattoo-studio .digital-painting:fullscreen .paint-canvas-wrap{
   display:grid!important;
