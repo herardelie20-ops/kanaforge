@@ -775,7 +775,7 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 /* Lettrage : le cadre de l'aperçu est prolongé de quatre centimètres au-dessus
    du panneau. Le motif est répété verticalement, jamais étiré. */
 #tattoo-studio .page-lettering .composition-lab::after{
-  inset:-151px -22px -22px!important;
+  inset:-151px -41px -22px!important;
   background-size:100% auto!important;
   background-position:center top!important;
   background-repeat:repeat-y!important;
