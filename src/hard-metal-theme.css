@@ -1212,7 +1212,7 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   width:calc(100% - 19px)!important;
   min-height:261px!important;
   justify-self:start;
-  transform:translate(-95px,152px)!important;
+  transform:translate(-57px,38px)!important;
 }
 
 /* Accueil : le fond reprend l'animation procédurale Electron du menu. */
