@@ -595,7 +595,7 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 }
 #tattoo-studio .page-communication .inbox>article,
 #tattoo-studio .page-communication .inbox>textarea{
-  transform:translate(-38px,38px);
+  transform:translate(38px,-114px);
 }
 #tattoo-studio .page-communication .inbox>textarea{
   height:189px!important;
