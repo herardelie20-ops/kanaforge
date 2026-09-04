@@ -31,6 +31,7 @@ export const installStudioLayoutEditor = (root, space) => {
   let selected = null;
   let drag = null;
   let resize = null;
+  const isEditorControl = element => element.closest('.studio-layout-editor-panel, #studio-layout-editor, .studio-layout-resize-handle');
 
   const apply = element => {
     const placement = loadLayout(space)[getElementKey(element)];
@@ -94,7 +95,7 @@ export const installStudioLayoutEditor = (root, space) => {
     resizeHandle.hidden = true;
   });
   root.addEventListener('pointerdown', event => {
-    if (!active || !(event.target instanceof Element) || event.target.closest('.studio-layout-editor-panel, .studio-header-actions, .side')) return;
+    if (!active || !(event.target instanceof Element) || event.target.closest('.studio-layout-editor-panel, .studio-header-actions')) return;
     const element = event.target;
     event.preventDefault();
     select(element);
@@ -134,7 +135,7 @@ export const installStudioLayoutEditor = (root, space) => {
   root.addEventListener('pointerup', finishDrag);
   root.addEventListener('pointercancel', finishDrag);
   root.addEventListener('dblclick', event => {
-    if (!active || !(event.target instanceof Element) || event.target.closest('.studio-layout-editor-panel, .studio-header-actions, .side')) return;
+    if (!active || !(event.target instanceof Element) || event.target.closest('.studio-layout-editor-panel, .studio-header-actions')) return;
     event.preventDefault();
     showResizeHandle(event.target);
   });
@@ -148,6 +149,19 @@ export const installStudioLayoutEditor = (root, space) => {
   });
   addEventListener('resize', positionResizeHandle, { passive: true });
   addEventListener('scroll', positionResizeHandle, { passive: true });
+  const blockInterfaceAction = event => {
+    if (!active || !(event.target instanceof Element) || isEditorControl(event.target)) return;
+    if (!event.target.closest('a,button,input,select,textarea,label,[role="button"]')) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  };
+  root.addEventListener('click', blockInterfaceAction, true);
+  root.addEventListener('auxclick', blockInterfaceAction, true);
+  root.addEventListener('submit', blockInterfaceAction, true);
+  root.addEventListener('keydown', event => {
+    if (event.key === 'Escape' || !active || !(event.target instanceof Element) || isEditorControl(event.target)) return;
+    if (event.target.closest('a,button,input,select,textarea,label,[role="button"]')) blockInterfaceAction(event);
+  }, true);
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && active) close(); });
   new MutationObserver(() => { if (active) applyAll(); }).observe(main, { childList: true, subtree: true });
 };
