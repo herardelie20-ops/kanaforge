@@ -11,6 +11,7 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
   const context = canvas.getContext('2d', { alpha: false });
   const field = document.createElement('canvas');
   const isMenuBackground = className === 'electron-menu-background';
+  const isViewportBackground = className === 'electron-viewport-background';
   const width = isMenuBackground ? 192 : 512;
   const height = isMenuBackground ? 672 : 512;
   field.width = width;
@@ -81,8 +82,8 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
     const data = pixels.data;
     const focusX = pointer.x * (width - 1);
     const focusY = pointer.y * (height - 1);
-    const ambientX = width * (0.5 + Math.sin(time * 2.1) * 0.3);
-    const ambientY = height * (0.46 + Math.cos(time * 1.6) * 0.22);
+    const ambientX = width * (0.5 + Math.sin(time * (isViewportBackground ? 1.05 : 2.1)) * (isViewportBackground ? 0.38 : 0.3));
+    const ambientY = height * (0.46 + Math.cos(time * (isViewportBackground ? 2.65 : 1.6)) * (isViewportBackground ? 0.3 : 0.22));
 
     for (let y = 0; y < height; y += 1) {
       for (let x = 0; x < width; x += 1) {
@@ -90,8 +91,8 @@ export function installElectronLiquidBackground(page, className = 'electron-liqu
         const dy = y - focusY;
         const distance = Math.hypot(dx, dy) || 0.001;
         const ambientDistance = Math.hypot(x - ambientX, y - ambientY);
-        const sx = x + Math.sin(y * 0.085 + time * 4.2) * 3 + Math.sin(y * 0.17 - time * 1.6) * 1.4;
-        const sy = y + Math.cos(x * 0.075 - time * 3.4) * 3;
+        const sx = x + Math.sin(y * (isViewportBackground ? 0.12 : 0.085) + time * (isViewportBackground ? 5.7 : 4.2)) * 3 + Math.sin(y * 0.17 - time * 1.6) * 1.4;
+        const sy = y + Math.cos(x * (isViewportBackground ? 0.11 : 0.075) - time * (isViewportBackground ? 4.9 : 3.4)) * 3;
         const h = sample(sx, sy);
         const nx = -(sample(sx + 1, sy) - h) * 4;
         const ny = -(sample(sx, sy + 1) - h) * 4;

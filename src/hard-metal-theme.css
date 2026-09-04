@@ -143,6 +143,11 @@ body:has(#object3d-app):before{background-image:linear-gradient(132deg,#04090aa8
 /* Aperçu 3D : noir épuré, deux lueurs seulement pour privilégier le motif. */
 #object3d-app .viewport:has(#empty:not(.hidden)){background-image:radial-gradient(ellipse 72% 58% at 12% 4%,#32d8e022,transparent 62%),radial-gradient(ellipse 68% 64% at 94% 96%,#d457ca20,transparent 63%),linear-gradient(145deg,#020506,#000 55%,#05080b)!important;background-size:cover!important;background-position:center!important;animation:none!important}
 #object3d-app .viewport:has(#empty:not(.hidden)):after{background:linear-gradient(118deg,#40e2da10,transparent 37%,transparent 67%,#d55bc514)!important;animation:none!important}
+#object3d-app .viewport{isolation:isolate;background:#000!important}
+#object3d-app .viewport>.electron-viewport-background{position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none;filter:contrast(1.38) brightness(1.12)}
+#object3d-app .viewport>#stage{position:absolute!important;inset:0;z-index:1}
+#object3d-app .viewport>.live-source-preview{z-index:1}
+#object3d-app .viewport:has(.electron-viewport-background)::after{display:none!important}
 .app-shell:has(#object3d-app):before{background-position:center,50% 50%,center,center;transform:rotate(var(--metal-flow-rotation,0deg)) scale(1.2);transform-origin:50% 50%;filter:hue-rotate(var(--metal-flow-hue,0deg)) saturate(1.22);transition:filter .7s ease,transform 1s cubic-bezier(.2,.8,.2,1)}
 
 /* Les commandes suivent les reflets de la nappe liquide active. */
