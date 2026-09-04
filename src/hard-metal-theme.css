@@ -1141,6 +1141,22 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
 #tattoo-studio .page-placement .avatar-workspace #avatar-canvas{
   height:706px!important;
 }
+
+/* Placement 3D : l'animation Electron est le fond natif de l'aperçu.
+   Le canvas WebGL transparent laisse vivre l'animation derrière le mannequin,
+   tandis que les fonds manuels peuvent toujours reprendre la main. */
+#tattoo-studio .page-placement .avatar-workspace>.electron-placement-background{
+  position:absolute!important;
+  inset:0!important;
+  z-index:0!important;
+  width:100%!important;
+  height:100%!important;
+  pointer-events:none!important;
+  filter:contrast(1.38) brightness(1.12);
+}
+#tattoo-studio .page-placement .avatar-workspace #avatar-canvas{
+  background:transparent!important;
+}
 #tattoo-studio .page-placement .avatar-workspace .avatar-actions{
   transform:translateY(-95px)!important;
 }
