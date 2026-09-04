@@ -1183,6 +1183,11 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
 #tattoo-studio .page-clients .client-project>small{
   transform:translateY(76px)!important;
 }
+
+/* Lettrage : le repère d'alphabet et son titre avancent ensemble de 4 cm. */
+#tattoo-studio .page-lettering .glyph-lab>header>div:first-child{
+  transform:translateX(152px)!important;
+}
 #tattoo-studio .page-lettering .letter-import{
   background:transparent!important;
   background-image:none!important;
