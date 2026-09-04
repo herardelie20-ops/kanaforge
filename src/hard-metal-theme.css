@@ -1363,6 +1363,12 @@ body:has(#object3d-app):before{background:none!important;opacity:0!important}
   font-size:15px!important;
   line-height:1.08!important;
 }
+
+/* L'alphabet reste une surface de travail nette, sans cadre chromé derrière ses commandes. */
+#tattoo-studio .page-lettering .glyph-lab::after{
+  display:none!important;
+  background-image:none!important;
+}
 #tattoo-studio .page-lettering>:is(header,.workspace){position:relative;z-index:1}
 
 /* La nappe doit rester perceptiblement vivante même lorsqu'une interface ne
